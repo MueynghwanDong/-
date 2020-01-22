@@ -1,0 +1,60 @@
+<!-- /server/sql/base/board.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<select id="selectboard">
+		SELECT
+		bno,
+        m_id,
+        title,
+        content,
+        regdate,
+        viewcnt,
+        replycnt
+		FROM
+		ptj_sub1.boards
+		WHERE bno =#{bno}
+	</select>
+    <select id="allboard">
+		SELECT
+		*
+		FROM
+		ptj_sub1.boards
+	</select>
+	<insert id="insertboard">
+		INSERT INTO ptj_sub1.boards
+		(
+		m_id,
+        title,
+        content,
+        regdate
+		)
+		VALUES
+		(
+		#{m_id},
+        #{title},
+        #{content},
+       now()
+		);
+	</insert>
+    <delete id = "deleteboard">
+        DELETE
+        FROM ptj_sub1.boards
+        WHERE bno =#{bno}
+    </delete>
+    <update id ="updateboard">
+        UPDATE ptj_sub1.boards
+        SET title =#{title}, content=#{content}, regdate=now()
+        WHERE bno =#{bno}
+    </update>
+    <update id = "viewcntupdate">
+        UPDATE ptj_sub1.boards
+        SET viewcnt = viewcnt+1
+        WHERE bno =#{bno}
+    </update>
+     <update id = "replycnt">
+        UPDATE ptj_sub1.boards
+        SET replycnt = replycnt+1
+        WHERE bno =#{bno}
+    </update>
+</mapper>
