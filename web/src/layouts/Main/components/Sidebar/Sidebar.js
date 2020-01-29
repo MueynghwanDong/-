@@ -10,9 +10,10 @@ import TextFieldsIcon from '@material-ui/icons/TextFields';
 import ImageIcon from '@material-ui/icons/Image';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
-import { Profile, SidebarNav, UpgradePlan } from './components';
+import { Profile, SidebarNav } from './components';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -44,19 +45,19 @@ const Sidebar = props => {
 
   const pages = [
     {
-      title: 'Dashboard',
+      title: '사용자 정보// 내 축사',
       href: '/dashboard',
       icon: <DashboardIcon />
     },
     {
-      title: 'Users',
+      title: 'Q&A',
       href: '/users',
       icon: <PeopleIcon />
     },
     {
-      title: 'Products',
+      title: '달력',
       href: '/products',
-      icon: <ShoppingBasketIcon />
+      icon: <CalendarTodayIcon />
     },
     {
       title: 'Authentication',
@@ -103,7 +104,7 @@ const Sidebar = props => {
           className={classes.nav}
           pages={pages}
         />
-        <UpgradePlan />
+        
       </div>
     </Drawer>
   );
