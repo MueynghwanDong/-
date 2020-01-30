@@ -50,14 +50,19 @@ router.post('/join', async(req,res,next)=>{
             name,
             location,
         });
+        const user = new members({
+          m_id, pw,
+        });
+        console.log(user);
         const sr = async function(){
-          return member.toJSON();
+          return user.toJSON();
         }
         res.body = await sr();
+        console.log(res.body);
         const generateToken = async function(){
           const token = jwt.sign({
-            m_id : member.m_id,
-            pw : member.pw,
+            username : member.m_id,
+            password : member.pw,
           },
           process.env.JWT_SECRET,
           {
@@ -80,7 +85,7 @@ router.post('/join', async(req,res,next)=>{
 // 로그인이 안되어있는 상태인지 확인하는 작업 필요
 router.post('/login', async(req, res, next) => {
   const token = req.cookies.access_token;
-  if(token!=="undefined"){
+  if(token!=="undefined" && token){
     return res.status(403).send('로그아웃 필요');
   }
 
@@ -91,15 +96,16 @@ router.post('/login', async(req, res, next) => {
     //return res.sendStatus(401);
   }
   try{
-    const member = await members.findOne({where : {m_id}});
-    
-    if(!member){
+    const user = await members.findOne({where : {m_id}});
+    console.log(user);
+
+    if(!user){
       res.status = 401;
       return res.send("존재하는 회원이 없습니다.");
     }
     const vresult = async function(pw){
       //const hash = await bcrypt.hash (pw, 10);
-      if(pw === member.pw){
+      if(pw === user.pw){
         return true;
       }else{
         return false;
@@ -112,14 +118,14 @@ router.post('/login', async(req, res, next) => {
     }
     const sr = async function(){
       //console.log(member.toJSON());
-      return member.toJSON();
+      return user.toJSON();
     }
     res.body = await sr();
     console.log(res.body);
     const generateToken = function(){
       const token = jwt.sign({
-        m_id : member.m_id,
-        pw : member.pw,
+        username : user.m_id,
+        password : user.pw,
       },
       process.env.JWT_SECRET,
       {
@@ -134,7 +140,7 @@ router.post('/login', async(req, res, next) => {
       httpOnly : true,
     });
     console.log("login 되어 로그인 후 화면으로 이동하는 것해야함.")
-    return res.redirect('/');
+    return res.send(res.body);
   } catch(e){
     console.log(e);
   }
@@ -144,22 +150,35 @@ router.get('/check', async (req,res,next) =>{
   const token = req.cookies.access_token;
    const decoded = jwt.verify(token, process.env.JWT_SECRET);
    console.log(decoded);   
-  if((req.body.m_id!==String(decoded.m_id)) || (req.body.pw !== decoded.pw)){
+  if((req.body.m_id!==String(decoded.username)) || (req.body.pw !== decoded.password)){
     console.log(req.body);
     res.status = 401;
     return res.send("토큰 비교 결과 - 값이 다른 경우"); 
   }
-  req.body.m_id = decoded.m_id;
-  req.body.pw = decoded.pw;
-  console.log(req.body); // m_id값이 인트형? 스트링? 어떤 걸로 유지해야할 지 고민해봐야함.
+  
+  // res.user = {
+  //   username : decoded.m_id,
+  //   password : decoded.pw,
+  // };
+  
+  console.log(decoded);
+  console.log(res.user);
+  //const {user} = req.body;
+  // res.state.user = {
+  //   _id : decoded.m_id,
+  //   username : decoded.m_id
+  // }
+  // req.body.m_id = decoded.m_id;
+  // req.body.pw = decoded.pw;
+  //console.log(req.body); // m_id값이 인트형? 스트링? 어떤 걸로 유지해야할 지 고민해봐야함.
   console.log("check 확인");
   const now = Math.floor(Date.now() / 1000);
    if(decoded.exp - now < 60 * 60 *24 * 3.5){
      const member = await members.findOne(decoded.m_id);
      const generateToken = function(){
-      const mtoken = jwt.sign({
-        m_id : member.m_id,
-        pw : member.pw,
+      const token = jwt.sign({
+        username : member.m_id,
+        password : member.pw,
       },
       process.env.JWT_SECRET,
       {
@@ -174,7 +193,14 @@ router.get('/check', async (req,res,next) =>{
       httpOnly : true,
     });
    }  
-  return res.redirect('/'); // 어디로 이동해야할지??
+   //res.body = user;'
+   res.user = req.body;
+   res.body = res.user;
+   
+   console.log(res.user);
+   console.log(res.body);
+   return res.send(res.user);
+  //return res.redirect('/'); // 어디로 이동해야할지??
 });
 
 
