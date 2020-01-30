@@ -1,0 +1,45 @@
+<!-- /server/sql/base/qna.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	<select id="selectqna">
+		SELECT
+		q_id,
+        m_id,
+        question,
+        answer
+		FROM
+		ptj_sub1.qnas
+		WHERE q_id =#{q_id}
+	</select>
+    <select id="allqna">
+		SELECT
+		*
+		FROM
+		ptj_sub1.qnas
+	</select>
+	<insert id="insertqna">
+		INSERT INTO ptj_sub1.qnas
+		(
+        question,
+        answer,
+        m_id
+		)
+		VALUES
+		(
+        #{question},
+        #{answer},
+        #{m_id}
+		);
+	</insert>
+    <delete id = "deleteqna">
+        DELETE
+        FROM ptj_sub1.qnas
+        WHERE q_id =#{q_id}
+    </delete>
+    <update id ="updateqna">
+        UPDATE ptj_sub1.qnas
+        SET question =#{question}, answer =#{answer}
+        WHERE q_id =#{q_id}
+    </update>
+</mapper>

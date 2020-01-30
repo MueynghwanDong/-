@@ -1,0 +1,52 @@
+<!-- /server/sql/base/barn.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BARN">
+	<select id="selectbarn">
+		/* 축사 정보 조회 */
+		SELECT
+		b_id
+		, m_id
+		, temperature
+		, humidity
+		, air_condition
+		, time
+        , count
+		FROM
+		ptj_sub1.barns
+		WHERE b_id = #{b_id}
+	</select>
+    <select id="allbarn">
+		/* 축사 정보 조회 */
+		SELECT
+		*
+		FROM
+		ptj_sub1.barns
+	</select>
+	<insert id="insertbarn">
+		/* 축사 정보 삽입 - 초기에는 상태 정보 추가 안함 */
+		INSERT INTO ptj_sub1.barns
+		(
+		m_id
+		)
+		VALUES
+		(
+		#{m_id}
+		);
+	</insert>
+    <delete id = "deletebarn">
+        DELETE
+        FROM ptj_sub1.barns
+        WHERE b_id =#{b_id}
+    </delete>
+    <update id ="updatebarn">
+        UPDATE ptj_sub1.barns
+        SET temperature =#{temperature}, humidity=#{humidity}, air_condition=#{air_condition}, time=#{time}
+        WHERE b_id =#{b_id}
+    </update>
+    <update id ="updatecount">
+        UPDATE ptj_sub1.barns
+        SET count = count+1
+        WHERE b_id =#{b_id}
+    </update>
+</mapper>
