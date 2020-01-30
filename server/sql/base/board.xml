@@ -4,13 +4,7 @@
 <mapper namespace="board">
 	<select id="selectboard">
 		SELECT
-		bno,
-        m_id,
-        title,
-        content,
-        regdate,
-        viewcnt,
-        replycnt
+	    *
 		FROM
 		ptj_sub1.boards
 		WHERE bno =#{bno}

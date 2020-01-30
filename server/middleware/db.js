@@ -6,6 +6,8 @@ var env = process.env.NODE_ENV || 'development';
 var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
 const sqlPath = path.join(__dirname, "..", ".", `/sql/${envJson.version}/`);
+
+
 mybatisMapper.createMapper([`${sqlPath}/board.xml`]);
 mybatisMapper.createMapper([`${sqlPath}/member.xml`]);
 mybatisMapper.createMapper([`${sqlPath}/barn.xml`]);

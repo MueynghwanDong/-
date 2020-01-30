@@ -5,13 +5,7 @@
 	<select id="selectbarn">
 		/* 축사 정보 조회 */
 		SELECT
-		b_id
-		, m_id
-		, temperature
-		, humidity
-		, air_condition
-		, time
-        , count
+		*
 		FROM
 		ptj_sub1.barns
 		WHERE b_id = #{b_id}
@@ -27,10 +21,12 @@
 		/* 축사 정보 삽입 - 초기에는 상태 정보 추가 안함 */
 		INSERT INTO ptj_sub1.barns
 		(
+		b_id,
 		m_id
 		)
 		VALUES
 		(
+		#{b_id},
 		#{m_id}
 		);
 	</insert>
@@ -41,7 +37,7 @@
     </delete>
     <update id ="updatebarn">
         UPDATE ptj_sub1.barns
-        SET temperature =#{temperature}, humidity=#{humidity}, air_condition=#{air_condition}, time=#{time}
+        SET temperature =#{temperature}, humidity=#{humidity}, ch4=#{ch4}, co2 =#{co2}
         WHERE b_id =#{b_id}
     </update>
     <update id ="updatecount">

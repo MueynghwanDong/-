@@ -4,10 +4,7 @@
 <mapper namespace="qna">
 	<select id="selectqna">
 		SELECT
-		q_id,
-        m_id,
-        question,
-        answer
+		*
 		FROM
 		ptj_sub1.qnas
 		WHERE q_id =#{q_id}
@@ -21,15 +18,15 @@
 	<insert id="insertqna">
 		INSERT INTO ptj_sub1.qnas
 		(
+        m_id,
         question,
-        answer,
-        m_id
+        answer
 		)
 		VALUES
 		(
+        #{m_id},
         #{question},
-        #{answer},
-        #{m_id}
+        #{answer}
 		);
 	</insert>
     <delete id = "deleteqna">

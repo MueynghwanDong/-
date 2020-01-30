@@ -4,12 +4,7 @@
 <mapper namespace="reply">
 	<select id="selectreply">
 		SELECT
-		rno,
-        bno,
-        replytext,
-        m_id,
-        regdate,
-        updatedate
+		*
 		FROM
 		ptj_sub1.replies
 		WHERE rno =#{rno}
@@ -29,12 +24,7 @@
 	</select>
     <select id="selectbno">
 		SELECT
-		rno,
-        bno,
-        replytext,
-        m_id,
-        regdate,
-        updatedate
+		*
 		FROM
 		ptj_sub1.replies
         WHERE bno=#{bno}
@@ -42,17 +32,11 @@
 	<insert id="insertreply">
 		INSERT INTO ptj_sub1.replies
 		(
-		bno,
-		replytext,
-        m_id,
-        regdate
+		replytext
 		)
 		VALUES
 		(
-		#{bno},
-        #{replytext},
-        #{m_id},
-        #{regdate}
+        #{replytext}
 		);
 	</insert>
     <delete id = "deletereply">

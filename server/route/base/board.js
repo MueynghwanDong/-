@@ -4,10 +4,6 @@ const {board} = require('../../models');
 const bodyparser = require('body-parser');
 
 app.get("/", async function(req, res) {
-  var selectParms = {
-    bno : req.params.bno
-  };
-
   var selectQuery = req.mybatisMapper.getStatement(
     "board",
     "allboard",
@@ -41,6 +37,7 @@ app.get("/:bno", async function(req, res) {
   var selectParms = {
     bno : req.params.bno
   };
+  try {
 
   var selectQuery = req.mybatisMapper.getStatement(
     "board",
@@ -49,11 +46,9 @@ app.get("/:bno", async function(req, res) {
     { language: "sql", indent : "  "}
   );
   let data = [];
-  try {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -78,6 +73,7 @@ app.post("/insert", async function(req, res) {
     title : req.body.title,
     content : req.body.content,
   };
+  try {
 
   var insertboardQuery = req.mybatisMapper.getStatement(
     "board",
@@ -85,12 +81,11 @@ app.post("/insert", async function(req, res) {
     insertboardParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(insertboardQuery, {
       type: req.sequelize.QueryTypes.INSERT,
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db insert에 실패하였습니다.", error: error });
     return;
   }
 
@@ -101,18 +96,18 @@ app.put("/vcnt/:bno", async function(req, res) {
   var viewcntParms = {
     bno : req.params.bno,
   };
+      try {
   var viewcntQuery = req.mybatisMapper.getStatement(
     "board",
     "viewcntupdate",
     viewcntParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(viewcntQuery, {
       type: req.sequelize.QueryTypes.UPDATE
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db update에 실패하였습니다.", error: error });
     return;
   }
 
@@ -124,18 +119,18 @@ app.put("/rcnt/:bno", async function(req, res) {
   var replycntParms = {
     bno : req.params.bno,
   };
+  try {
   var replycntQuery = req.mybatisMapper.getStatement(
     "board",
     "replycnt",
     replycntParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(replycntQuery, {
       type: req.sequelize.QueryTypes.UPDATE
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db update에 실패하였습니다.", error: error });
     return;
   }
 
@@ -150,13 +145,13 @@ app.put("/update/:bno", async function(req, res) {
     content : req.body.content,
   };
 
+  try {
   var updateboardQuery = req.mybatisMapper.getStatement(
     "board",
     "updateboard",
     updateboardParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(updateboardQuery, {
       type: req.sequelize.QueryTypes.UPDATE,
     });
@@ -175,18 +170,18 @@ app.delete("/del/:bno", async function(req, res) {
   var deleteParms = {
     bno : req.params.bno
   };
+  try {
   var deleteQuery = req.mybatisMapper.getStatement(
     "board",
     "deleteboard",
     deleteParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(deleteQuery, {
       type: req.sequelize.QueryTypes.DELETE
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db delete에 실패하였습니다.", error: error });
     return;
   }
 

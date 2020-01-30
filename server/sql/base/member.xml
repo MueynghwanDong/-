@@ -23,6 +23,7 @@
 	<insert id="insertmember">
 		INSERT INTO ptj_sub1.members
 		(
+		m_id,
 		email,
         pw,
         name,
@@ -30,6 +31,7 @@
 		)
 		VALUES
 		(
+		#{m_id},
 		#{email},
         #{pw},
         #{name},

@@ -4,12 +4,7 @@
 <mapper namespace="planner">
 	<select id="selectplanner">
 		SELECT
-		p_id
-		, m_id
-		, start_date
-		, end_date
-		, title
-		, info
+		*
 		FROM
 		ptj_sub1.planners
 		WHERE p_id = #{p_id}

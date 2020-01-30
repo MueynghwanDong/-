@@ -35,6 +35,7 @@ app.get("/:q_id", async function(req, res) {
   var selectParms = {
     q_id : req.params.q_id
   };
+  try {
 
   var selectQuery = req.mybatisMapper.getStatement(
     "qna",
@@ -43,11 +44,9 @@ app.get("/:q_id", async function(req, res) {
     { language: "sql", indent : "  "}
   );
   let data = [];
-  try {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -68,23 +67,23 @@ app.get("/:q_id", async function(req, res) {
 app.post("/insert", async function(req, res) {
   
   var insertqnaParms = {
+    m_id : req.body.m_id,
       question : req.body.question,
       answer : req.body.answer,
-      m_id : req.body.m_id,
   };
-
+  
+  try {
   var insertqnaQuery = req.mybatisMapper.getStatement(
     "qna",
     "insertqna",
     insertqnaParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(insertqnaQuery, {
       type: req.sequelize.QueryTypes.INSERT,
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db insert에 실패하였습니다.", error: error });
     return;
   }
 
@@ -99,18 +98,18 @@ app.put("/update/:q_id", async function(req, res) {
     answer : req.body.answer
   };
 
+  try {
   var updateqnaQuery = req.mybatisMapper.getStatement(
     "qna",
     "updateqna",
     updateqnaParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(updateqnaQuery, {
       type: req.sequelize.QueryTypes.UPDATE,
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db update에 실패하였습니다.", error: error });
     return;
   }
 
@@ -124,13 +123,13 @@ app.delete("/del/:q_id", async function(req, res) {
   var deleteParms = {
     q_id : req.params.q_id
   };
+      try {
   var deleteQuery = req.mybatisMapper.getStatement(
     "qna",
     "deleteqna",
     deleteParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(deleteQuery, {
       type: req.sequelize.QueryTypes.DELETE
     });

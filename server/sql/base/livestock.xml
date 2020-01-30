@@ -5,15 +5,28 @@
 	<select id="selectlivestock">
 		/* 가축 정보 조회 */
 		SELECT
-		ls_id
-		, kinds
-		, body_temperature
-		, heart_rate
-		, step_count
-		, time
+		*
 		FROM
 		ptj_sub1.livestock
-		WHERE b_id = #{b_id}
+		WHERE b_id = #{b_id} and ls_id = #{ls_id}
+	</select>
+
+	<select id="selectlivestock2">
+		/* 가축 정보 조회 */
+		SELECT
+		*
+		FROM
+		ptj_sub1.livestock
+		WHERE m_id = #{m_id} and ls_id = #{ls_id}
+	</select>
+
+	<select id="selectlivestock3">
+		/* 가축 정보 조회 */
+		SELECT
+		*
+		FROM
+		ptj_sub1.livestock
+		WHERE m_id = #{m_id} and b_id = #{b_id} and ls_id = #{ls_id}
 	</select>
     <select id="alllivestock">
 		/* 가축 정보 조회 */
@@ -26,10 +39,16 @@
 		/* 축사 정보 삽입 - 초기에는 상태 정보 추가 안함 */
 		INSERT INTO ptj_sub1.livestock
 		(
+		ls_id,
+		m_id,
+		b_id,
 		kinds
 		)
 		VALUES
 		(
+		#{ls_id},
+		#{m_id},
+		#{b_id},
 		#{kinds}
 		);
 	</insert>
@@ -40,7 +59,7 @@
     </delete>
     <update id ="updatelivestock">
         UPDATE ptj_sub1.livestock
-        SET body_temperature =#{body_temperature}, heart_rate=#{heart_rate}, step_count=#{step_count}, time=#{time}
+        SET body_temperature =#{body_temperature}, heart_rate=#{heart_rate}, step_count=#{step_count}
         WHERE ls_id =#{ls_id}
     </update>
 </mapper>

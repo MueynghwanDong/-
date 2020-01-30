@@ -13,7 +13,6 @@ app.get("/", async function(req, res) {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -35,7 +34,8 @@ app.get("/:b_id", async function(req, res) {
   var selectParms = {
     b_id : req.params.b_id
   };
-
+  
+  try {
   var selectQuery = req.mybatisMapper.getStatement(
     "BARN",
     "selectbarn",
@@ -43,7 +43,6 @@ app.get("/:b_id", async function(req, res) {
     { language: "sql", indent : "  "}
   );
   let data = [];
-  try {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
@@ -68,21 +67,22 @@ app.get("/:b_id", async function(req, res) {
 app.post("/insert", async function(req, res) {
   
   var insertbarnParms = {
+    b_id : req.body.b_id,
     m_id : req.body.m_id
   };
-
+  
+  try {
   var insertbarnQuery = req.mybatisMapper.getStatement(
     "BARN",
     "insertbarn",
     insertbarnParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(insertbarnQuery, {
       type: req.sequelize.QueryTypes.INSERT,
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "정보 추가 실패.", error: error });
     return;
   }
 
@@ -93,18 +93,18 @@ app.put("/cnt/:b_id", async function(req, res) {
   var cntParms = {
     b_id : req.params.b_id,
   };
+      try {
   var cntQuery = req.mybatisMapper.getStatement(
     "BARN",
     "updatecount",
     cntParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(cntQuery, {
       type: req.sequelize.QueryTypes.UPDATE
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "정보 수정에 실패하였습니다.", error: error });
     return;
   }
 
@@ -117,22 +117,22 @@ app.put("/update/:b_id", async function(req, res) {
     b_id : req.params.b_id,
     temperature : req.body.temperature,
     humidity : req.body.humidity,
-    air_condition : req.body.air_condition,
-    time : req.body.time
+    ch4 : req.body.ch4,
+    co2 : req.body.co2
   };
-
+  
+  try {
   var updatebarnQuery = req.mybatisMapper.getStatement(
     "BARN",
     "updatebarn",
     updatebarnParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(updatebarnQuery, {
       type: req.sequelize.QueryTypes.UPDATE,
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "정보 수정에 실패하였습니다.", error: error });
     return;
   }
 
@@ -146,18 +146,18 @@ app.delete("/del/:b_id", async function(req, res) {
   var deleteParms = {
     b_id : req.params.b_id
   };
+  try {
   var deleteQuery = req.mybatisMapper.getStatement(
     "BARN",
     "deletebarn",
     deleteParms,
         { language: "sql", indent : "  "}
   );
-  try {
     await req.sequelize.query(deleteQuery, {
       type: req.sequelize.QueryTypes.DELETE
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "삭제에 실패하였습니다.", error: error });
     return;
   }
 
