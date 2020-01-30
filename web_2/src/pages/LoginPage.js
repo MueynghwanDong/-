@@ -1,8 +1,12 @@
 import React from 'react';
+import AuthTemplate from '../components/auth/AuthTemplate';
+import LoginForm from '../containers/auth/LoginForm';
 
 const LoginPage = () =>{
-    // eslint-disable-next-line react/react-in-jsx-scope
-    return <div>login</div>
-
+    return (
+        <AuthTemplate>
+            <LoginForm />
+        </AuthTemplate>
+    );
 };
-export default LoginPage
+export default LoginPage;

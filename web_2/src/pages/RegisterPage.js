@@ -1,8 +1,12 @@
 import React from 'react';
+import AuthTemplate from '../components/auth/AuthTemplate';
+import RegisterForm from '../containers/auth/RegisterForm';
 
 const RegisterPage = () =>{
-    // eslint-disable-next-line react/react-in-jsx-scope
-    return <div>회원가입</div>
-
+    return (
+        <AuthTemplate>
+            <RegisterForm />
+        </AuthTemplate>
+    );
 };
-export default RegisterPage
+export default RegisterPage;
