@@ -5,15 +5,13 @@
 	<select id="selectmember">
 		/* 회원 정보 조회 */
 		SELECT
-		m_id
-		, bcnt
-		, email
-		, pw
-		, name
-		, location
+		*
 		FROM
 		ptj_sub1.members
 		WHERE m_id = #{m_id}
+	</select>
+	<select id = "pwmember">
+	SELECT pw FROM ptj_sub1.members WHERE m_id = #{m_id}
 	</select>
     <select id="allmember">
 		/* 회원 정보 조회 */

@@ -1,7 +1,5 @@
 var express = require("express");
 var app = express.Router();
-const {member} = require('../../models');
-const bodyparser = require('body-parser');
 
 app.get("/", async function(req, res) {
 
@@ -27,12 +25,43 @@ app.get("/", async function(req, res) {
   }
 
   res.json({
-      bno: data.map(x => {
+      member: data.map(x => {
       return x;
     })
   });
 });
+app.get("/pw/:m_id", async function(req, res){
+  var selectParms = {
+    m_id : req.params.m_id
+  };
+  var selectQuery = req.mybatisMapper.getStatement(
+    "MEMBER",
+    "pwmember",
+    selectParms,
+    { language: "sql", indent : "  "}
+  );
+  let data = [];
+  try {
+    data = await req.sequelize.query(selectQuery, {
+      type: req.sequelize.QueryTypes.SELECT
+    });
+    //console.log("TCL: data", data);
+  } catch (error) {
+    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    return;
+  }
 
+  if (data.length == 0) {
+    res.status(403).send({ msg: "정보가 없습니다." });
+    return;
+  }
+
+  res.json({
+      member: data.map(x => {
+      return x;
+    })
+  });
+});
 app.get("/:m_id", async function(req, res) {
   var selectParms = {
     m_id : req.params.m_id
@@ -61,7 +90,7 @@ app.get("/:m_id", async function(req, res) {
   }
 
   res.json({
-      bno: data.map(x => {
+      member: data.map(x => {
       return x;
     })
   });
