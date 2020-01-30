@@ -44,12 +44,19 @@ const ButtonWithMarginTop = styled(Button)`
   margin-top: 1rem;
 `
 
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+`;
+
 const textMap = {
   login: '로그인',
   register: '회원가입',
 };
 
-const AuthForm = ({ type, form, onChange, onSubmit }) => {
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
@@ -79,9 +86,37 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             onChange={onChange}
             value={form.passwordConfirm}
           />
-          // 이메일, 실명, 위치
         )}
-    <ButtonWithMarginTop cyan fullWidth>{text}</ButtonWithMarginTop>
+        {type === 'register' && (
+          <StyledInput
+            autoComplete="name"
+            name="fullName"
+            placeholder="이름"
+            onChange={onChange}
+            value={form.fullName}
+          />
+        )}
+        {type === 'register' && (
+          <StyledInput
+            autoComplete="email"
+            name="email"
+            placeholder="이메일"
+            type="email"
+            onChange={onChange}
+            value={form.email}
+          />
+        )}
+        {type === 'register' && (
+          <StyledInput
+            autoComplete="location"
+            name="location"
+            placeholder="위치"
+            onChange={onChange}
+            value={form.location}
+          />
+        )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <ButtonWithMarginTop cyan fullWidth>{text}</ButtonWithMarginTop>
       </form>
       <Footer>
         {type === 'login' ? (
