@@ -12,6 +12,11 @@ export const startLoading = createAction(
   requestType => requestType,
 );
 
+export const finishLoading = createAction(
+  FINISH_LOADING,
+  requestType => requestType,
+);
+
 const initialState = {};
 
 const loading = handleActions(
