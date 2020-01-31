@@ -1,14 +1,16 @@
 import React from 'react';
 import StarIcon from '@material-ui/icons/StarBorder';
 import { Link } from 'react-router-dom';
-import { AppBar, Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Toolbar, Typography,  Container, makeStyles, Box } from '@material-ui/core'
+import { AppBar, Button, Card, CardActions, Avatar, CardContent, CardHeader, CssBaseline, Grid, Toolbar, Typography,  Container, makeStyles, Box } from '@material-ui/core'
+import { red, blue } from '@material-ui/core/colors'
+import { withTheme } from 'styled-components';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Minkishome
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -40,8 +42,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(8, 0, 6),
   },
   cardHeader: {
-    backgroundColor:
-      theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200],
+    backgroundColor: red[500],
+    //   theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200],
   },
   cardPricing: {
     display: 'flex',
@@ -58,8 +60,23 @@ const useStyles = makeStyles(theme => ({
       paddingTop: theme.spacing(6),
       paddingBottom: theme.spacing(6),
     },
+    card: {
+        width : 1000,
+
+      },
   },
 }));
+const pros = [
+    {
+        title: '기술 소개',
+        description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
+    },
+    {
+        title: '우리 장점',
+        description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
+    }
+];
+
 
 const tiers = [
   {
@@ -104,14 +121,14 @@ const footers = [
     title: 'Features',
     description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
   },
-    //   {
-    //     title: 'Resources',
-    //     description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-    //   },
-//   {
-//     title: 'Legal',
-//     description: ['Privacy policy', 'Terms of use'],
-//   },
+      {
+        title: 'Resources',
+        description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+      },
+  {
+    title: 'Legal',
+    description: ['Privacy policy', 'Terms of use'],
+  },
 ];
 
 // export default function Pricing() {
@@ -142,6 +159,42 @@ const Main = () => {
         <Typography variant="h5" align="center" color="textSecondary" component="p">
           이런저런 설명 넣고 
         </Typography>
+    <Container>
+        <Grid container spacing = {10} alignItems="flex-end">
+            {pros.map(pro =>(
+                <Grid item key={pros.title} xs={12} sm={6} md={6}>
+                    <Card className={classes.card}>
+                        <CardHeader
+                            title={pro.title}
+                            subheader={pro.subheader}
+                            titleTypographyProps={{ align: 'center' }}
+                            subheaderTypographyProps={{ align: 'center' }}
+                            backgroundColor="blue"
+                            action={pro.title === 'Pro' ? <StarIcon /> : null}
+                            // className={classes.cardHeader}
+                            />
+                        <CardContent>
+                            <div className={classes.cardPricing}>
+                                <Typography component="h2" variant="h1" color="textPrimary" align="center" >
+                                우리꺼 개좋음
+                                </Typography>
+                                <Typography variant="h6" color="textSecondary">
+                                하하하하하하하하핲하하
+                                </Typography>
+                            </div>
+                            <ul>
+                                {pro.description.map(line => (
+                                <Typography component="li" variant="subtitle1" align="center" key={line}>
+                                    {line}
+                                </Typography>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            ))}
+        </Grid>
+    </Container>
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
@@ -155,6 +208,7 @@ const Main = () => {
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
+                  
                   action={tier.title === 'Pro' ? <StarIcon /> : null}
                   className={classes.cardHeader}
                 />
