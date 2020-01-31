@@ -5,7 +5,7 @@ import WritePage from './pages/WritePage';
 import LoginPage from './pages/LoginPage';
 import PostPage from './pages/PostPage';
 import RegisterPage from './pages/RegisterPage';
-
+import Main from './pages/Main';
 const App = () =>{
   return (
     <>
@@ -14,6 +14,7 @@ const App = () =>{
     <Route component={RegisterPage} path={'/register'} />
     <Route component={WritePage} path={"/write"} />
     <Route component={PostPage} path={"/@:username/:postId"} />
+    <Route component={Main} path={"/main"} />
     </>
   );
 }
