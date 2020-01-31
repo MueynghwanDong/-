@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/theme/palette';
+import styled, {css} from 'styled-components';
+import { withRouter } from 'react-router-dom';
+import palette from '../../lib/styles/palette';
 
 const StyledButton = styled.button`
     border: none;
@@ -16,7 +17,36 @@ const StyledButton = styled.button`
     &:hover{
         background: ${palette.gray[6]};
     }
-`;
-const Button = props => <StyledButton {...props}/>
+    ${props =>
+    props.fullWidth &&
+    css`
+        padding-top: 0.75rem;
+        padding-bottom:0.75rem;
+        width:100%;
+        font-size:1.125rem;
+    `}
 
-export default Button;
+    ${props =>
+    props.cyan &&
+    css`
+        background: ${palette.cyan[5]};
+        &:hover {
+            background: ${palette.cyan[4]};
+        }
+    `
+    }
+`;
+// const Button = props => <StyledButton {...props}/>
+const Button = ({ to, history, ...rest}) => {
+    const onClick = e => {
+        if (to) {
+            history.push(to);
+        }
+        if (rest.onClick) {
+            rest.onClick(e);
+        }
+    };
+    return <StyledButton {...rest} onClick={onClick} />
+}
+
+export default withRouter(Button);
