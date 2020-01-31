@@ -1,8 +1,12 @@
 import React from 'react';
+import Editor from '../components/write/Editor';
+import Responsive from '../components/common/Responsive';
 
 const WritePage = () =>{
-    // eslint-disable-next-line react/react-in-jsx-scope
-    return <div>write</div>
-
+  return (
+    <Responsive>
+      <Editor />
+    </Responsive>
+  );
 };
-export default WritePage
+export default WritePage;
