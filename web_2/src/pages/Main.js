@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AppBar, Button, Card, CardActions, Avatar, CardContent, CardHeader, CssBaseline, Grid, Toolbar, Typography,  Container, makeStyles, Box } from '@material-ui/core'
 import { red, blue } from '@material-ui/core/colors'
 import { withTheme } from 'styled-components';
-
+import class_video from './BackgroundVideo.module.css';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -16,6 +16,18 @@ function Copyright() {
       {'.'}
     </Typography>
   );
+}
+
+const BackgroundVideo=()=>{
+  const videoSource="/Cows.mp4";
+  return(
+    <div className={class_video.Container} >
+      <video autoPlay="autoplay" loop="loop" muted className={class_video.Video} >
+        <source src={videoSource} type="video/mp4" />
+        Your browser does not support the video tag.
+     </video>
+    </div>
+  )
 }
 
 const useStyles = makeStyles(theme => ({
@@ -152,6 +164,7 @@ const Main = () => {
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
+      <BackgroundVideo/>
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
          우리 이름  
@@ -159,43 +172,47 @@ const Main = () => {
         <Typography variant="h5" align="center" color="textSecondary" component="p">
           이런저런 설명 넣고 
         </Typography>
-    <Container>
-        <Grid container spacing = {10} alignItems="flex-end">
-            {pros.map(pro =>(
-                <Grid item key={pros.title} xs={12} sm={6} md={6}>
-                    <Card className={classes.card}>
-                        <CardHeader
-                            title={pro.title}
-                            subheader={pro.subheader}
-                            titleTypographyProps={{ align: 'center' }}
-                            subheaderTypographyProps={{ align: 'center' }}
-                            backgroundColor="blue"
-                            action={pro.title === 'Pro' ? <StarIcon /> : null}
-                            // className={classes.cardHeader}
-                            />
-                        <CardContent>
-                            <div className={classes.cardPricing}>
-                                <Typography component="h2" variant="h1" color="textPrimary" align="center" >
-                                우리꺼 개좋음
-                                </Typography>
-                                <Typography variant="h6" color="textSecondary">
-                                하하하하하하하하핲하하
-                                </Typography>
-                            </div>
-                            <ul>
-                                {pro.description.map(line => (
-                                <Typography component="li" variant="subtitle1" align="center" key={line}>
-                                    {line}
-                                </Typography>
-                                ))}
-                            </ul>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            ))}
-        </Grid>
-    </Container>
       </Container>
+      
+      <Container maxWidth="sm" component="main" className={classes.heroContent}>
+        <Container>
+            <Grid container spacing = {10} alignItems="flex-end">
+                {pros.map(pro =>(
+                    <Grid item key={pros.title} xs={12} sm={6} md={6}>
+                        <Card className={classes.card}>
+                            <CardHeader
+                                title={pro.title}
+                                subheader={pro.subheader}
+                                titleTypographyProps={{ align: 'center' }}
+                                subheaderTypographyProps={{ align: 'center' }}
+                                backgroundColor="blue"
+                                action={pro.title === 'Pro' ? <StarIcon /> : null}
+                                // className={classes.cardHeader}
+                                />
+                            <CardContent>
+                                <div className={classes.cardPricing}>
+                                    <Typography component="h2" variant="h5" color="textPrimary" align="center" >
+                                    우리꺼 좋음
+                                    </Typography>
+                                    <Typography variant="h6" color="textSecondary">
+                                    하하하하하하하하핲하하
+                                    </Typography>
+                                </div>
+                                <ul>
+                                    {pro.description.map(line => (
+                                    <Typography component="li" variant="subtitle1" align="center" key={line}>
+                                        {line}
+                                    </Typography>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
+      </Container>
+     
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
