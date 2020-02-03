@@ -52,6 +52,9 @@ app.use(passport.session());
 
 app.use(require(`${__dirname}/middleware/init`));
 app.use(require(`${__dirname}/middleware/db`));
+//app.use(require(`${__dirname}/middleware/checkLoggedIn`));
+
+
 
 app.use("/board", require(`${__dirname}/route/base/board`));
 app.use("/member", require(`${__dirname}/route/base/member`));
