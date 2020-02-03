@@ -1,8 +1,7 @@
 import React from 'react';
 
-const PostPage = () =>{
-    // eslint-disable-next-line react/react-in-jsx-scope
-    return <div>post</div>
-
+const PostPage = () => {
+  return <div>포스트 읽기</div>;
 };
+
 export default PostPage;

@@ -18,7 +18,10 @@ export const register = ({ username, password, email, fullName, location }) =>
   }); // 이메일, 이름, 위치
 
 // 로그인 상태 확인
-export const check = () => {client.get('/auth/check')};
+export const check = () => {client.post('/auth/check')};
+
+// 로그아웃
+export const logout = () => client.post('/auth/logout');
 
 /*
   이메일: email
