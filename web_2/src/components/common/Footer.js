@@ -1,51 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import makeStlyes, { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import {Link, Grid, Typography, Box, Container} from '@material-ui/core';
 
 
-// const useStyles = makeStyles(theme => ({
-//     footer: {
-//         // backgroundColor:gray
-//         position: "fixed",
-//         // height: 100,
-//         bottom: 0,
-//     },
-//     link: {
-//         margin: theme.spacing(10, 1.5),
-//     },
-// }))
-
-// const Footer = () => {
-
-//     const classes = useStyles()
-//    return ( 
-//     <footer className="footer" >
-//         <div className="container-fluid">
-//             <nav className="pull-left">
-                
-//                     <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-//                         My Pages
-//                     </Link>
-//                     <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-//                         hmmm
-//                     </Link>
-//                     {/* <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-//                         hmmm2
-//                     </Link> */}
-                    
-//                     <p className="copyright pull-right">
-//                         © 2017 <a href="http://google.com">JSLancer</a>, made with love for a better web
-//                     </p>
-                
-//             </nav> 
-            
-//         </div>
-//     </footer>
-
-   
-//    )
-// };
 
 function Copyright() {
     return (
@@ -63,7 +21,7 @@ function Copyright() {
 const useStyles = makeStyles(theme=> ({
     footer: {
         borderTop: `1px solid ${theme.palette.divider}`,
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(5),
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(3),
         [theme.breakpoints.up('sm')]: {

@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography, Container } from '@material-ui/core';
 import Header from '../common/Header'
 import Footer from '../common/Footer';
 
 const AuthTemplateBlock = styled.div`
-  position: absolute;
+//   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
@@ -49,13 +49,15 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const AuthTemplate = ({ children }) => {
+const AuthTemplate = ({ children, type }) => {
 
     const classes = useStyles();
   return (
     <>
-    <Header></Header>
-    <div>
+    
+        <Header ></Header>
+    
+    <Container>
         <AuthTemplateBlock>
             <Grid 
                 container 
@@ -68,7 +70,7 @@ const AuthTemplate = ({ children }) => {
                         className={classes.quoteText}
                         variant="h2"
                     >
-                    aa
+                 
                     </Typography>
                 </Grid>
                 <Grid 
@@ -85,8 +87,11 @@ const AuthTemplate = ({ children }) => {
                 </Grid>
             </Grid>
         </AuthTemplateBlock>
-    </div>
-    <Footer/>
+    </Container>
+
+    <Container>
+        <Footer/>
+    </Container>
     </>
   );
 };

@@ -1,22 +1,12 @@
 import React from 'react';
 import StarIcon from '@material-ui/icons/StarBorder';
 import { Link } from 'react-router-dom';
-import { AppBar, Button, Card, CardActions, Avatar, CardContent, CardHeader, CssBaseline, Grid, Toolbar, Typography,  Container, makeStyles, Box } from '@material-ui/core'
+import { AppBar, Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Toolbar, Typography,  Container, makeStyles,} from '@material-ui/core'
 import { red, blue } from '@material-ui/core/colors'
-import { withTheme } from 'styled-components';
+// import { withTheme } from 'styled-components';
 import class_video from './BackgroundVideo.module.css';
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Minkishome
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Footer from '../components/common/Footer'
+
 
 const BackgroundVideo=()=>{
   const videoSource="/Cows.mp4";
@@ -26,6 +16,9 @@ const BackgroundVideo=()=>{
         <source src={videoSource} type="video/mp4" />
         Your browser does not support the video tag.
      </video>
+     <div className = {class_video.Content}>
+       여기에 글을 쓰면 동영상 위에 글이 써진다.
+     </div>
     </div>
   )
 }
@@ -124,24 +117,7 @@ const tiers = [
     buttonVariant: 'outlined',
   },
 ];
-const footers = [
-  {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-  },
-      {
-        title: 'Resources',
-        description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-      },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
-  },
-];
+
 
 // export default function Pricing() {
 
@@ -185,7 +161,7 @@ const Main = () => {
                                 subheader={pro.subheader}
                                 titleTypographyProps={{ align: 'center' }}
                                 subheaderTypographyProps={{ align: 'center' }}
-                                backgroundColor="blue"
+                                backgroundColor={blue}
                                 action={pro.title === 'Pro' ? <StarIcon /> : null}
                                 // className={classes.cardHeader}
                                 />
@@ -258,27 +234,8 @@ const Main = () => {
       </Container>
       {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
-          {footers.map(footer => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map(item => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="textSecondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
+        
+        <Footer/>
       </Container>
       {/* End footer */}
     </React.Fragment>

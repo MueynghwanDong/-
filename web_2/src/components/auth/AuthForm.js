@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 import { makeStyles } from '@material-ui/styles';
-import {
-    Grid,
-    IconButton,
-    TextField,
-    Typography
-  } from '@material-ui/core';
+// import {
+//     Grid,
+//     IconButton,
+//     TextField,
+//     Typography
+//   } from '@material-ui/core';
 const AuthFormBlcok = styled.div`
     h3{
         margin : 0;
