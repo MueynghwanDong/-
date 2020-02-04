@@ -1,8 +1,14 @@
 import React from 'react';
+import HeaderContainer from '../containers/common/HeaderContainer';
+import PostViewerContainer from '../containers/post/PostViewerContainer';
 
-const PostPage = () =>{
-    // eslint-disable-next-line react/react-in-jsx-scope
-    return <div>post</div>
-
+const PostPage = () => {
+  return (
+    <>
+      <HeaderContainer />
+      <PostViewerContainer />
+    </>
+  );
 };
+
 export default PostPage;
