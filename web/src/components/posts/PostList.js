@@ -26,31 +26,26 @@ const PostItemBlock = styled.div`
   & + & {
     border-top: 1px solid ${palette.gray[2]};
   }
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 0;
+  p {
     margin-top: 0;
+    margin-bottom: 0;
     &:hover {
       color: ${palette.gray[6]};
     }
   }
-  p {
-    margin-top: 2rem;
-  }
 `;
 
 const PostItem = ({ post }) => {
-  const { publishedDate, user, title, body, bno } = post;
+  const { publishedDate, user, title, bno } = post;
   return (
     <PostItemBlock>
-      <h2>
+      <p>
         <Link to={`/posts/${bno}`}>{title}</Link>
-      </h2>
+      </p>
       <SubInfo
         username={user.username}
         publishedDate={new Date(publishedDate)}
       />
-      <p>{body}</p>
     </PostItemBlock>
   );
 };
