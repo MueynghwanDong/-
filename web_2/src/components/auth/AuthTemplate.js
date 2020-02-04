@@ -49,13 +49,13 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const AuthTemplate = ({ children, type }) => {
-
+const AuthTemplate = ({ children, location}) => {
+    
     const classes = useStyles();
   return (
     <>
     
-        <Header ></Header>
+        <Header/>
     
     <Container>
         <AuthTemplateBlock>
@@ -81,6 +81,7 @@ const AuthTemplate = ({ children, type }) => {
                     <WhiteBox>
                         <div className="logo-area">
                         <Link to="/">REACTERS</Link>
+                        
                         </div>
                         {children}
                     </WhiteBox>

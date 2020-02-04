@@ -89,7 +89,7 @@ const useStyles = makeStyles(theme => ({
 
   }));
   
-const Header = ({type}) => {
+const Header = () => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme()
@@ -100,7 +100,7 @@ const Header = ({type}) => {
       const handleDrawerClose = () => {
         setOpen(false);
       };
-    
+    const new_url = window.location.pathname
     return (
   
         <div className={classes.root}>
@@ -112,12 +112,9 @@ const Header = ({type}) => {
             })}
         >
             <Toolbar className={classes.toolbar}>
-            {type === 'login' || 'register' ? (
-              <IconButton
-                className = {classes.hide}
-              />
-            ) :
-            (<IconButton
+          { new_url ==="/login" || new_url === "/register" ?
+            <></>:        
+            <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -126,10 +123,11 @@ const Header = ({type}) => {
           >
             <MenuIcon />
             </IconButton>
-            )}
+}
             
                 <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-                    Company name
+                    Company name {new_url}   
+                   
                 </Typography>
                     <nav>
                         <Link variant="button" color="textPrimary" href="#" className={classes.link}>
@@ -151,7 +149,7 @@ const Header = ({type}) => {
                 </Button> */}
             </Toolbar>
         </AppBar>
-        <Drawer
+  <Drawer
     className={classes.drawer}
     variant="persistent"
     anchor="left"
@@ -175,27 +173,31 @@ const Header = ({type}) => {
       ))}
     </List>
     <Divider />
-    <List>
+    {/* <List>
       {['All mail', 'Trash', 'Spam'].map((text, index) => (
         <ListItem button key={text}>
           <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
           <ListItemText primary={text} />
         </ListItem>
       ))}
-    </List>
-  </Drawer>
+    </List> */}
+  </Drawer>  
+  
+    
+  
+  
+      
       <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
+      className={clsx(classes.content, {
+        [classes.contentShift]: open,
+      })}
       >
-        <div className={classes.drawerHeader} />
+      <div className={classes.drawerHeader} />
 
-        {/* <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          
-        </Typography> */}
+
       </main>
+
+
 
         </div>
         
