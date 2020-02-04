@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+// import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
 import { Grid, makeStyles, Typography, Container } from '@material-ui/core';
 import Header from '../common/Header'
 import Footer from '../common/Footer';
+import {  lightGreen, blue }from '@material-ui/core/colors/'
 
 // const AuthTemplateBlock = styled.div`
 // //   position: absolute;
@@ -41,11 +42,12 @@ const WhiteBox = styled.div`
 
 const useStyles = makeStyles(theme => ({
     root: {
-      backgroundColor: theme.palette.background.default,
-      height: '500px'    
+      backgroundColor: blue[50], 
+    //   theme.palette.background.default,
+      height: '100%'    
     },
     grid: {
-      height: '100%'
+      height: '100vh'
     },
     quoteContainer: {
     //   backgroundImage: 'url(/images/auth.jpg)',   
@@ -138,8 +140,8 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(2, 0)
     },
     footer:{
-      paddingTop: '0 !important',
-      marginTop : '0 !important'
+      padding: 0 + '!important',
+      marginTop : 0 + '!important'
     }
   }));
 const AuthTemplate = ({ children }) => {
@@ -152,7 +154,8 @@ const AuthTemplate = ({ children }) => {
         {/* <AuthTemplateBlock> */}
             <Grid 
                 className={classes.grid}
-                container 
+                container
+
             >
                 <Grid
                     className={classes.quoteContainer}    
@@ -162,9 +165,9 @@ const AuthTemplate = ({ children }) => {
                         <div className={classes.quoteInner}>
                         <Typography
                         className={classes.quoteText}
-                        variant="h2"
+                        variant="h3"
                     >
-                        일단은 아무말이나 쳐서 나오는지만 확인을 합시다.
+                        life with Cow
                         </Typography>
                         <div className={classes.person}>
                             <Typography
@@ -200,15 +203,16 @@ const AuthTemplate = ({ children }) => {
                         
                     </div>
                 </Grid>
+                {/* <Container>
+                    <Footer
+                        className={classes.footer}
+                    />
+                </Container> */}
             </Grid>
         {/* </AuthTemplateBlock> */}
 
 
-    <Container>
-        <Footer
-             className={classes.footer}
-        />
-    </Container>
+ 
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 import { Grid, makeStyles, Container } from '@material-ui/core';
+import {blue} from '@material-ui/core/colors'
 // import {
 //     Grid,
 //     IconButton,
@@ -80,10 +81,13 @@ const useStyles = makeStyles(theme => ({
             justifyContent: 'center'
           },
         flexGrow: 1,
-        display: 'flex',
+        display: 'flex',    
         alignItems: 'center',
         
     },
+    footer: {
+        backgroundColor: blue[50]
+    }
 
  }))
 
@@ -156,13 +160,15 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             {text}
                         </ButtonWithMarginTop>
                     </form>
-                    <Footer>
-                        {type === 'login' ? (
-                            <Link to='/register'>회원가입</Link>
-                        ) : (
-                            <Link to='/login'>로그인</Link>
-                        )}
-                    </Footer>
+                        <Footer
+                            
+                        >
+                            {type === 'login' ? (
+                                <Link to='/register'>회원가입</Link>
+                            ) : (
+                                <Link to='/login'>로그인</Link>
+                            )}
+                        </Footer>
             </div>
                 // </AuthFormBlock>
 
