@@ -1,36 +1,27 @@
-import React, { Component } from 'react';
-import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { Chart } from 'react-chartjs-2';
-import { ThemeProvider } from '@material-ui/styles';
-import validate from 'validate.js';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import PostListPage from './pages/PostListPage';
+import WritePage from './pages/WritePage';
+import LoginPage from './pages/LoginPage';
+import PostPage from './pages/PostPage';
+import RegisterPage from './pages/RegisterPage';
+import Main from './pages/Main';
+import { Helmet } from 'react-helmet-async';
 
-import { chartjs } from './helpers';
-import theme from './theme';
-import 'react-perfect-scrollbar/dist/css/styles.css';
-import './assets/scss/index.scss';
-import validators from './common/validators';
-import Routes from './Routes';
-
-const browserHistory = createBrowserHistory();
-
-Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
-  draw: chartjs.draw
-});
-
-validate.validators = {
-  ...validate.validators,
-  ...validators
-};
-
-export default class App extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <Router history={browserHistory}>
-          <Routes />
-        </Router>
-      </ThemeProvider>
-    );
-  }
+const App = () =>{
+  return (
+    <>
+    <Helmet>
+      <title>REACTERS</title>
+    </Helmet>
+    <Route component={Main} path={"/"} exact />
+    <Route component={LoginPage} path={'/login'} />
+    <Route component={RegisterPage} path={'/register'} />
+    <Route component={WritePage} path={"/write"} />
+    <Route component={PostListPage} path={'/posts'} />
+    <Route component={PostPage} path={"/posts/:bno"} />
+    </>
+  );
 }
+
+export default App;
