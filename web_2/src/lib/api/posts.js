@@ -7,16 +7,24 @@ export const writePost = ({ title, body }) =>
     "content": body
   });
 
-  export const readPost = bno => client.get(`/board/${bno}`)
+export const readPost = bno => client.get(`/board/${bno}`)
 
-  export const listPosts = ({ page, searchKeyword, searchType }) => {
-    if(searchKeyword) {
-      const queryString = qs.stringify({
-        page,
-        searchKeyword,
-        searchType
-      });
-      return client.get(`/board?${queryString}`);
-    };
-    return client.get('/board');  // 확인 필요
+export const listPosts = ({ page, searchKeyword, searchType }) => {
+  if (searchKeyword) {
+    const queryString = qs.stringify({
+      page,
+      searchKeyword,
+      searchType
+    });
+    return client.get(`/board?${queryString}`);
   };
+  return client.get('/board');  // 확인 필요
+};
+
+export const updatePost = ({ bno, title, body }) =>
+  client.patch(`/board/${bno}`, {
+    "title": title,
+    "content": body
+  });
+
+export const removePost = bno => client.delete(`/board/${bno}`);
