@@ -7,13 +7,16 @@ export const writePost = ({ title, body }) =>
     "content": body
   });
 
-  export const readPost = id => client.get(`/board/${id}`)
+  export const readPost = bno => client.get(`/board/${bno}`)
 
-  export const listPosts = ({ page, keyword, type }) => {
-    const queryString = qs.stringify({
-      page,
-      keyword,
-      type
-    });
-    return client.get(`/board?${queryString}`);
+  export const listPosts = ({ page, searchKeyword, searchType }) => {
+    if(searchKeyword) {
+      const queryString = qs.stringify({
+        page,
+        searchKeyword,
+        searchType
+      });
+      return client.get(`/board?${queryString}`);
+    };
+    return client.get('/board');  // 확인 필요
   };

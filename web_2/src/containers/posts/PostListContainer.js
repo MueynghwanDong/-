@@ -16,7 +16,7 @@ const PostListContainer = ({ location }) => {
     }),
   );
   useEffect(() => {
-    const { page, keyword, type } = qs.parse(location.search, {
+    const { page, searchKeyword, searchType } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
     dispatch(listPosts({ page }));
