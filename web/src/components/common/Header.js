@@ -126,7 +126,7 @@ const Header = () => {
 }
             
                 <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-                    Company name {new_url}   
+                    Company name
                    
                 </Typography>
                     <nav>

@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const AuthTemplate = ({ children, location}) => {
+const AuthTemplate = ({ children }) => {
     
     const classes = useStyles();
   return (

@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/styles';
 //     TextField,
 //     Typography
 //   } from '@material-ui/core';
-const AuthFormBlcok = styled.div`
+const AuthFormBlock = styled.div`
     h3{
         margin : 0;
         color: ${palette.gray[8]};
@@ -18,7 +18,7 @@ const AuthFormBlcok = styled.div`
     }
 `;
 // 스타일링 된 input
-const StyleInput = styled.input`
+const StyledInput = styled.input`
     font-size:1rem;
     border: none;
     norder-bottom: 1px solid ${palette.gray[5]};
@@ -55,6 +55,13 @@ const ButtonWithMarginTop = styled(Button)`
     
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+`;
+
 const useStyles = makeStyles(theme => ({
     quote: {
         backgroundImage: 'url(/images/auth.jpg)',
@@ -71,35 +78,70 @@ const useStyles = makeStyles(theme => ({
 
  }))
 
-const AuthForm = ({type}) => {
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
     
     const classes = useStyles();
 
     const text = textmap[type];
     return (
 
-                <AuthFormBlcok>  
+            <AuthFormBlock>
+                <form onSubmit={onSubmit}>
                     <h3>{text}</h3>
-                    <form>
-                        <StyleInput 
+                        <StyledInput 
                             autoComplete="username" 
                             name="username" 
-                            placeholder="ID"
+                            placeholder="아이디"
+                            onChange={onChange}
+                            value={form.username}
                         />
-                        <StyleInput 
+                        <StyledInput 
                             autoComplete="new-password" 
                             name="password" 
                             placeholder="비밀번호" 
-                            type="password" 
+                            type="password"
+                            onChange={onChange}
+                            value={form.password}
                         />
                         {type === 'register' && (
-                            <StyleInput 
-                            autoComplete="new-password" 
-                            name="password Confirm" 
-                            placeholder="비밀번호 확인" 
-                            type="password" 
-                        />
+                          <StyledInput
+                            autoComplete="new-password"
+                            name="passwordConfirm"
+                            placeholder="비밀번호 확인"
+                            type="password"
+                            onChange={onChange}
+                            value={form.passwordConfirm}
+                          />
                         )}
+                        {type === 'register' && (
+                          <StyledInput
+                            autoComplete="name"
+                            name="fullName"
+                            placeholder="이름"
+                            onChange={onChange}
+                            value={form.fullName}
+                          />
+                        )}
+                        {type === 'register' && (
+                          <StyledInput
+                            autoComplete="email"
+                            name="email"
+                            placeholder="이메일"
+                            type="email"
+                            onChange={onChange}
+                            value={form.email}
+                          />
+                        )}
+                        {type === 'register' && (
+                          <StyledInput
+                            autoComplete="location"
+                            name="location"
+                            placeholder="위치"
+                            onChange={onChange}
+                            value={form.location}
+                          />
+                        )}
+                        {error && <ErrorMessage>{error}</ErrorMessage>}
                         <ButtonWithMarginTop cyan fullWidth style={{marginTop: '1rem'}}>
                             {text}
                         </ButtonWithMarginTop>
@@ -111,7 +153,7 @@ const AuthForm = ({type}) => {
                             <Link to='/login'>로그인</Link>
                         )}
                     </Footer>
-                </AuthFormBlcok>
+                </AuthFormBlock>
 
     );
 };
