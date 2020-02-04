@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
-import { makeStyles } from '@material-ui/styles';
+import { Grid, makeStyles, Container } from '@material-ui/core';
 // import {
 //     Grid,
 //     IconButton,
@@ -75,6 +75,15 @@ const useStyles = makeStyles(theme => ({
     grid:{
         height:'100%'
     },
+    contentBody: {
+        [theme.breakpoints.down('md')]: {
+            justifyContent: 'center'
+          },
+        flexGrow: 1,
+        display: 'flex',
+        alignItems: 'center',
+        
+    },
 
  }))
 
@@ -85,7 +94,8 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
     const text = textmap[type];
     return (
 
-            <AuthFormBlock>
+            // <AuthFormBlock>
+            <div className={classes.contentBody}>
                 <form onSubmit={onSubmit}>
                     <h3>{text}</h3>
                         <StyledInput 
@@ -153,7 +163,8 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             <Link to='/login'>로그인</Link>
                         )}
                     </Footer>
-                </AuthFormBlock>
+            </div>
+                // </AuthFormBlock>
 
     );
 };
