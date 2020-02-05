@@ -21,7 +21,7 @@ const App = () =>{
     <Route component={WritePage} path={"/write"} />
     <Route component={PostListPage} path={'/posts'} exact />
     <Route component={PostPage} path={"/posts/:bno"} />
-    <Route component={QuestionListPage} path={"/qna"} />
+    <Route component={QuestionListPage} path={"/faq"} />
     </>
   );
 }
