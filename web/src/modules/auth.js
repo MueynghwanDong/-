@@ -19,22 +19,22 @@ export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
     form,  // register, login
-    key,  // username, password, passwordConfirm
+    key,  // m_id, pw, pwConfirm
     value,  // 실제 바꾸려는 값
   }),
 );
 export const initializeForm = createAction(INITIALIZE_FORM, form => form);  // register login
 
-export const register = createAction(REGISTER, ({ username, password, fullName, email, location }) => ({
-  username,
-  password,
-  fullName,
+export const register = createAction(REGISTER, ({ m_id, pw, name, email, location }) => ({
+  m_id,
+  pw,
+  name,
   email,
   location
 }));
-export const login = createAction(LOGIN, ({ username, password }) => ({
-  username,
-  password,
+export const login = createAction(LOGIN, ({ m_id, pw }) => ({
+  m_id,
+  pw,
 }));
 
 // 사가 생성
@@ -47,16 +47,16 @@ export function* authSaga() {
 
 const initialState= {
   register: {
-    username: '',
-    password: '',
-    passwordConfirm: '',
-    fullName: '',
+    m_id: '',
+    pw: '',
+    pwConfirm: '',
+    name: '',
     email: '',
     location: '',
   },
   login: {
-    username: '',
-    password: '',
+    m_id: '',
+    pw: '',
   },
   auth: null,
   authError: null,
@@ -66,7 +66,7 @@ const auth = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, draft => {
-        draft[form][key] = value;  // ex) state.register.username 을 바꾼다.
+        draft[form][key] = value;  // ex) state.register.m_id 을 바꾼다.
       }),
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,

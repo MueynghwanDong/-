@@ -1,30 +1,27 @@
 import qs from 'qs';
 import client from './client';
 
-export const writePost = ({ title, body }) =>
+export const writePost = ({ title, content }) =>
   client.post('/board/insert', {
     "title": title,
-    "content": body
+    "content": content
   });
 
 export const readPost = bno => client.get(`/board/${bno}`)
 
 export const listPosts = ({ page, searchKeyword, searchType }) => {
-  if (searchKeyword) {
-    const queryString = qs.stringify({
-      page,
-      searchKeyword,
-      searchType
-    });
-    return client.get(`/board?${queryString}`);
-  };
-  return client.get('/board');  // 확인 필요
+  const queryString = qs.stringify({
+    page,
+    searchKeyword,
+    searchType
+  });
+  return client.get(`/board?${queryString}`);
 };
 
-export const updatePost = ({ bno, title, body }) =>
-  client.patch(`/board/${bno}`, {
+export const updatePost = ({ bno, title, content }) =>
+  client.put(`/board/update/${bno}`, {
     "title": title,
-    "content": body
+    "content": content
   });
 
-export const removePost = bno => client.delete(`/board/${bno}`);
+export const removePost = bno => client.delete(`/board/del/${bno}`);

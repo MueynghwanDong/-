@@ -90,36 +90,36 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                     <h3>{text}</h3>
                         <StyledInput 
                             autoComplete="username" 
-                            name="username" 
+                            name="m_id" 
                             placeholder="아이디"
                             onChange={onChange}
-                            value={form.username}
+                            value={form.m_id}
                         />
                         <StyledInput 
                             autoComplete="new-password" 
-                            name="password" 
+                            name="pw" 
                             placeholder="비밀번호" 
                             type="password"
                             onChange={onChange}
-                            value={form.password}
+                            value={form.pw}
                         />
                         {type === 'register' && (
                           <StyledInput
                             autoComplete="new-password"
-                            name="passwordConfirm"
+                            name="pwConfirm"
                             placeholder="비밀번호 확인"
                             type="password"
                             onChange={onChange}
-                            value={form.passwordConfirm}
+                            value={form.pwConfirm}
                           />
                         )}
                         {type === 'register' && (
                           <StyledInput
                             autoComplete="name"
-                            name="fullName"
+                            name="name"
                             placeholder="이름"
                             onChange={onChange}
-                            value={form.fullName}
+                            value={form.name}
                           />
                         )}
                         {type === 'register' && (
