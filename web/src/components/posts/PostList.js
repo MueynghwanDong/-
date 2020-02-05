@@ -8,6 +8,11 @@ import { Link } from 'react-router-dom';
 
 const PostListBlock = styled(Responsive)`
   margin-top: 3rem;
+  h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+    margin: 0;
+  }
 `;
 
 const WritePostButtonWrapper = styled.div`
@@ -17,8 +22,8 @@ const WritePostButtonWrapper = styled.div`
 `;
 
 const PostItemBlock = styled.div`
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   /* 맨 위 포스트는 padding-top 없음 */
   &:first-child {
     padding-top: 0;
@@ -26,31 +31,22 @@ const PostItemBlock = styled.div`
   & + & {
     border-top: 1px solid ${palette.gray[2]};
   }
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 0;
-    margin-top: 0;
-    &:hover {
-      color: ${palette.gray[6]};
-    }
-  }
   p {
-    margin-top: 2rem;
+    margin-top: 0rem;
   }
 `;
 
 const PostItem = ({ post }) => {
-  const { publishedDate, m_id, title, body, bno } = post;
+  const { regdate, m_id, title, bno } = post;
   return (
     <PostItemBlock>
-      <h2>
+      <h3>
         <Link to={`/posts/${bno}`}>{title}</Link>
-      </h2>
+      </h3>
       <SubInfo
-        username={m_id}
-        publishedDate={new Date(publishedDate)}
+        m_id={m_id}
+        regdate={new Date(regdate)}
       />
-      <p>{body}</p>
     </PostItemBlock>
   );
 };
@@ -63,6 +59,7 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 
   return (
     <PostListBlock>
+      <h1>포스트</h1>
       <WritePostButtonWrapper>
         {showWriteButton && (
           <Button cyan to="/write">

@@ -28,7 +28,7 @@ const ActionButton = styled.button`
   }
 `;
 
-const PostActionButtons = ({ onEdit, onRemove }) => {
+const PostActionButtons = ({ onEdit, onRemove, onList }) => {
   const [modal, setModal] = useState(false);
   const onRemoveClick = () => {
     setModal(true);
@@ -44,6 +44,7 @@ const PostActionButtons = ({ onEdit, onRemove }) => {
   return (
     <>
       <PostActionButtonsBlock>
+        <ActionButton onClick={onList}>홈</ActionButton>
         <ActionButton onClick={onEdit}>수정</ActionButton>
         <ActionButton onClick={onRemoveClick}>삭제</ActionButton>
       </PostActionButtonsBlock>

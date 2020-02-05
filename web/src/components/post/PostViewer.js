@@ -50,7 +50,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
     return null;
   }
   
-  const { title, body, m_id, publisherDate } = post;
+  const { title, content, m_id, regdate } = post;
 
   return (
     <PostViewerBlock>
@@ -63,12 +63,12 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
           <span>
             <b>{m_id}</b>
           </span>
-          <span>{new Date(publisherDate).toLocaleDateString()}</span>
+          <span>{new Date(regdate).toLocaleDateString()}</span>
         </SubInfo>
-      </PostHead>
       {actionButtons}
+      </PostHead>
       <PostContent
-        dangerouslySetInnerHTML={{ __html: body }}
+        dangerouslySetInnerHTML={{ __html: content }}
       />
     </PostViewerBlock>
   );

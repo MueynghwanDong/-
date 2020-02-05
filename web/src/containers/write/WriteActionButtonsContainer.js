@@ -6,9 +6,9 @@ import { writePost, updatePost } from '../../modules/write';
 
 const WriteActionButtonsContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { title, body, post, postError, originalPostId } = useSelector(({ write }) => ({
+  const { title, content, post, postError, originalPostId } = useSelector(({ write }) => ({
     title: write.title,
-    body: write.body,
+    content: write.content,
     post: write.post,
     postError: write.postError,
     originalPostId: write.originalPostId,
@@ -17,13 +17,13 @@ const WriteActionButtonsContainer = ({ history }) => {
   // 포스트 등록
   const onPublish = () => {
     if (originalPostId) {
-      dispatch(updatePost({ title, body, bno: originalPostId }));
+      dispatch(updatePost({ title, content, bno: originalPostId }));
       return;
     }
     dispatch(
       writePost({
         title,
-        body,
+        content,
       }),
     );
   };
@@ -36,8 +36,13 @@ const WriteActionButtonsContainer = ({ history }) => {
   // 성공 혹은 실패 시 할 작업
   useEffect(() => {
     if (post) {
-      const { bno } = post;
-      history.push(`/posts/${bno}`);
+      var { bno } = post;
+      if (bno) {
+        history.push(`/posts/${bno}`);
+      } else {
+        var { bno } = post[0];
+        history.push(`/posts/${bno}`)
+      }
     }
     if (postError) {
       console.log(postError);

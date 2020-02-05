@@ -101,6 +101,7 @@ const Header = () => {
         setOpen(false);
       };
     const new_url = window.location.pathname
+    
     return (
   
         <div className={classes.root}>
@@ -124,8 +125,8 @@ const Header = () => {
             <MenuIcon />
             </IconButton>
 }
-            
-                <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+                
+                <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to={"/"} >
                     Company name
                    
                 </Typography>
@@ -140,7 +141,7 @@ const Header = () => {
                             hmmm2
                         </Link> */}
                     </nav>
-                <Button href="#" color="white" variant="outlined" className={classes.link}>
+                <Button color="white" variant="outlined" className={classes.link} component={Link} to={"/login"}>
                     Login
                 </Button>
                 {/* Login Logout은 조건에 따라 하나만 뜨도록 */}

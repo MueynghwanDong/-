@@ -34,19 +34,23 @@ const PostViewerContainer = ({ match, history }) => {
   const onRemove = async () => {
     try {
       await removePost(bno);
-      history.push('/');
+      history.push('/posts');
     } catch (e) {
       console.log(e);
     }
   };
+
+  const onList = () => {
+    history.push('/posts');
+  }
 
   return (
     <PostViewer
       post={post}
       loading={loading}
       error={error}
-      actionButtons={<PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
-      ownPost={user && user.username === post && post.bno}
+      actionButtons={<PostActionButtons onEdit={onEdit} onRemove={onRemove} onList={onList}/>}
+      ownPost={user && user.m_id === post && post.bno}
     />
   );
 };
