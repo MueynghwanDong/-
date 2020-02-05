@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import PostPage from './pages/PostPage';
 import RegisterPage from './pages/RegisterPage';
 import Main from './pages/Main';
+import QuestionListPage from './pages/QuestionListPage';
 import { Helmet } from 'react-helmet-async';
 
 const App = () =>{
@@ -20,6 +21,7 @@ const App = () =>{
     <Route component={WritePage} path={"/write"} />
     <Route component={PostListPage} path={'/posts'} exact />
     <Route component={PostPage} path={"/posts/:bno"} />
+    <Route component={QuestionListPage} path={"/qna"} />
     </>
   );
 }
