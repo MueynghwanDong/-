@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
-// import palette from '../../lib/styles/palette';
+import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
-import { Grid, makeStyles, Typography, Container } from '@material-ui/core';
+import { Grid, makeStyles, Typography, IconButton  } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Header from '../common/Header'
-import Footer from '../common/Footer';
-import {  lightGreen, blue }from '@material-ui/core/colors/'
+// import Footer from '../common/Footer';
+import { blue, grey }from '@material-ui/core/colors/'
+
 
 // const AuthTemplateBlock = styled.div`
 // //   position: absolute;
@@ -42,7 +44,7 @@ const WhiteBox = styled.div`
 
 const useStyles = makeStyles(theme => ({
     root: {
-      backgroundColor: blue[50], 
+      backgroundColor: grey[200], 
     //   theme.palette.background.default,
       height: '100%'    
     },
@@ -51,13 +53,16 @@ const useStyles = makeStyles(theme => ({
     },
     quoteContainer: {
     //   backgroundImage: 'url(/images/auth.jpg)',   
+      // display: fixed,
+      // position:'relative',
+      // flexDirection: 'row',
       [theme.breakpoints.down('md')]: {
         display: 'none'
       }
     },
 
     quoteText: {
-        color: theme.palette.white,
+        color: palette.white,
         fontWeight: 150
     },
     quote: {
@@ -66,7 +71,7 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundImage: 'url(/images/auth.jpg)',
+      backgroundImage: 'url(/images/cow4.jpg)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center'
@@ -75,10 +80,7 @@ const useStyles = makeStyles(theme => ({
       textAlign: 'center',
       flexBasis: '600px'
     },
-    quoteText: {
-      color: theme.palette.white,
-      fontWeight: 300
-    },
+   
     name: {
       marginTop: theme.spacing(3),
       color: theme.palette.white
@@ -90,7 +92,7 @@ const useStyles = makeStyles(theme => ({
     content: {
       height: '100%',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'row'
     },
     contentHeader: {
       display: 'flex',
@@ -139,80 +141,91 @@ const useStyles = makeStyles(theme => ({
     signInButton: {
       margin: theme.spacing(2, 0)
     },
-    footer:{
-      padding: 0 + '!important',
-      marginTop : 0 + '!important'
-    }
+    // footer:{
+    //   padding: 0 + '!important',
+    //   marginTop : 0 + '!important'
+    // }
   }));
+
+
 const AuthTemplate = ({ children }) => {
     
     const classes = useStyles();
   return (
     <div className={classes.root} >
-        <Header/>
-    
+        
         {/* <AuthTemplateBlock> */}
+        <Header/>
             <Grid 
                 className={classes.grid}
                 container
 
             >
+            
+        
                 <Grid
                     className={classes.quoteContainer}    
-                    item lg={5}
+                    item lg={6}
                 >
-                    <div className={classes.quote}>
+                    <Grid className={classes.quote}>
                         <div className={classes.quoteInner}>
-                        <Typography
-                        className={classes.quoteText}
-                        variant="h3"
-                    >
-                        life with Cow
-                        </Typography>
-                        <div className={classes.person}>
-                            <Typography
-                            className={classes.name}
-                            variant="body1"
-                            >
-                            Takamaru Ayako
-                            </Typography>
-                            <Typography
-                            className={classes.bio}
-                            variant="body2"
-                            >
-                            Manager at inVision
-                            </Typography>
-                        </div>
-                    </div>
-                </div>
+                          <Typography
+                          className={classes.quoteText}
+                          variant="h3"
+                      >
+                          life with Cow
+                          </Typography>
+                          <div className={classes.person}>
+                              <Typography
+                              className={classes.name}
+                              variant="body1"
+                              >
+                              Takamaru Ayako
+                              </Typography>
+                              <Typography
+                              className={classes.bio}
+                              variant="body2"
+                              >
+                              Manager at inVision
+                              </Typography>
+                          </div>
+                      </div>
+                    </Grid>
                 </Grid>
                 <Grid
                     className={classes.content}
                     item 
-                    lg={7}
-                    xs={12}
+                    lg={6}
+                    // xs={12}
                 >
+
                     <div className={classes.content}>
-                        <div className={classes.contentHeader} />
-                            <div className="logo-area">
+                        <div className={classes.contentHeader}>
+                        <IconButton  >
+                          <ArrowBackIcon>
+                            
+                          </ArrowBackIcon>
+                        </IconButton>  
+                        </div> 
+                            {/* <div className="logo-area">
                             <Link to="/">REACTERS</Link>
                             
-                            </div>
+                            </div> */}
                         {children}
-
-                        
                     </div>
+
                 </Grid>
                 {/* <Container>
                     <Footer
                         className={classes.footer}
                     />
                 </Container> */}
+                
             </Grid>
         {/* </AuthTemplateBlock> */}
 
 
- 
+               
     </div>
   );
 };
