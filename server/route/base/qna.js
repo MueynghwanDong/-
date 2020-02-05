@@ -13,7 +13,7 @@ app.get("/", async function(req, res) {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
+    console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -24,11 +24,7 @@ app.get("/", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/:q_id", async function(req, res) {

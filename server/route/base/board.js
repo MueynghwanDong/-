@@ -6,13 +6,25 @@ const {board} = require('../../models');
 const bodyparser = require('body-parser');
 
 app.get("/", async function(req, res) {
+
+  const idxq = req.mybatisMapper.getStatement("board","cntbaord",null,{lang:"sql", indent : ""});
+  var cnt =  await req.sequelize.query(idxq, {
+    type: req.sequelize.QueryTypes.SELECT,
+  });
+  // idx -> 전체 게시물 수 
+  var totalcnt = (cnt[0].cnt);
+  // page = (parseInt(req.query.page, 10));
+  var selectParms = {
+    no : no+1,
+  };
+  
   var selectQuery = req.mybatisMapper.getStatement(
     "board",
     "allboard",
     selectParms,
-    { language: "sql", indent : "  "}
+    { language: "sql", indent : ""}
   );
-  let data = [];
+  let data = "";
   try {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
@@ -27,18 +39,15 @@ app.get("/", async function(req, res) {
     res.status(403).send({ msg: "정보가 없습니다." });
     return;
   }
-
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/:bno", async function(req, res) {
   var selectParms = {
     bno : req.params.bno
   };
+  let data;
+
   try {
 
   var selectQuery = req.mybatisMapper.getStatement(
@@ -47,37 +56,30 @@ app.get("/:bno", async function(req, res) {
     selectParms,
     { language: "sql", indent : "  "}
   );
-  let data = [];
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-  } catch (error) {
+    } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-
   if (data.length == 0) {
     res.status(403).send({ msg: "정보가 없습니다." });
     return;
   }
-
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data[0]);
 });
 
 app.post("/insert", async function(req, res) {
   
-  try{
   const token = req.cookies.access_token;
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   
   const username = decoded.username;
   console.log(username);
+      try{
   
-  if(username!==null || username === undefined || username === "undefined"){
+  if(username===null || username === undefined || username === "undefined"){
     console.log("에러");
     res.status = 401;
     return;
@@ -92,7 +94,7 @@ app.post("/insert", async function(req, res) {
   //   return;
 }
   var insertboardParms = {
-    m_id : decoded.username,
+    m_id : username,
     title : req.body.title,
     content : req.body.content,
   };
@@ -109,12 +111,19 @@ app.post("/insert", async function(req, res) {
     await req.sequelize.query(insertboardQuery, {
       type: req.sequelize.QueryTypes.INSERT,
     });
-  } catch (error) {
-    res.status(403).send({ msg: "db insert에 실패하였습니다.", error: error });
-    return;
-  }
 
-  res.json({ success: "post call succeed!", url: req.url, body: req.body });
+  const idxq = req.mybatisMapper.getStatement("board","idx",null,{lang:"sql", indent : ""});
+  const idx =  await req.sequelize.query(idxq, {
+    type: req.sequelize.QueryTypes.SELECT,
+  });
+  res.body = idx;
+  console.log(idx);
+} catch (error) {
+  res.status(403).send({ msg: "db insert에 실패하였습니다.", error: error });
+  return;
+}
+res.json(res.body);
+//res.json({ success: "post call succeed!", url: req.url, body: req.body });
 });
 app.put("/vcnt/:bno", async function(req, res) {
 
@@ -168,8 +177,8 @@ app.put("/update/:bno", async function(req, res) {
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   
   const username = decoded.username; // 사용자 아이디
-  console.log(username);
 
+  let bno = req.params.bno;
   const bd = await board.findOne({where : {bno}});
   // 작성자와 수정자가 같은 지 확인 하기
   if(username !== bd.m_id){
@@ -197,8 +206,10 @@ app.put("/update/:bno", async function(req, res) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-
-  res.json({ success: "put call succeed!", url: req.url, body: req.body });
+  let temp = {"bno" : bno};
+  res.body = temp;
+  res.json(res.body);
+  //res.json({ success: "put call succeed!", url: req.url, body: req.body });
 });
 
 // 수정요망 - 값이 있는지 확인하고 없으면 없다는 메시지 출력
