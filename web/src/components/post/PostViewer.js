@@ -50,7 +50,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
     return null;
   }
   
-  const { title, body, user, publisherDate } = post;
+  const { title, body, m_id, publisherDate } = post;
 
   return (
     <PostViewerBlock>
@@ -61,7 +61,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
         <h1>{title}</h1>
         <SubInfo>
           <span>
-            <b>{user.username}</b>
+            <b>{m_id}</b>
           </span>
           <span>{new Date(publisherDate).toLocaleDateString()}</span>
         </SubInfo>

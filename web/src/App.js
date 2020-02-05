@@ -18,7 +18,7 @@ const App = () =>{
     <Route component={LoginPage} path={'/login'} />
     <Route component={RegisterPage} path={'/register'} />
     <Route component={WritePage} path={"/write"} />
-    <Route component={PostListPage} path={'/posts'} />
+    <Route component={PostListPage} path={'/posts'} exact />
     <Route component={PostPage} path={"/posts/:bno"} />
     </>
   );

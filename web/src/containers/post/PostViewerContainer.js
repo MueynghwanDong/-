@@ -9,7 +9,7 @@ import { removePost } from '../../lib/api/posts';
 
 const PostViewerContainer = ({ match, history }) => {
   // 처음 마운트될 때 포스트 읽기 API 요청
-  const { postId } = match.params;
+  const { bno } = match.params;
   const dispatch = useDispatch();
   const { post, error, loading, user } = useSelector(({ post, loading, user }) => ({
     post: post.post,
@@ -19,12 +19,12 @@ const PostViewerContainer = ({ match, history }) => {
   }));
 
   useEffect(() => {
-    dispatch(readPost(postId));
+    dispatch(readPost(bno));
     // 언마운트될 때 리덕스에서 포스트 데이터 없애기
     return () => {
       dispatch(unloadPost());
     };
-  }, [dispatch, postId]);
+  }, [dispatch, bno]);
 
   const onEdit = () => {
     dispatch(setOriginalPost(post));
@@ -33,7 +33,7 @@ const PostViewerContainer = ({ match, history }) => {
 
   const onRemove = async () => {
     try {
-      await removePost(postId);
+      await removePost(bno);
       history.push('/');
     } catch (e) {
       console.log(e);

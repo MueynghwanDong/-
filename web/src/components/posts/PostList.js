@@ -40,14 +40,14 @@ const PostItemBlock = styled.div`
 `;
 
 const PostItem = ({ post }) => {
-  const { publishedDate, user, title, body, bno } = post;
+  const { publishedDate, m_id, title, body, bno } = post;
   return (
     <PostItemBlock>
       <h2>
         <Link to={`/posts/${bno}`}>{title}</Link>
       </h2>
       <SubInfo
-        username={user.username}
+        username={m_id}
         publishedDate={new Date(publishedDate)}
       />
       <p>{body}</p>
