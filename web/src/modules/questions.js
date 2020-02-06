@@ -19,15 +19,15 @@ export function* questionsSaga() {
 }
 
 const initialState = {
-  quetions: null,
+  questions: null,
   error: null,
 };
 
 const quetions = handleActions(
   {
-    [LIST_QUESTIONS_SUCCESS]: (state, { payload: quetions }) => ({
+    [LIST_QUESTIONS_SUCCESS]: (state, { payload: questions }) => ({
       ...state,
-      quetions,
+      questions,
     }),
     [LIST_QUESTIONS_FAILURE]: (state, { payload: error }) => ({
       ...state,

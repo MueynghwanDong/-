@@ -10,6 +10,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const QuestionListBlock = styled(Responsive)`
   margin-top: 3rem;
+  h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
 `;
 
 const QuestionItemBlock = styled.div`
@@ -36,15 +42,16 @@ const QuestionItemBlock = styled.div`
 `;
 
 const QuestionItem = ({ question }) => {
-  const { title, body } = question;
+  const { title, content } = question;
   return (
     <QuestionItemBlock>
+      <h1>FAQ</h1>
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
           <p><b>{title}</b></p>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <p>{body}</p>
+          <p>{content}</p>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </QuestionItemBlock>
