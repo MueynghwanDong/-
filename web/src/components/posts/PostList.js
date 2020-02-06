@@ -59,7 +59,9 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 
   return (
     <PostListBlock>
-      <h1>포스트</h1>
+      <Link to="/posts">
+        <h1>포스트</h1>
+      </Link>
       <WritePostButtonWrapper>
         {showWriteButton && (
           <Button cyan to="/write">
