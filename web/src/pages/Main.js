@@ -122,14 +122,14 @@ const tiers = [
 // export default function Pricing() {
 
 const Main = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to="/mypage">
             Company name
           </Typography>
         

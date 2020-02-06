@@ -37,7 +37,7 @@ const PostItemBlock = styled.div`
 `;
 
 const PostItem = ({ post }) => {
-  const { regdate, m_id, title, bno } = post;
+  const { regdate, m_id, title, bno, viewcnt } = post;
   return (
     <PostItemBlock>
       <h3>
@@ -46,6 +46,7 @@ const PostItem = ({ post }) => {
       <SubInfo
         m_id={m_id}
         regdate={new Date(regdate)}
+        viewcnt={viewcnt}
       />
     </PostItemBlock>
   );

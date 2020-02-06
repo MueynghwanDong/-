@@ -7,6 +7,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { Link as RouterLink } from 'react-router-dom'
 
 // import { MenuIcon, ChevronLeftIcon, ChevronRightIcon, InboxIcon, MailIcon } from '@material-ui/icons'
 
@@ -89,7 +90,7 @@ const useStyles = makeStyles(theme => ({
 
   }));
   
-const Header = () => {
+const Header = ({user, onLogin, onLogout}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme()
@@ -141,9 +142,16 @@ const Header = () => {
                             hmmm2
                         </Link> */}
                     </nav>
-                <Button color="white" variant="outlined" className={classes.link} component={Link} to={"/login"}>
-                    Login
-                </Button>
+                    {user ?
+                      
+                        <Button color="white" variant="outlined" className={classes.link} onClick={onLogout}>
+                        Logout
+                        </Button>
+                        :
+                        <Button color="white" variant="outlined" className={classes.link} onClick={onLogin} component={RouterLink} to="/login">
+                        Login
+                        </Button>
+                    }
                 {/* Login Logout은 조건에 따라 하나만 뜨도록 */}
                 {/* <Button href="#" color="primary" variant="outlined" className={classes.link}>
                     Logout

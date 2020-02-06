@@ -50,7 +50,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
     return null;
   }
   
-  const { title, content, m_id, regdate } = post;
+  const { title, content, m_id, regdate, viewcnt } = post;
 
   return (
     <PostViewerBlock>
@@ -64,6 +64,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
             <b>{m_id}</b>
           </span>
           <span>{new Date(regdate).toLocaleDateString()}</span>
+          <span>[{viewcnt}]</span>
         </SubInfo>
       {actionButtons}
       </PostHead>

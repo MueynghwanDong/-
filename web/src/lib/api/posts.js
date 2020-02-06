@@ -7,7 +7,10 @@ export const writePost = ({ title, content }) =>
     "content": content
   });
 
-export const readPost = bno => client.get(`/board/${bno}`)
+export const readPost = bno => {
+  client.put(`/board/vcnt/${bno}`)
+  return client.get(`/board/${bno}`)
+}
 
 export const listPosts = ({ page, searchKeyword, searchType }) => {
   const queryString = qs.stringify({

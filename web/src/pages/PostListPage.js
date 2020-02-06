@@ -2,6 +2,7 @@ import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import PostListContainer from '../containers/posts/PostListContainer';
 import PaginationContainer from '../containers/posts/PaginationContainer';
+import SearchContainer from '../containers/posts/SearchContainer';
 
 const PostListPage = () => {
   return (
@@ -9,6 +10,7 @@ const PostListPage = () => {
       <HeaderContainer />
       <PostListContainer />
       <PaginationContainer />
+      <SearchContainer />
     </>
   );
 };

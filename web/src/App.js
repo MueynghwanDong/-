@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import Main from './pages/Main';
 import QuestionListPage from './pages/QuestionListPage';
 import { Helmet } from 'react-helmet-async';
+import MyPage from './pages/MyPage';
 
 const App = () =>{
   return (
@@ -22,6 +23,7 @@ const App = () =>{
     <Route component={PostListPage} path={'/posts'} exact />
     <Route component={PostPage} path={"/posts/:bno"} />
     <Route component={QuestionListPage} path={"/faq"} />
+    <Route component={MyPage} path={"/mypage"} />
     </>
   );
 }
