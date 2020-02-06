@@ -23,11 +23,7 @@ app.get("/", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/:b_id", async function(req, res) {
@@ -57,11 +53,7 @@ app.get("/:b_id", async function(req, res) {
       return;
     }
   
-    res.json({
-        bno: data.map(x => {
-        return x;
-      })
-    });
+    res.json(data);
   });
   app.get("/:m_id", async function(req, res) {
     var selectParms = {

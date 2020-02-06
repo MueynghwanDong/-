@@ -7,15 +7,23 @@ const bodyparser = require('body-parser');
 
 app.get("/", async function(req, res) {
 
-  const idxq = req.mybatisMapper.getStatement("board","cntbaord",null,{lang:"sql", indent : ""});
-  var cnt =  await req.sequelize.query(idxq, {
-    type: req.sequelize.QueryTypes.SELECT,
-  });
-  // idx -> 전체 게시물 수 
-  var totalcnt = (cnt[0].cnt);
-  // page = (parseInt(req.query.page, 10));
+  var p = (req.query.page);
+  // console.log(req.query);
+  var searchType = (req.query.searchType);
+  var searchKeyword = (req.query.searchKeyword);
+  if( p == "" || p == null || p == undefined || ( p != null && typeof p == "object" && !Object.keys(p).length ))
+  {
+    page = 1;
+  }else{
+    page = (parseInt(req.query.page, 10));
+  }
+  //page = (parseInt(req.query.page, 10));
+  no = (page-1) * 10;
+  no = Number(no);
   var selectParms = {
-    no : no+1,
+    no : no,
+    searchType : searchType,
+    keyword : searchKeyword,
   };
   
   var selectQuery = req.mybatisMapper.getStatement(
@@ -29,7 +37,6 @@ app.get("/", async function(req, res) {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -39,6 +46,33 @@ app.get("/", async function(req, res) {
     res.status(403).send({ msg: "정보가 없습니다." });
     return;
   }
+
+  var sp = {
+    searchType : searchType,
+    keyword : searchKeyword,
+  };
+  
+  var sq = req.mybatisMapper.getStatement(
+    "board",
+    "tempboard",
+    sp,
+    { language: "sql", indent : ""}
+  );
+  let tcnt = "";
+  try {
+    tcnt = await req.sequelize.query(sq, {
+      type: req.sequelize.QueryTypes.SELECT
+    });
+  } catch (error) {
+    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    return;
+  }
+  // console.log(tcnt);
+  currentpage = parseInt(tcnt[0].tcnt/10)+1;
+  // console.log(currentpage);
+  //console.log(data);
+  // totalpage = parseInt(totalcnt/10) +1;
+  res.set('last-page',currentpage);
   res.json(data);
 });
 
@@ -75,11 +109,11 @@ app.post("/insert", async function(req, res) {
   const token = req.cookies.access_token;
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   
-  const username = decoded.username;
-  console.log(username);
+  const m_id = decoded.m_id;
+  // console.log(m_id);
       try{
   
-  if(username===null || username === undefined || username === "undefined"){
+  if(m_id===null || m_id === undefined || m_id === "undefined"){
     console.log("에러");
     res.status = 401;
     return;
@@ -94,7 +128,7 @@ app.post("/insert", async function(req, res) {
   //   return;
 }
   var insertboardParms = {
-    m_id : username,
+    m_id : m_id,
     title : req.body.title,
     content : req.body.content,
   };
@@ -117,7 +151,7 @@ app.post("/insert", async function(req, res) {
     type: req.sequelize.QueryTypes.SELECT,
   });
   res.body = idx;
-  console.log(idx);
+  // console.log(idx);
 } catch (error) {
   res.status(403).send({ msg: "db insert에 실패하였습니다.", error: error });
   return;
@@ -176,12 +210,12 @@ app.put("/update/:bno", async function(req, res) {
   const token = req.cookies.access_token;
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   
-  const username = decoded.username; // 사용자 아이디
+  const m_id = decoded.m_id; // 사용자 아이디
 
   let bno = req.params.bno;
   const bd = await board.findOne({where : {bno}});
   // 작성자와 수정자가 같은 지 확인 하기
-  if(username !== bd.m_id){
+  if(m_id !== bd.m_id){
     console.log("사용자의 게시물이 아닙니다.");
     return res.status = 401;
   }
@@ -216,8 +250,22 @@ app.put("/update/:bno", async function(req, res) {
 // 값이 있으면 삭제후 확인 메시지 출력
 app.delete("/del/:bno", async function(req, res) {
 
+  const token = req.cookies.access_token;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  const m_id = decoded.m_id; // 사용자 아이디
+
+  let bno = req.params.bno;
+  const bd = await board.findOne({where : {bno}});
+  // 작성자와 수정자가 같은 지 확인 하기
+  if(m_id !== bd.m_id){
+    console.log("사용자의 게시물이 아닙니다.");
+    return res.status = 401;
+  }
+
   var deleteParms = {
-    bno : req.params.bno
+    bno : req.params.bno,
+    m_id : decoded.m_id
   };
   try {
   var deleteQuery = req.mybatisMapper.getStatement(
@@ -233,7 +281,6 @@ app.delete("/del/:bno", async function(req, res) {
     res.status(403).send({ msg: "db delete에 실패하였습니다.", error: error });
     return;
   }
-
 
   res.json({ success: "delete call succeed!", url: req.url });
 });

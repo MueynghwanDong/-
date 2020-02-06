@@ -24,11 +24,7 @@ app.get("/", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/:rno", async function(req, res) {
@@ -58,11 +54,7 @@ app.get("/:rno", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 app.get("/member/:m_id", async function(req, res) {
     var selectParms = {
@@ -90,11 +82,7 @@ app.get("/member/:m_id", async function(req, res) {
       return;
     }
   
-    res.json({
-        bno: data.map(x => {
-        return x;
-      })
-    });
+    res.json(data);
 });
   
 app.get("/board/:bno", async function(req, res) {
@@ -124,11 +112,7 @@ app.get("/board/:bno", async function(req, res) {
       return;
     }
   
-    res.json({
-        bno: data.map(x => {
-        return x;
-      })
-    });
+    res.json(data);
 });
 
 app.post("/insert", async function(req, res) {

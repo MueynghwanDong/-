@@ -20,7 +20,7 @@ db.members = require('./members')(sequelize, Sequelize);
 db.planners = require('./planners') (sequelize, Sequelize);
 db.board = require('./board')(sequelize, Sequelize);
 db.reply = require('./reply')(sequelize, Sequelize);
-db.qna = require('./qna')(sequelize, Sequelize);
+db.faq = require('./faq')(sequelize, Sequelize);
 
 
 

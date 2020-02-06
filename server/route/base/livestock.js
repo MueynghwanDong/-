@@ -24,11 +24,7 @@ app.get("/", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/b&ls/:b_id & :ls_id", async function(req, res) {
@@ -58,11 +54,7 @@ app.get("/b&ls/:b_id & :ls_id", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/m&ls/:m_id & :ls_id", async function(req, res) {
@@ -92,11 +84,7 @@ app.get("/m&ls/:m_id & :ls_id", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/m&b&ls/:m_id & :b_id & :ls_id", async function(req, res) {
@@ -127,11 +115,7 @@ app.get("/m&b&ls/:m_id & :b_id & :ls_id", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.post("/insert", async function(req, res) {

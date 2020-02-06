@@ -13,7 +13,7 @@ mybatisMapper.createMapper([`${sqlPath}/member.xml`]);
 mybatisMapper.createMapper([`${sqlPath}/barn.xml`]);
 mybatisMapper.createMapper([`${sqlPath}/livestock.xml`]);
 mybatisMapper.createMapper([`${sqlPath}/ls_bs.xml`]);
-mybatisMapper.createMapper([`${sqlPath}/qna.xml`]);
+mybatisMapper.createMapper([`${sqlPath}/faq.xml`]);
 mybatisMapper.createMapper([`${sqlPath}/planner.xml`]);
 mybatisMapper.createMapper([`${sqlPath}/reply.xml`]);
 

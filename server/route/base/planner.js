@@ -24,11 +24,7 @@ app.get("/", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.get("/:p_id", async function(req, res) {
@@ -57,12 +53,7 @@ app.get("/:p_id", async function(req, res) {
     res.status(403).send({ msg: "정보가 없습니다." });
     return;
   }
-
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.post("/insert", async function(req, res) {

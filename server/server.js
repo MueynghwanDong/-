@@ -62,7 +62,7 @@ app.use("/barn", require(`${__dirname}/route/base/barn`));
 app.use("/livestock", require(`${__dirname}/route/base/livestock`));
 app.use("/lsbs", require(`${__dirname}/route/base/ls_bs`));
 app.use("/planner", require(`${__dirname}/route/base/planner`));
-app.use("/qna", require(`${__dirname}/route/base/qna`));
+app.use("/faq", require(`${__dirname}/route/base/faq`));
 app.use("/reply", require(`${__dirname}/route/base/reply`));
 app.use("/auth", require(`${__dirname}/route/base/auth/auth`));
 

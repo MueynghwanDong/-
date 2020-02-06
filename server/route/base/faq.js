@@ -4,8 +4,8 @@ var app = express.Router();
 app.get("/", async function(req, res) {
 
   var selectQuery = req.mybatisMapper.getStatement(
-    "qna",
-    "allqna",
+    "faq",
+    "allfaq",
     { language: "sql", indent : "  "}
   );
   let data = [];
@@ -13,7 +13,7 @@ app.get("/", async function(req, res) {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    console.log("TCL: data", data);
+    // console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -23,6 +23,7 @@ app.get("/", async function(req, res) {
     res.status(403).send({ msg: "정보가 없습니다." });
     return;
   }
+  console.log(data);
 
   res.json(data);
 });
@@ -34,8 +35,8 @@ app.get("/:q_id", async function(req, res) {
   try {
 
   var selectQuery = req.mybatisMapper.getStatement(
-    "qna",
-    "selectqna",
+    "faq",
+    "selectfaq",
     selectParms,
     { language: "sql", indent : "  "}
   );
@@ -53,29 +54,24 @@ app.get("/:q_id", async function(req, res) {
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.post("/insert", async function(req, res) {
   
-  var insertqnaParms = {
-    m_id : req.body.m_id,
-      question : req.body.question,
-      answer : req.body.answer,
+  var insertfaqParms = {
+    title : req.body.title,
+    content : req.body.content,
   };
   
   try {
-  var insertqnaQuery = req.mybatisMapper.getStatement(
-    "qna",
-    "insertqna",
-    insertqnaParms,
+  var insertfaqQuery = req.mybatisMapper.getStatement(
+    "faq",
+    "insertfaq",
+    insertfaqParms,
         { language: "sql", indent : "  "}
   );
-    await req.sequelize.query(insertqnaQuery, {
+    await req.sequelize.query(insertfaqQuery, {
       type: req.sequelize.QueryTypes.INSERT,
     });
   } catch (error) {
@@ -88,20 +84,20 @@ app.post("/insert", async function(req, res) {
 
 app.put("/update/:q_id", async function(req, res) {
 
-  var updateqnaParms = {
+  var updatefaqParms = {
     q_id : req.params.q_id,
-    question : req.body.question,
-    answer : req.body.answer
+    title : req.body.title,
+    content : req.body.content
   };
 
   try {
-  var updateqnaQuery = req.mybatisMapper.getStatement(
-    "qna",
-    "updateqna",
-    updateqnaParms,
+  var updatefaqQuery = req.mybatisMapper.getStatement(
+    "faq",
+    "updatefaq",
+    updatefaqParms,
         { language: "sql", indent : "  "}
   );
-    await req.sequelize.query(updateqnaQuery, {
+    await req.sequelize.query(updatefaqQuery, {
       type: req.sequelize.QueryTypes.UPDATE,
     });
   } catch (error) {
@@ -121,8 +117,8 @@ app.delete("/del/:q_id", async function(req, res) {
   };
       try {
   var deleteQuery = req.mybatisMapper.getStatement(
-    "qna",
-    "deleteqna",
+    "faq",
+    "deletefaq",
     deleteParms,
         { language: "sql", indent : "  "}
   );
@@ -130,7 +126,7 @@ app.delete("/del/:q_id", async function(req, res) {
       type: req.sequelize.QueryTypes.DELETE
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db delete에 실패하였습니다.", error: error });
     return;
   }
 

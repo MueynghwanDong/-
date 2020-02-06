@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => (
-    sequelize.define('qna', {
+    sequelize.define('faq', {
         q_id:{
             type : DataTypes.INTEGER,
             allowNull:false,

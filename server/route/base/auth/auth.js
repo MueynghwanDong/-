@@ -58,7 +58,7 @@ router.post('/join', async(req,res,next)=>{
         console.log(res.body);
         const generateToken = async function(){
           const token = jwt.sign({
-            username : member.m_id,
+            m_id : member.m_id,
             password : member.pw,
           },
           process.env.JWT_SECRET,
@@ -128,7 +128,7 @@ router.post('/login', async(req, res, next) => {
     // console.log(res.body.user);
     const generateToken = function(){
       const token = jwt.sign({
-        username : user.m_id,
+        m_id : user.m_id,
         password : user.pw,
       },
       process.env.JWT_SECRET,
@@ -161,7 +161,7 @@ router.post('/check', async (req,res,next) =>{
   //   return res.send("토큰 비교 결과 - 값이 다른 경우"); 
   // }
   var data = {
-    username : decoded.username,
+    m_id : decoded.m_id,
     password : decoded.password,
   };
   console.log(data);
@@ -197,7 +197,7 @@ router.post('/check', async (req,res,next) =>{
     //console.log(member.toJSON());
     user = {
         //"_id" : token,
-        "username": decoded.username
+        "m_id": decoded.m_id
         //"password": decoded.password
   };
     return user;
