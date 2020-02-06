@@ -121,7 +121,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                         
            
                         {type === 'register' && (
-                     
+                          
                         <StyledInput
                         autoComplete="new-password"
                         name="passwordConfirm"

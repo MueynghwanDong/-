@@ -111,6 +111,8 @@ const Header = () => {
             className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
             })}
+            style={{backgroundColor:'#24EC88'}} 
+            // 여기에서 backgroundColor 변경이 가능
         >
             <Toolbar className={classes.toolbar}>
           { new_url ==="/login" || new_url === "/register" ?
@@ -124,8 +126,10 @@ const Header = () => {
           >
             <Menu />
             </IconButton>
-}
-            
+}   
+          <div> 
+            <img src='/images/mark_image.jpg' width='60' hegiht='60'/>
+          </div>
                 <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
                     Company name
                    
