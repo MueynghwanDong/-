@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
         transition: theme.transitions.create(['margin', 'width'], {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
+          backgroundColor: 'rgb(0, 0,0,  0.88)'
         }),
       },
       appBarShift: {
@@ -78,6 +79,7 @@ const useStyles = makeStyles(theme => ({
       },
       toolbarTitle: {
         flexGrow: 1,
+        color: '#585859'
       },
       link: {
         margin: theme.spacing(1, 1.5),
@@ -111,7 +113,7 @@ const Header = () => {
             className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
             })}
-            style={{backgroundColor:'#24EC88'}} 
+            style={{backgroundColor:'#f5f5f5'}} 
             // 여기에서 backgroundColor 변경이 가능
         >
             <Toolbar className={classes.toolbar}>
@@ -130,7 +132,7 @@ const Header = () => {
           <div> 
             <img src='/images/mark_image.jpg' width='60' hegiht='60'/>
           </div>
-                <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+                <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle}>
                     Company name
                    
                 </Typography>

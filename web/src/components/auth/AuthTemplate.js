@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundImage: 'url(/images/cow4.jpg)',
+      backgroundImage: 'url(/images/cows.jpg)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center'
@@ -92,7 +92,8 @@ const useStyles = makeStyles(theme => ({
     content: {
       height: '100%',
       display: 'flex',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      // backgroundImage: 'url(/images/plain.jpeg)',
     },
     contentHeader: {
       display: 'flex',
@@ -179,8 +180,9 @@ const AuthTemplate = ({ children }) => {
                               <Typography
                               className={classes.name}
                               variant="body1"
+                              color='white' 
                               >
-                              Takamaru Ayako
+                              더 편하고 더 똑똑하게
                               </Typography>
                               <Typography
                               className={classes.bio}

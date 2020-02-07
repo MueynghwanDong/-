@@ -5,7 +5,7 @@ import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 import { makeStyles, Typography } from '@material-ui/core';
 import {blue, green} from '@material-ui/core/colors'
-import { AccountCircle, VpnKey, Email, Explore} from "@material-ui/icons"
+import { AccountCircle, VpnKey, Email, Explore, EmojiPeople, EmojiPeopleTwoTone,} from "@material-ui/icons"
 import Icon from '@material-ui/core/Icon'
 // 스타일링 된 input
 const StyledInput = styled.input`
@@ -108,7 +108,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             value={form.username}
                         />
                         <VpnKey
-                            style= {{color:green[500]}}
+                            // style= {{color:green[500]}}
                         />
                         <StyledInput 
                             autoComplete="new-password" 
@@ -121,7 +121,10 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                         
            
                         {type === 'register' && (
-                          
+                        <div>
+                        <VpnKey
+                        // style= {{color:green[500]}}
+                        />
                         <StyledInput
                         autoComplete="new-password"
                         name="passwordConfirm"
@@ -130,10 +133,12 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                         onChange={onChange}
                         value={form.passwordConfirm}
                         />
+                        </div>
                         )}
                         
                         {type === 'register' && (
-                            
+                        <div>
+                        <EmojiPeople/>
                           <StyledInput
                             autoComplete="name"
                             name="fullName"
@@ -141,10 +146,12 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.fullName}
                           />
+                        </div>
                         )}
                         
                         {type === 'register' && (
-                    
+                        <div>
+                        <Email/>
                           <StyledInput
                             autoComplete="email"
                             name="email"
@@ -153,8 +160,13 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.email}
                           />
+                          </div>
                         )}
+                        
+
                         {type === 'register' && (
+                        <div>
+                        <Explore/>
                           <StyledInput
                             autoComplete="location"
                             name="location"
@@ -162,10 +174,11 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.location}
                           />
+                        </div>
                         )}
                         {error && <ErrorMessage>{error}</ErrorMessage>}
 
-                        <ButtonWithMarginTop 
+                        <ButtonWithMarginTop
                         cyan 
                         fullWidth
                         // width = '100%' 
