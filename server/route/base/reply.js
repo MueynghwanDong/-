@@ -2,7 +2,8 @@ var express = require("express");
 var app = express.Router();
 
 app.get("/", async function(req, res) {
-
+  console.log("reply");
+  console.log(req.query);
   var selectQuery = req.mybatisMapper.getStatement(
     "reply",
     "allreply",
@@ -20,7 +21,7 @@ app.get("/", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data); 
     return;
   }
 
@@ -50,8 +51,7 @@ app.get("/:rno", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
-    return;
+    res.json(data);    return;
   }
 
   res.json(data);
@@ -78,8 +78,7 @@ app.get("/member/:m_id", async function(req, res) {
     }
   
     if (data.length == 0) {
-      res.status(403).send({ msg: "정보가 없습니다." });
-      return;
+      res.json(data);      return;
     }
   
     res.json(data);
@@ -108,8 +107,7 @@ app.get("/board/:bno", async function(req, res) {
     }
   
     if (data.length == 0) {
-      res.status(403).send({ msg: "정보가 없습니다." });
-      return;
+      res.json(data);      return;
     }
   
     res.json(data);
@@ -121,7 +119,6 @@ app.post("/insert", async function(req, res) {
     bno : req.body.bno,
     replytext : req.body.replytext,
     m_id : req.body.m_id,
-    regdate : req.body.regdate,
   };
 
   var insertreplyQuery = req.mybatisMapper.getStatement(
@@ -147,7 +144,6 @@ app.put("/update/:rno", async function(req, res) {
   var updatereplyParms = {
     rno : req.params.rno,
     replytext : req.body.replytext,
-    updatedate : req.body.updatedate
   };
   
   try {
@@ -189,7 +185,6 @@ app.delete("/del/:rno", async function(req, res) {
     res.status(403).send({ msg: "db delete에 실패하였습니다.", error: error });
     return;
   }
-
 
   res.json({ success: "delete call succeed!", url: req.url });
 });

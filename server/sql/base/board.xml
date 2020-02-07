@@ -8,17 +8,17 @@
    <if test="searchType == 'title'">
      and title like CONCAT('%', #{keyword}, '%')
    </if>
-   <if test="searchType == 'content'">
-     and content like CONCAT('%', #{keyword}, '%')
+   <if test="searchType == 'text'">
+     and text like CONCAT('%', #{keyword}, '%')
    </if>
    <if test="searchType == 'user'">
      and m_id like CONCAT('%', #{keyword}, '%')
    </if>     
-   <if test="searchType == 'title_content'">
-     and ( title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
+   <if test="searchType == 'title_text'">
+     and ( title like CONCAT('%', #{keyword}, '%') OR text like CONCAT('%', #{keyword}, '%'))
    </if>        
    <if test="searchType == 'all'">
-     and ( content like CONCAT('%', #{keyword}, '%') OR m_id like CONCAT('%', #{keyword}, '%') OR title like CONCAT('%', #{keyword}, '%'))
+     and ( text like CONCAT('%', #{keyword}, '%') OR m_id like CONCAT('%', #{keyword}, '%') OR title like CONCAT('%', #{keyword}, '%'))
    </if>                     
  </if>  
 </sql>
@@ -59,14 +59,16 @@
 		m_id,
         title,
         content,
-        regdate
+        regdate,
+        text
 		)
 		VALUES
 		(
 		#{m_id},
         #{title},
         #{content},
-       now()
+       now(),
+       #{text}
 		);
 	</insert>
     <delete id = "deleteboard">
@@ -76,7 +78,7 @@
     </delete>
     <update id ="updateboard">
         UPDATE ptj_sub1.boards
-        SET title =#{title}, content=#{content}
+        SET title =#{title}, content=#{content}, text =#{text}
         WHERE bno =#{bno}
     </update>
     <update id = "viewcntupdate">

@@ -20,7 +20,7 @@ app.get("/", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
@@ -50,7 +50,7 @@ app.get("/b&ls/:b_id & :ls_id", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
@@ -80,7 +80,7 @@ app.get("/m&ls/:m_id & :ls_id", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
@@ -111,7 +111,7 @@ app.get("/m&b&ls/:m_id & :b_id & :ls_id", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 

@@ -19,7 +19,7 @@ app.get("/", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
@@ -49,7 +49,7 @@ app.get("/:b_id", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 

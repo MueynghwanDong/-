@@ -20,15 +20,11 @@ app.get("/", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
-  res.json({
-      member: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 app.get("/pw/:m_id", async function(req, res){
   var selectParms = {
@@ -52,15 +48,11 @@ app.get("/pw/:m_id", async function(req, res){
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
-  res.json({
-      member: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 app.get("/:m_id", async function(req, res) {
   var selectParms = {
@@ -85,15 +77,11 @@ app.get("/:m_id", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
-  res.json({
-      member: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 });
 
 app.post("/insert", async function(req, res) {

@@ -28,15 +28,20 @@
 		FROM
 		ptj_sub1.replies
         WHERE bno=#{bno}
+		order by rno
 	</select>
 	<insert id="insertreply">
 		INSERT INTO ptj_sub1.replies
 		(
-		replytext
+		bno,
+		replytext,
+		m_id,
 		)
 		VALUES
 		(
-        #{replytext}
+		#{bno},
+        #{replytext},
+		#{m_id}
 		);
 	</insert>
     <delete id = "deletereply">
@@ -46,7 +51,7 @@
     </delete>
     <update id ="updatereply">
         UPDATE ptj_sub1.replies
-        SET replytext =#{replytext}, updatedate=#{updatedate}
+        SET replytext =#{replytext}
         WHERE rno =#{rno}
     </update>
 </mapper>

@@ -115,11 +115,7 @@ app.get("b&ls/:b_id&:ls_id", async function(req, res) {
       return;
     }
   
-    res.json({
-        bno: data.map(x => {
-        return x;
-      })
-    });
+    res.json(data);
   });
 
   app.get("m&ls/:m_id&:ls_id", async function(req, res) {
@@ -149,11 +145,7 @@ app.get("b&ls/:b_id&:ls_id", async function(req, res) {
       return;
     }
   
-    res.json({
-        bno: data.map(x => {
-        return x;
-      })
-    });
+    res.json(data);
   });
 
 app.post("/insert", async function(req, res) {
@@ -236,15 +228,11 @@ app.delete("/del/:b_id", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
 
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 
   res.json({ success: "delete call succeed!", url: req.url });
 });
@@ -270,15 +258,10 @@ app.delete("/del/:m_id", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
-
-  res.json({
-      bno: data.map(x => {
-      return x;
-    })
-  });
+  res.json(data);
 
   res.json({ success: "delete call succeed!", url: req.url });
 });

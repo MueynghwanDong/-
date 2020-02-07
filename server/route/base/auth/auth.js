@@ -155,21 +155,11 @@ router.post('/check', async (req,res,next) =>{
   const token = req.cookies.access_token;
    const decoded = jwt.verify(token, process.env.JWT_SECRET);
    console.log(decoded);   
-  // if((req.body.m_id!==String(decoded.username)) || (req.body.pw !== decoded.password)){
-  //   console.log("error");
-  //   res.status = 401;
-  //   return res.send("토큰 비교 결과 - 값이 다른 경우"); 
-  // }
   var data = {
     m_id : decoded.m_id,
     password : decoded.password,
   };
-  console.log(data);
-  //console.log(user);
-  // res.state.user = {
-  //   _id : decoded.m_id,
-  //   username : decoded.m_id
-  // }
+  // console.log(data);
   //console.log(req.body); // m_id값이 인트형? 스트링? 어떤 걸로 유지해야할 지 고민해봐야함.
   console.log("check 확인");
   const now = Math.floor(Date.now() / 1000);
@@ -203,24 +193,9 @@ router.post('/check', async (req,res,next) =>{
     return user;
   }
   res.body = await sr();
-   //res.user = data;
-   //res.body = res.user;
-   
-   //console.log(res.user);
-  //  res.body.user = {
-  //   user : {
-  //     username : decoded.username,
-  //     password : decoded.password,
-  //   }
-  // }
-   //console.log(res.body);
    console.log(res.body);
 
-   
-
-
    return res.send(res.body);
-   //return res.send(res.user);
   //return res.redirect('/'); // 어디로 이동해야할지??
 });
 

@@ -1,9 +1,44 @@
 var express = require("express");
 var app = express.Router();
 const jwt = require('jsonwebtoken');
+var sanitizeHtml = require('sanitize-html');
 //const checkLoggedIn = require('../../middleware');
 const {board} = require('../../models');
 const bodyparser = require('body-parser');
+
+const sanitizeOption = {
+  allowedTags: [
+    'h1',
+    'h2',
+    'br',
+    'strong',
+    'i',
+    'u',
+    's',
+    'p',
+    'ul',
+    'ol',
+    'li',
+    'blockquote',
+    'a',
+    'img',
+  ],
+  allowedAttributes: {
+    a: ['href', 'name', 'target'],
+    img: ['src'],
+    li: ['class'],
+  },
+  allowedSchemes: ['data', 'http'],
+};
+const noOption = {
+  allowedTags: [
+    'br'
+  ],
+  allowedAttributes: {   
+  },
+  allowedSchemes: ['data', 'http'],
+};
+
 
 app.get("/", async function(req, res) {
 
@@ -43,7 +78,8 @@ app.get("/", async function(req, res) {
   }
 
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.set('last-page',1);
+    res.json(data);
     return;
   }
 
@@ -98,7 +134,7 @@ app.get("/:bno", async function(req, res) {
     return;
   }
   if (data.length == 0) {
-    res.status(403).send({ msg: "정보가 없습니다." });
+    res.json(data);
     return;
   }
   res.json(data[0]);
@@ -127,10 +163,17 @@ app.post("/insert", async function(req, res) {
   // res.status(401).send({ msg: "에러!!.", error: e });
   //   return;
 }
+String.prototype.replaceAll = function(org, dest) {
+  return this.split(org).join(dest);
+}
+ct = sanitizeHtml(req.body.content,sanitizeOption);
+nt = sanitizeHtml(req.body.content,noOption);
+nt = nt.replaceAll("<br />","\n");
   var insertboardParms = {
     m_id : m_id,
     title : req.body.title,
-    content : req.body.content,
+    content : ct,
+    text : nt,
   };
       try {
   if(insertboardParms.m_id===null || insertboardParms.title === null || insertboardParms.content ===null){
@@ -219,11 +262,18 @@ app.put("/update/:bno", async function(req, res) {
     console.log("사용자의 게시물이 아닙니다.");
     return res.status = 401;
   }
-  
+
+  String.prototype.replaceAll = function(org, dest) {
+    return this.split(org).join(dest);
+}
+  ct = sanitizeHtml(req.body.content,sanitizeOption);
+  nt = sanitizeHtml(req.body.content,noOption);
+  nt = nt.replaceAll("<br />","\n");
   var updateboardParms = {
     bno : req.params.bno,
     title : req.body.title,
-    content : req.body.content,
+    content : ct,
+    text : nt,
   };
 
   try {
