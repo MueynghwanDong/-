@@ -7,6 +7,7 @@ import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
 import questions, { questionsSaga } from './questions';
+import replys, { replysSaga } from './replys';
 
 const rootReducer = combineReducers({
     auth,
@@ -16,10 +17,11 @@ const rootReducer = combineReducers({
     post,
     posts,
     questions,
+    replys,
 });
 
 export function* rootSaga() {
-    yield all([authSaga(), userSaga(), writeSaga(), postSaga(), postsSaga(), questionsSaga(),]);
+    yield all([authSaga(), userSaga(), writeSaga(), postSaga(), postsSaga(), questionsSaga(), replysSaga()]);
 }
 
 export default rootReducer;

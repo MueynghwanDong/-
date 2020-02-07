@@ -45,6 +45,7 @@ const PostViewerContainer = ({ match, history }) => {
   };
 
   const isAuthenticated = () => {
+    if (!user) return false;
     if (user["m_id"] === post["m_id"]) {
       return true;
     }

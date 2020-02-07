@@ -2,12 +2,11 @@ import React, { useCallback } from 'react';
 import Search from '../../components/posts/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
-import { listPosts } from '../../lib/api/posts';
-import { changeField } from '../../modules/posts';
+import { listPosts, changeField } from '../../modules/posts';
 
 const SearchContainer = () => {
   const dispatch = useDispatch();
-  var { lastPage, posts, loading, page, searchType, searchKeyword } = useSelector(({ posts, loading }) => ({
+  const { lastPage, posts, loading, page, searchType, searchKeyword } = useSelector(({ posts, loading }) => ({
     lastPage: posts.lastPage,
     posts: posts.posts,
     loading: loading['posts/LIST_POSTS'],

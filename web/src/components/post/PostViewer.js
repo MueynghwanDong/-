@@ -7,9 +7,10 @@ import { Helmet } from 'react-helmet-async';
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
 `;
+
 const PostHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
   margin-bottom: 3rem;
   h1 {
     font-size: 3rem;
@@ -34,6 +35,9 @@ const SubInfo = styled.div`
 const PostContent = styled.div`
   font-size: 1.3125rem;
   color: ${palette.gray[8]};
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid ${palette.gray[2]};
 `;
 
 const PostViewer = ({ post, error, loading, actionButtons }) => {
@@ -64,7 +68,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
             <b>{m_id}</b>
           </span>
           <span>{new Date(regdate).toLocaleDateString()}</span>
-          <span>[{viewcnt}]</span>
+          <span>{viewcnt}</span>
         </SubInfo>
       {actionButtons}
       </PostHead>

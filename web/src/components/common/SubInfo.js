@@ -27,7 +27,7 @@ const SubInfo = ({ m_id, regdate, hasMarginTop, viewcnt }) => {
         </b>
       </span>
       <span>{new Date(regdate).toLocaleDateString()}</span>
-  <span>[{viewcnt}]</span>
+  <span>{viewcnt}</span>
     </SubInfoBlock>
   );
 };

@@ -6,7 +6,7 @@ import { red, blue } from '@material-ui/core/colors'
 // import { withTheme } from 'styled-components';
 import class_video from './BackgroundVideo.module.css';
 import Footer from '../components/common/Footer'
-
+import { useSelector } from 'react-redux';
 
 const BackgroundVideo=()=>{
   const videoSource="/Cows.mp4";
@@ -124,6 +124,8 @@ const tiers = [
 const Main = () => {
   const classes = useStyles();
 
+  const { user } = useSelector(({ user }) => ({ user: user.user }));
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -134,7 +136,10 @@ const Main = () => {
           </Typography>
         
           {/* <Button  color="primary" variant="outlined" className={classes.link}> */}
-          <Link variant="button" to='/login'> Login   </Link>
+          {
+            !(user) &&
+            <Link variant="button" to='/login'> Login   </Link>
+          }
           {/* </Button> */}
        
         </Toolbar>
