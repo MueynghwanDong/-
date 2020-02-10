@@ -100,18 +100,10 @@ const Header = () => {
         setOpen(false);
       };
     const new_url = window.location.pathname
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     const IconList = [ <Pets/>, <HelpOutline/>, <ScheduleSharp/>, <Assignment/> ]
     // 'My Page', 'FAQ', 'Scheduler', 'posts'?
 
-=======
-    
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
-=======
-    
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
     return (
   
         <div className={classes.root}>
@@ -136,20 +128,11 @@ const Header = () => {
           >
             <Menu />
             </IconButton>
-<<<<<<< HEAD
 }   
           <div> 
             <img src='/images/mark_image.jpg' width='60' hegiht='60'/>
           </div>
                 <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle}>
-=======
-}
-                
-                <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to={"/"} >
-<<<<<<< HEAD
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
-=======
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                     Company name
                    
                 </Typography>
@@ -163,18 +146,9 @@ const Header = () => {
                         {/* <Link variant="button" color="textPrimary" href="#" className={classes.link}>
                             hmmm2
                         </Link> */}
-<<<<<<< HEAD
-<<<<<<< HEAD
                     {/* </nav>  */}
                 <Button href="#" color="white" variant="outlined" className={classes.link}>
                     LogOut
-=======
-=======
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
-                    </nav>
-                <Button color="white" variant="outlined" className={classes.link} component={Link} to={"/login"}>
-                    Login
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                 </Button>
                 {/* Login Logout은 조건에 따라 하나만 뜨도록 */}
                 {/* <Button href="#" color="primary" variant="outlined" className={classes.link}>

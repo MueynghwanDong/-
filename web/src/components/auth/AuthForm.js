@@ -102,24 +102,13 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                         />
                         <StyledInput 
                             autoComplete="username" 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            name="username" 
-                            placeholder= '아이디'
-=======
-=======
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                             name="m_id" 
                             placeholder="아이디"
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                             onChange={onChange}
                             value={form.m_id}
-<<<<<<< HEAD
                         />
                         <VpnKey
                             // style= {{color:green[500]}}
-=======
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                         />
                         <StyledInput 
                             autoComplete="new-password" 
@@ -132,21 +121,6 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                         
            
                         {type === 'register' && (
-<<<<<<< HEAD
-                        <div>
-                        <VpnKey
-                        // style= {{color:green[500]}}
-                        />
-                        <StyledInput
-                        autoComplete="new-password"
-                        name="passwordConfirm"
-                        placeholder="비밀번호 확인"
-                        type="password"
-                        onChange={onChange}
-                        value={form.passwordConfirm}
-                        />
-                        </div>
-=======
                           <StyledInput
                             autoComplete="new-password"
                             name="pwConfirm"
@@ -155,7 +129,6 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.pwConfirm}
                           />
->>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                         )}
                         
                         {type === 'register' && (
