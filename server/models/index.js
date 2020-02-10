@@ -22,22 +22,4 @@ db.board = require('./board')(sequelize, Sequelize);
 db.reply = require('./reply')(sequelize, Sequelize);
 db.faq = require('./faq')(sequelize, Sequelize);
 
-
-
-//db.barns.hasMany(db.ls_bs);
-//db.ls_bs.belongsTo(db.barns);
-//db.members.hasMany(db.qna);
-//db.qna.belongsTo(db.members);
-//db.members.hasMany(db.barns);
-//db.barns.belongsTo(db.members);
-
-//db.members.hasMany(db.board);
-//db.board.belongsTo(db.members);
-
-//db.members.hasMany(db.planners);
-//db.planners.belongsTo(db.members);
-
-//db.board.hasMany(db.reply);
-//db.reply.belongsTo(db.board);
-
 module.exports = db;

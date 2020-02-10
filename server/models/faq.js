@@ -5,16 +5,12 @@ module.exports = (sequelize, DataTypes) => (
             allowNull:false,
             primaryKey : true
         },
-        m_id : {
-          type : DataTypes.INTEGER,
-          allowNull :false,
-        },
-      question: {
-        type: DataTypes.STRING(45),
+      title: {
+        type: DataTypes.STRING(100),
         allowNull: true,
       },
-      answer: {
-        type: DataTypes.STRING(45),
+      content: {
+        type: DataTypes.STRING(100),
         allowNull: true,
       },
      

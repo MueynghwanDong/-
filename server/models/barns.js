@@ -4,22 +4,26 @@ module.exports = (sequelize, DataTypes) => (
             type : DataTypes.INTEGER,
             allowNull:false,
             primaryKey : true,
-            autoIncrement: true,
         },
       m_id : {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+        type : DataTypes.INTEGER,
+        allowNull:false,
+        primaryKey : true,
       },
       temperature: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DOUBLE,
         allowNull: true,
       },
       humidity: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DOUBLE,
         allowNull: true,
       },
-      air_condition: {
-        type: DataTypes.INTEGER,
+      ch4: {
+        type: DataTypes.DOUBLE,
+        allowNull: true,
+      },
+      co2: {
+        type: DataTypes.DOUBLE,
         allowNull: true,
       },
       time: {

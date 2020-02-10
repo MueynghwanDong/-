@@ -9,12 +9,13 @@ module.exports = (sequelize, DataTypes) => (
       bno : {
         type : DataTypes.INTEGER,
         allowNull:false,
+        primaryKey : true,
       },
       replytext: {
         type: DataTypes.STRING(45),
         allowNull: true,
       },
-      writer: {
+      m_id: {
         type: DataTypes.STRING(45),
         allowNull: true,
       },

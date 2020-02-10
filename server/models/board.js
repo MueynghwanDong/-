@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => (
             primaryKey : true
         },
         m_id :{
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING(45),
           allowNull :false
         },
       title: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => (
         allowNull: true,
       },
       content: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.STRING(1000),
         allowNull: true,
       },
       regdate: {
@@ -31,8 +31,11 @@ module.exports = (sequelize, DataTypes) => (
           type : DataTypes.INTEGER,
           allowNull : true,
           defaultValue :0,
+      },
+      text : {
+        type: DataTypes.STRING(1000),
+        allowNull: true,
       }
-  
     }, {
       timestamps: false,
       paranoid: false,

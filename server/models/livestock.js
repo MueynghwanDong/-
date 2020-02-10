@@ -6,6 +6,16 @@ module.exports = (sequelize, DataTypes) => (
             primaryKey : true,
             autoIncrement:true,
         },
+        m_id: {
+          type : DataTypes.STRING(45),
+          allowNull:false,
+          primaryKey : true,
+        },
+        b_id: {
+          type : DataTypes.INTEGER,
+          allowNull:false,
+          primaryKey : true,
+        },
       kinds: {
         type: DataTypes.STRING(45),
         allowNull: true,

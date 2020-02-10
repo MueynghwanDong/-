@@ -152,15 +152,13 @@ router.post('/login', async(req, res, next) => {
  });
   
 router.post('/check', async (req,res,next) =>{
-  const token = req.cookies.access_token;
-   const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  var token = req.cookies.access_token;
+   var decoded = jwt.verify(token, process.env.JWT_SECRET);
    console.log(decoded);   
   var data = {
     m_id : decoded.m_id,
     password : decoded.password,
   };
-  // console.log(data);
-  //console.log(req.body); // m_id값이 인트형? 스트링? 어떤 걸로 유지해야할 지 고민해봐야함.
   console.log("check 확인");
   const now = Math.floor(Date.now() / 1000);
    if(decoded.exp - now < 60 * 60 *24 * 0.5){

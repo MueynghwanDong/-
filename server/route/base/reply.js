@@ -3,8 +3,9 @@ var app = express.Router();
 const jwt = require('jsonwebtoken');
 
 app.get("/", async function(req, res) {
+  var bno = req.query.bno;
   var selectParms = {
-    bno : req.query.bno,
+    bno : bno,
   };
   var selectQuery = req.mybatisMapper.getStatement(
     "reply",
@@ -25,7 +26,7 @@ app.get("/", async function(req, res) {
     res.json(data); 
     return;
   }
-
+  res.set('bno',bno);
   res.json(data);
 });
 
