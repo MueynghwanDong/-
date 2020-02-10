@@ -41,7 +41,7 @@ const StyledInput = styled.input`
 const Search = ({ searchKeyword, onChangeType, onChangeKeyword, onSubmit }) => {
   return (
   <PostSearchBlock>
-    <form>
+    <form onSubmit={onSubmit}>
       <PostTypeSelect name="searchType" onChange={onChangeType}>
         <option value="all">전체</option>
         <option value="title_text">제목+내용</option>
@@ -56,11 +56,7 @@ const Search = ({ searchKeyword, onChangeType, onChangeKeyword, onSubmit }) => {
         onChange={onChangeKeyword}
         value={searchKeyword}
       />
-      <Button
-        onSubmit={onSubmit}
-      >
-        검색
-      </Button>
+      <Button>검색</Button>
     </form>
   </PostSearchBlock>
   )

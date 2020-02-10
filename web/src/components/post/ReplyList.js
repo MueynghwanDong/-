@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import palette from '../../lib/styles/palette';
+import WriteReply from './WriteReply';
 
 const ReplyListBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -27,16 +28,40 @@ const ReplyItemBlock = styled.div`
   }
 `;
 
-const ReplyItem = ({ reply }) => {
-  const { replytext } = reply;
+const ActionButton = styled.button`
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: ${palette.gray[6]};
+  font-weight: bold;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  cursor: pointer;
+  &:hover {
+    background: ${palette.gray[1]};
+    color: ${palette.cyan[7]};
+  }
+  & + & {
+    margin-left: 0.25rem;
+  }
+  margin-left: 0.25rem;
+`;
+
+const ReplyItem = ({ id, reply, onEdit, onRemove, isAuthenticated, originalReplyId, onSubmit, replytext, onChangeField }) => {
   return (
     <ReplyItemBlock>
-      <p>{replytext}</p>
+      {reply["m_id"]}
+      {isAuthenticated(id) && <>
+        <ActionButton onClick={() => onEdit(id)} >수정</ActionButton>
+        <ActionButton onClick={() => onRemove(id)} >삭제</ActionButton>
+        </>
+      }
+      {originalReplyId === reply.rno ? <WriteReply replytext={replytext} onSubmit={e => onSubmit(e, id)} onChangeField={onChangeField} /> : <p>{reply.replytext}</p>}
     </ReplyItemBlock>
   );
 };
 
-const Reply = ({ replys, loading, error }) => {
+const Reply = ({ replys, loading, error, onEdit, onRemove, isAuthenticated, originalReplyId, onSubmit, replytext, onChangeField }) => {
   // 에러 발생 시
   if (error) {
     console.log(error)
@@ -49,7 +74,17 @@ const Reply = ({ replys, loading, error }) => {
       {!loading && replys && (
         <div>
           {replys.map(reply => (
-            <ReplyItem reply={reply} key={reply.bno} />
+            <ReplyItem
+              id={replys.indexOf(reply)}
+              reply={reply}
+              onEdit={onEdit}
+              onRemove={onRemove}
+              isAuthenticated={isAuthenticated}
+              originalReplyId={originalReplyId}
+              onSubmit={onSubmit}
+              replytext={replytext}
+              onChangeField={onChangeField}
+            />
           ))}
         </div>
       )}

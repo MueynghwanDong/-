@@ -2,7 +2,7 @@ import qs from 'qs';
 import client from './client';
 
 export const writeReply = ({ bno, replytext }) =>
-  client.insert('/reply', {
+  client.post('/reply/insert', {
     bno,
     replytext,
   });

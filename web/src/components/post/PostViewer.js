@@ -54,7 +54,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
     return null;
   }
   
-  const { title, content, m_id, regdate, viewcnt } = post;
+  const { title, content, m_id, regdate, viewcnt, replycnt } = post;
 
   return (
     <PostViewerBlock>
@@ -62,7 +62,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
         <title>{title} - REACTERS</title>
       </Helmet>
       <PostHead>
-        <h1>{title}</h1>
+        <h1>{title} <small><small>[{replycnt}]</small></small></h1>
         <SubInfo>
           <span>
             <b>{m_id}</b>

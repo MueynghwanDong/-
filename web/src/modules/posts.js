@@ -5,6 +5,7 @@ import createRequestSaga, {
 import * as postsAPI from '../lib/api/posts';
 import { takeLatest } from 'redux-saga/effects';
 
+const INITIALIZE = 'posts/INITIALIZE';
 const CHANGE_FIELD = 'posts/CHANGE_FIELD';
 const [
   LIST_POSTS,
@@ -12,6 +13,7 @@ const [
   LIST_POSTS_FAILURE,
 ] = createRequestActionTypes('posts/LIST_POSTS');
 
+export const initialize = createAction(INITIALIZE);
 export const listPosts = createAction(
   LIST_POSTS,
   ({ page, searchKeyword, searchType }) => ({ page, searchKeyword, searchType }),
@@ -37,6 +39,7 @@ const initialState = {
 
 const posts = handleActions(
   {
+    [INITIALIZE]: state => initialState,
     [CHANGE_FIELD]: (state, { payload: { key, value }}) => ({
       ...state,
       [key]: value,

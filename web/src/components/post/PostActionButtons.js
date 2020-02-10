@@ -41,8 +41,6 @@ const PostActionButtons = ({ onEdit, onRemove, onList, isAuthenticated }) => {
     onRemove();
   };
 
-  console.log(isAuthenticated);
-
   return (
     <>
       <PostActionButtonsBlock>

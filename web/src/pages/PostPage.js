@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import PostViewerContainer from '../containers/post/PostViewerContainer';
 import ReplyListContainer from '../containers/post/ReplyListContainer';
-import ReplyWriteContainer from '../containers/post/ReplyWriteContainer';
+import WriteReplyContainer from '../containers/post/WriteReplyContainer';
 
 const PostPage = () => {
   return (
@@ -10,7 +10,7 @@ const PostPage = () => {
       <HeaderContainer />
       <PostViewerContainer />
       <ReplyListContainer />
-      <ReplyWriteContainer />
+      <WriteReplyContainer />
     </>
   );
 };

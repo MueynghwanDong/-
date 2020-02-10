@@ -27,24 +27,25 @@ const StyledInput = styled.input`
   }
 `;
 
-const ReplyWrite = ({ replytext, onChangeReplytext, onSubmit }) => {
+const WriteReply = ({ replytext, onSubmit, onChangeField }) => {
+  
+  const onChangeReplytext = e => {
+    onChangeField({ key: 'replytext', value: e.target.value });
+  };
+  
   return (
   <ReplytextBlock>
-    <form>
+    <form onSubmit={onSubmit}>
       <StyledInput
         name="replytext"
         placeHolder="검색하세요"
         onChange={onChangeReplytext}
         value={replytext}
       />
-      <Button
-        onSubmit={onSubmit}
-      >
-        등록
-      </Button>
+      <Button>등록</Button>
     </form>
   </ReplytextBlock>
   )
 }
 
-export default ReplyWrite;
+export default WriteReply;

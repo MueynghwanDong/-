@@ -58,7 +58,6 @@ const PostViewerContainer = ({ match, history }) => {
       loading={loading}
       error={error}
       actionButtons={<PostActionButtons onEdit={onEdit} onRemove={onRemove} onList={onList} isAuthenticated={isAuthenticated}/>}
-      ownPost={user && user.m_id === post && post.bno}
     />
   );
 };

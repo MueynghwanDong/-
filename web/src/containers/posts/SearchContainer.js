@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Search from '../../components/posts/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
-import { listPosts, changeField } from '../../modules/posts';
+import { listPosts, changeField, initialize } from '../../modules/posts';
+import { withRouter } from 'react-router-dom';
 
-const SearchContainer = () => {
+const SearchContainer = ({ history }) => {
   const dispatch = useDispatch();
   const { lastPage, posts, loading, page, searchType, searchKeyword } = useSelector(({ posts, loading }) => ({
     lastPage: posts.lastPage,
@@ -32,8 +33,10 @@ const SearchContainer = () => {
     onChangeField({ key: 'searchKeyword', value: e.target.value });
   };
 
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault();
     dispatch(listPosts({ page, searchKeyword, searchType }));
+    history.push(buildLink({ page, searchKeyword, searchType }));
   };
 
   // 포스트 데이터가 없거나 로딩 중이면 아무것도 보여주지 않음
@@ -58,4 +61,4 @@ const SearchContainer = () => {
   );
 };
 
-export default SearchContainer;
+export default withRouter(SearchContainer);

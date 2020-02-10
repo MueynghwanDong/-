@@ -37,11 +37,11 @@ const PostItemBlock = styled.div`
 `;
 
 const PostItem = ({ post }) => {
-  const { regdate, m_id, title, bno, viewcnt } = post;
+  const { regdate, m_id, title, bno, viewcnt, replycnt } = post;
   return (
     <PostItemBlock>
       <h3>
-        <Link to={`/posts/${bno}`}>{title}</Link>
+        <Link to={`/posts/${bno}`}>{title} <small>[{replycnt}]</small></Link>
       </h3>
       <SubInfo
         m_id={m_id}
