@@ -6,7 +6,7 @@ const SubInfoBlock = styled.div`
   ${props =>
     props.hasMarginTop &&
     css`
-      margin-top: 1rem;
+      margin-top: 0rem;
     `}
   color: ${palette.gray[6]};
   /* span 사이에 가운뎃점 문자 보여주기*/
@@ -18,15 +18,15 @@ const SubInfoBlock = styled.div`
   }
 `;
 
-const SubInfo = ({ username, publishedDate, hasMarginTop }) => {
+const SubInfo = ({ m_id, regdate, hasMarginTop }) => {
   return (
     <SubInfoBlock hasMarginTop={hasMarginTop}>
       <span>
         <b>
-          {username}
+          {m_id}
         </b>
       </span>
-      <span>{new Date(publishedDate).toLocaleDateString()}</span>
+      <span>{new Date(regdate).toLocaleDateString()}</span>
     </SubInfoBlock>
   );
 };

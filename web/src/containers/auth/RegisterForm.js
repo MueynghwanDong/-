@@ -30,17 +30,17 @@ const RegisterForm = ({ history }) => {
   // 폼 등록 이벤트 핸들러
   const onSubmit = e => {
     e.preventDefault();
-    const { username, password, passwordConfirm, fullName, email, location } = form;
-    if ([username, password, passwordConfirm, fullName, email, location].includes('')) {
+    const { m_id, pw, pwConfirm, name, email, location } = form;
+    if ([m_id, pw, pwConfirm, name, email, location].includes('')) {
       setError('빈 칸을 모두 입력하세요')
     }
-    if (password !== passwordConfirm) {
+    if (pw !== pwConfirm) {
       setError('비밀번호가 일치하지 않습니다.')
-      changeField({ form: 'register', key: 'password', value: '' });
-      changeField({ form: 'register', key: 'passwordConfirm', value: ''});
+      changeField({ form: 'register', key: 'pw', value: '' });
+      changeField({ form: 'register', key: 'pwConfirm', value: ''});
       return;
     }
-    dispatch(register({ username, password, fullName, email, location }));
+    dispatch(register({ m_id, pw, name, email, location }));
   };
   
   // 컴포넌트가 처음 렌더링될 때 form을 초기화함

@@ -1,13 +1,9 @@
 import React from 'react';
 import clsx from 'clsx'
-import { AppBar, Button, Toolbar, Typography, Drawer, Link, List, Divider, IconButton, ListItem, ListItemIcon, ListItemText, makeStyles, useTheme, } from '@material-ui/core'
+import { AppBar, Button, Toolbar, Typography, Drawer,  List, Divider, IconButton, ListItem, ListItemIcon, ListItemText, makeStyles, useTheme, } from '@material-ui/core'
 // import Responsive from './Responsive';
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
+import { ScheduleSharp, Mail, Inbox, ChevronRight, ChevronLeft, Menu, Pets, HelpOutline, Assignment } from '@material-ui/icons'
+import { blue } from '@material-ui/core/colors'
 // import { MenuIcon, ChevronLeftIcon, ChevronRightIcon, InboxIcon, MailIcon } from '@material-ui/icons'
 
 const drawerWidth = 240;
@@ -24,11 +20,13 @@ const useStyles = makeStyles(theme => ({
       },
       root: {
         display: 'flex',
+
       },
       appBar:  {
         transition: theme.transitions.create(['margin', 'width'], {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
+          backgroundColor: 'rgb(0, 0,0,  0.88)'
         }),
       },
       appBarShift: {
@@ -81,6 +79,7 @@ const useStyles = makeStyles(theme => ({
       },
       toolbarTitle: {
         flexGrow: 1,
+        color: '#585859'
       },
       link: {
         margin: theme.spacing(1, 1.5),
@@ -101,6 +100,18 @@ const Header = () => {
         setOpen(false);
       };
     const new_url = window.location.pathname
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+    const IconList = [ <Pets/>, <HelpOutline/>, <ScheduleSharp/>, <Assignment/> ]
+    // 'My Page', 'FAQ', 'Scheduler', 'posts'?
+
+=======
+    
+>>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
+=======
+    
+>>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
     return (
   
         <div className={classes.root}>
@@ -110,6 +121,8 @@ const Header = () => {
             className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
             })}
+            style={{backgroundColor:'#f5f5f5'}} 
+            // 여기에서 backgroundColor 변경이 가능
         >
             <Toolbar className={classes.toolbar}>
           { new_url ==="/login" || new_url === "/register" ?
@@ -121,15 +134,26 @@ const Header = () => {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon />
+            <Menu />
             </IconButton>
+<<<<<<< HEAD
+}   
+          <div> 
+            <img src='/images/mark_image.jpg' width='60' hegiht='60'/>
+          </div>
+                <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle}>
+=======
 }
-            
-                <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+                
+                <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to={"/"} >
+<<<<<<< HEAD
+>>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
+=======
+>>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                     Company name
                    
                 </Typography>
-                    <nav>
+                    {/* <nav>
                         <Link variant="button" color="textPrimary" href="#" className={classes.link}>
                             My Pages
                         </Link>
@@ -139,9 +163,18 @@ const Header = () => {
                         {/* <Link variant="button" color="textPrimary" href="#" className={classes.link}>
                             hmmm2
                         </Link> */}
-                    </nav>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    {/* </nav>  */}
                 <Button href="#" color="white" variant="outlined" className={classes.link}>
+                    LogOut
+=======
+=======
+>>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
+                    </nav>
+                <Button color="white" variant="outlined" className={classes.link} component={Link} to={"/login"}>
                     Login
+>>>>>>> 4ea0d5278ba2204fe86cff58bf341df00ea5c388
                 </Button>
                 {/* Login Logout은 조건에 따라 하나만 뜨도록 */}
                 {/* <Button href="#" color="primary" variant="outlined" className={classes.link}>
@@ -160,14 +193,15 @@ const Header = () => {
   >
     <div className={classes.drawerHeader}>
       <IconButton onClick={handleDrawerClose}>
-        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
       </IconButton>
     </div>
     <Divider />
     <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+      {['My Page', 'FAQ', 'Scheduler', 'posts'].map((text, index) => (
         <ListItem button key={text}>
-          <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
+          <ListItemIcon>{IconList[index]}</ListItemIcon>
           <ListItemText primary={text} />
         </ListItem>
       ))}
@@ -176,7 +210,7 @@ const Header = () => {
     {/* <List>
       {['All mail', 'Trash', 'Spam'].map((text, index) => (
         <ListItem button key={text}>
-          <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <MailIcon />}</ListItemIcon>
           <ListItemText primary={text} />
         </ListItem>
       ))}
@@ -187,7 +221,7 @@ const Header = () => {
   
   
       
-      <main
+      {/* <main
       className={clsx(classes.content, {
         [classes.contentShift]: open,
       })}
@@ -195,7 +229,7 @@ const Header = () => {
       <div className={classes.drawerHeader} />
 
 
-      </main>
+      </main> */}
 
 
 

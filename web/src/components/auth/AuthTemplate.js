@@ -1,24 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
-import { Grid, makeStyles, Typography, Container } from '@material-ui/core';
+import { Grid, makeStyles, Typography, IconButton  } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Header from '../common/Header'
-import Footer from '../common/Footer';
+// import Footer from '../common/Footer';
+import { blue, grey }from '@material-ui/core/colors/'
 
-const AuthTemplateBlock = styled.div`
-//   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background: ${palette.gray[2]};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+// const AuthTemplateBlock = styled.div`
+// //   position: absolute;
+//   left: 0;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   background: ${palette.gray[2]};
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
   
-`;
+// `;
 
 const WhiteBox = styled.div`
   .logo-area {
@@ -38,62 +41,194 @@ const WhiteBox = styled.div`
   
 `;
 
+
 const useStyles = makeStyles(theme => ({
-    quoteContainer: {
-        backgroundImage: 'url(/images/auth.jpg)',
-        // height:'100%',
+    root: {
+      backgroundColor: grey[200], 
+    //   theme.palette.background.default,
+      height: '100%'    
     },
+    grid: {
+      height: '100vh'
+    },
+    quoteContainer: {
+    //   backgroundImage: 'url(/images/auth.jpg)',   
+      // display: fixed,
+      // position:'relative',
+      // flexDirection: 'row',
+      [theme.breakpoints.down('md')]: {
+        display: 'none'
+      }
+    },
+
     quoteText: {
-        color: theme.palette.white,
+        color: palette.white,
         fontWeight: 150
     },
-}))
+    quote: {
+      backgroundColor: theme.palette.neutral,
+      height: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundImage: 'url(/images/cows.jpg)',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center'
+    },
+    quoteInner: {
+      textAlign: 'center',
+      flexBasis: '600px'
+    },
+   
+    name: {
+      marginTop: theme.spacing(3),
+      color: theme.palette.white
+    },
+    bio: {
+      color: theme.palette.white
+    },
+    contentContainer: {},
+    content: {
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'row',
+      // backgroundImage: 'url(/images/plain.jpeg)',
+    },
+    contentHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      paddingTop: theme.spacing(0),
+      paddingBototm: theme.spacing(2),
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2)
+    },
+    logoImage: {
+      marginLeft: theme.spacing(4)
+    },
+    contentBody: {
+      flexGrow: 1,
+      display: 'flex',
+      alignItems: 'center',
+      [theme.breakpoints.down('md')]: {
+        justifyContent: 'center'
+      }
+    },
+    form: {
+      paddingLeft: 100,
+      paddingRight: 100,
+      paddingBottom: 125,
+      flexBasis: 700,
+      [theme.breakpoints.down('sm')]: {
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2)
+      }
+    },
+    title: {
+      marginTop: theme.spacing(3)
+    },
+    socialButtons: {
+      marginTop: theme.spacing(3)
+    },
+    socialIcon: {
+      marginRight: theme.spacing(1)
+    },
+    sugestion: {
+      marginTop: theme.spacing(2)
+    },
+    textField: {
+      marginTop: theme.spacing(2)
+    },
+    signInButton: {
+      margin: theme.spacing(2, 0)
+    },
+    // footer:{
+    //   padding: 0 + '!important',
+    //   marginTop : 0 + '!important'
+    // }
+  }));
+
 
 const AuthTemplate = ({ children }) => {
     
     const classes = useStyles();
   return (
-    <>
-    
+    <div className={classes.root} >
+        
+        {/* <AuthTemplateBlock> */}
         <Header/>
-    
-    <Container>
-        <AuthTemplateBlock>
             <Grid 
-                container 
+                className={classes.grid}
+                container
+
             >
+            
+        
                 <Grid
                     className={classes.quoteContainer}    
-                    item lg={4}
+                    item lg={6}
                 >
-                    <Typography
-                        className={classes.quoteText}
-                        variant="h2"
-                    >
-                 
-                    </Typography>
+                    <Grid className={classes.quote}>
+                        <div className={classes.quoteInner}>
+                          <Typography
+                          className={classes.quoteText}
+                          variant="h3"
+                      >
+                          life with Cow
+                          </Typography>
+                          <div className={classes.person}>
+                              <Typography
+                              className={classes.name}
+                              variant="body1"
+                              color='white' 
+                              >
+                              더 편하고 더 똑똑하게
+                              </Typography>
+                              <Typography
+                              className={classes.bio}
+                              variant="body2"
+                              >
+                              Manager at inVision
+                              </Typography>
+                          </div>
+                      </div>
+                    </Grid>
                 </Grid>
-                <Grid 
+                <Grid
+                    className={classes.content}
                     item 
-                    lg={8}
-                    xs={12}
+                    lg={6}
+                    // xs={12}
                 >
-                    <WhiteBox>
-                        <div className="logo-area">
-                        <Link to="/">REACTERS</Link>
-                        
-                        </div>
-                        {children}
-                    </WhiteBox>
-                </Grid>
-            </Grid>
-        </AuthTemplateBlock>
-    </Container>
 
-    <Container>
-        <Footer/>
-    </Container>
-    </>
+                    <div className={classes.content}>
+                        <div className={classes.contentHeader}>
+                        <IconButton  >
+                          <ArrowBackIcon>
+                            
+                          </ArrowBackIcon>
+                        </IconButton>  
+                        </div> 
+                            {/* <div className="logo-area">
+                            <Link to="/">REACTERS</Link>
+                            
+                            </div> */}
+                        {children}
+                    </div>
+
+                </Grid>
+                {/* <Container>
+                    <Footer
+                        className={classes.footer}
+                    />
+                </Container> */}
+                
+            </Grid>
+        {/* </AuthTemplateBlock> */}
+
+
+               
+    </div>
   );
 };
 

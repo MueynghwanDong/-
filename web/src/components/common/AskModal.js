@@ -56,10 +56,10 @@ const AskModal = ({
         <h2>{title}</h2>
         <p>{description}</p>
         <div className="buttons">
-          <StyledButton onClick={onCancel}>{cancelText}</StyledButton>
           <StyledButton cyan onClick={onConfirm}>
             {confirmText}
           </StyledButton>
+          <StyledButton onClick={onCancel}>{cancelText}</StyledButton>
         </div>
       </AskModalBlock>
     </Fullscreen>
