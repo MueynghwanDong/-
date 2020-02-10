@@ -5,7 +5,7 @@ app.get("/", async function(req, res) {
 
   var selectQuery = req.mybatisMapper.getStatement(
     "LS_BS",
-    "all_ls_bs",
+    "all",
     { language: "sql", indent : "  "}
   );
   let data = [];
@@ -26,23 +26,22 @@ app.get("/", async function(req, res) {
   res.json(data);
 });
 
-app.get("/:b_id", async function(req, res) {
+app.get("/barn/:b_id", async function(req, res) {
     var selectParms = {
       b_id : req.params.b_id
     };
-    
+    let data = [];
     try {
     var selectQuery = req.mybatisMapper.getStatement(
       "LS_BS",
-      "selecta",
+      "selectb",
       selectParms,
       { language: "sql", indent : "  "}
     );
-    let data = [];
+    
       data = await req.sequelize.query(selectQuery, {
         type: req.sequelize.QueryTypes.SELECT
       });
-      //console.log("TCL: data", data);
     } catch (error) {
       res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
       return;
@@ -55,11 +54,11 @@ app.get("/:b_id", async function(req, res) {
   
     res.json(data);
   });
-  app.get("/:m_id", async function(req, res) {
+  app.get("/member/:m_id", async function(req, res) {
     var selectParms = {
       m_id : req.params.m_id
     };
-    
+    let data = [];
     try {
     var selectQuery = req.mybatisMapper.getStatement(
       "LS_BS",
@@ -67,41 +66,6 @@ app.get("/:b_id", async function(req, res) {
       selectParms,
       { language: "sql", indent : "  "}
     );
-    let data = [];
-      data = await req.sequelize.query(selectQuery, {
-        type: req.sequelize.QueryTypes.SELECT
-      });
-      //console.log("TCL: data", data);
-    } catch (error) {
-      res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
-      return;
-    }
-  
-    if (data.length == 0) {
-      res.status(403).send({ msg: "정보가 없습니다." });
-      return;
-    }
-  
-    res.json({
-        bno: data.map(x => {
-        return x;
-      })
-    });
-  });
-app.get("b&ls/:b_id&:ls_id", async function(req, res) {
-    var selectParms = {
-      b_id : req.params.b_id,
-      ls_id : req.params.ls_id
-    };
-    try {
-  
-    var selectQuery = req.mybatisMapper.getStatement(
-      "LS_BS",
-      "selectls_bs",
-      selectParms,
-      { language: "sql", indent : "  "}
-    );
-    let data = [];
       data = await req.sequelize.query(selectQuery, {
         type: req.sequelize.QueryTypes.SELECT
       });
@@ -117,21 +81,18 @@ app.get("b&ls/:b_id&:ls_id", async function(req, res) {
   
     res.json(data);
   });
-
-  app.get("m&ls/:m_id&:ls_id", async function(req, res) {
+app.get("livestock/:ls_id", async function(req, res) {
     var selectParms = {
-      m_id : req.params.b_id,
       ls_id : req.params.ls_id
     };
+    let data = [];
     try {
-  
     var selectQuery = req.mybatisMapper.getStatement(
       "LS_BS",
-      "select_mls",
+      "selectls_bs",
       selectParms,
       { language: "sql", indent : "  "}
     );
-    let data = [];
       data = await req.sequelize.query(selectQuery, {
         type: req.sequelize.QueryTypes.SELECT
       });
@@ -198,15 +159,13 @@ app.put("/update/:ls_id", async function(req, res) {
       type: req.sequelize.QueryTypes.UPDATE,
     });
   } catch (error) {
-    res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
+    res.status(403).send({ msg: "db update에 실패하였습니다.", error: error });
     return;
   }
 
   res.json({ success: "put call succeed!", url: req.url, body: req.body });
 });
 
-// 수정요망 - 값이 있는지 확인하고 없으면 없다는 메시지 출력
-// 값이 있으면 삭제후 확인 메시지 출력
 app.delete("/del/:b_id", async function(req, res) {
 
   var deleteParms = {
@@ -214,7 +173,7 @@ app.delete("/del/:b_id", async function(req, res) {
   };
   var deleteQuery = req.mybatisMapper.getStatement(
     "LS_BS",
-    "delbarn_livestock",
+    "deletebarn_livestock",
     deleteParms,
         { language: "sql", indent : "  "}
   );
@@ -274,7 +233,7 @@ app.delete("/del/:ls_id", async function(req, res) {
           try {
     var deleteQuery = req.mybatisMapper.getStatement(
       "LS_BS",
-      "delbarn_livestock",
+      "deletels_bs",
       deleteParms,
           { language: "sql", indent : "  "}
     );

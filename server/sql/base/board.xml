@@ -92,5 +92,9 @@
         WHERE bno =#{bno}
     </update>
 
-
+  <update id ="initialrcnt">
+		  UPDATE ptj_sub1.boards
+	  	SET replycnt = (select count(*) FROM replies WHERE bno =#{bno})
+	  	where bno =#{bno}
+	</update>
 </mapper>

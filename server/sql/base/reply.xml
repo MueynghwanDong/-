@@ -2,13 +2,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reply">
-	<select id="selectreply">
-		SELECT
-		*
-		FROM
-		ptj_sub1.replies
-		WHERE rno =#{rno}
-	</select>
+	<update id="minuscount">
+		update ptj_sub1.boards 
+		set replycnt = if(replycnt > 0, replycnt-1, 0) 
+		where bno = ( select bno from ptj_sub1.replies 
+		where rno =#{rno} );
+	</update>
     <select id="allreply">
 		SELECT
 		*
@@ -35,7 +34,7 @@
 		(
 		bno,
 		replytext,
-		m_id,
+		m_id
 		)
 		VALUES
 		(
@@ -54,4 +53,6 @@
         SET replytext =#{replytext}
         WHERE rno =#{rno}
     </update>
+
+	
 </mapper>

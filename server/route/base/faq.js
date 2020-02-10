@@ -13,7 +13,6 @@ app.get("/", async function(req, res) {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    // console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -23,8 +22,6 @@ app.get("/", async function(req, res) {
     res.json(data);
     return;
   }
-  console.log(data);
-
   res.json(data);
 });
 
@@ -32,15 +29,14 @@ app.get("/:q_id", async function(req, res) {
   var selectParms = {
     q_id : req.params.q_id
   };
+  let data = [];
   try {
-
   var selectQuery = req.mybatisMapper.getStatement(
     "faq",
     "selectfaq",
     selectParms,
     { language: "sql", indent : "  "}
   );
-  let data = [];
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
@@ -108,8 +104,6 @@ app.put("/update/:q_id", async function(req, res) {
   res.json({ success: "put call succeed!", url: req.url, body: req.body });
 });
 
-// 수정요망 - 값이 있는지 확인하고 없으면 없다는 메시지 출력
-// 값이 있으면 삭제후 확인 메시지 출력
 app.delete("/del/:q_id", async function(req, res) {
 
   var deleteParms = {

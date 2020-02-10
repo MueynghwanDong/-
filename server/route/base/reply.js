@@ -1,12 +1,15 @@
 var express = require("express");
 var app = express.Router();
+const jwt = require('jsonwebtoken');
 
 app.get("/", async function(req, res) {
-  console.log("reply");
-  console.log(req.query);
+  var selectParms = {
+    bno : req.query.bno,
+  };
   var selectQuery = req.mybatisMapper.getStatement(
     "reply",
-    "allreply",
+    "selectbno",
+    selectParms,
     { language: "sql", indent : "  "}
   );
   let data = [];
@@ -14,12 +17,10 @@ app.get("/", async function(req, res) {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-
   if (data.length == 0) {
     res.json(data); 
     return;
@@ -32,6 +33,7 @@ app.get("/:rno", async function(req, res) {
   var selectParms = {
     rno : req.params.rno
   };
+  let data = [];
   try {
 
   var selectQuery = req.mybatisMapper.getStatement(
@@ -40,11 +42,10 @@ app.get("/:rno", async function(req, res) {
     selectParms,
     { language: "sql", indent : "  "}
   );
-  let data = [];
+
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -60,6 +61,7 @@ app.get("/member/:m_id", async function(req, res) {
     var selectParms = {
       m_id : req.params.m_id
     };
+    let data = [];
     try {
     var selectQuery = req.mybatisMapper.getStatement(
       "reply",
@@ -67,11 +69,10 @@ app.get("/member/:m_id", async function(req, res) {
       selectParms,
       { language: "sql", indent : "  "}
     );
-    let data = [];
+ 
       data = await req.sequelize.query(selectQuery, {
         type: req.sequelize.QueryTypes.SELECT
       });
-      //console.log("TCL: data", data);
     } catch (error) {
       res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
       return;
@@ -88,7 +89,7 @@ app.get("/board/:bno", async function(req, res) {
     var selectParms = {
         bno : req.params.bno
     };
-    
+    let data = [];
     try {
     var selectQuery = req.mybatisMapper.getStatement(
       "reply",
@@ -96,11 +97,10 @@ app.get("/board/:bno", async function(req, res) {
       selectParms,
       { language: "sql", indent : "  "}
     );
-    let data = [];
+
       data = await req.sequelize.query(selectQuery, {
         type: req.sequelize.QueryTypes.SELECT
       });
-      //console.log("TCL: data", data);
     } catch (error) {
       res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
       return;
@@ -114,11 +114,13 @@ app.get("/board/:bno", async function(req, res) {
 });
 
 app.post("/insert", async function(req, res) {
-  
+  const token = req.cookies.access_token;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
   var insertreplyParms = {
     bno : req.body.bno,
     replytext : req.body.replytext,
-    m_id : req.body.m_id,
+    m_id : decoded.m_id,
   };
 
   var insertreplyQuery = req.mybatisMapper.getStatement(
@@ -127,10 +129,26 @@ app.post("/insert", async function(req, res) {
     insertreplyParms,
         { language: "sql", indent : "  "}
   );
+  
   try {
     await req.sequelize.query(insertreplyQuery, {
       type: req.sequelize.QueryTypes.INSERT,
     });
+
+    var replycntParms = {
+      bno : req.body.bno,
+    };
+
+    var replycntQuery = req.mybatisMapper.getStatement(
+      "board",
+      "replycnt",
+      replycntParms,
+          { language: "sql", indent : "  "}
+    );
+      await req.sequelize.query(replycntQuery, {
+        type: req.sequelize.QueryTypes.UPDATE
+      });
+
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -164,14 +182,25 @@ app.put("/update/:rno", async function(req, res) {
   res.json({ success: "put call succeed!", url: req.url, body: req.body });
 });
 
-// 수정요망 - 값이 있는지 확인하고 없으면 없다는 메시지 출력
-// 값이 있으면 삭제후 확인 메시지 출력
 app.delete("/del/:rno", async function(req, res) {
-
+  console.log(req.query);
   var deleteParms = {
     rno : req.params.rno
   };
+  var updateParms = {
+    rno : req.params.rno
+  };
   try {
+  var UpdateQuery = req.mybatisMapper.getStatement(
+      "reply",
+      "minuscount",
+      updateParms,
+      { language: "sql", indent : "  "}
+  );
+  await req.sequelize.query(UpdateQuery, {
+    type: req.sequelize.QueryTypes.UPDATE
+  });
+
   var deleteQuery = req.mybatisMapper.getStatement(
     "reply",
     "deletereply",

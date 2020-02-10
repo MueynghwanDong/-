@@ -27,12 +27,11 @@ app.get("/", async function(req, res) {
   res.json(data);
 });
 
-app.get("/b&ls/:b_id & :ls_id", async function(req, res) {
+app.get("/:ls_id", async function(req, res) {
   var selectParms = {
-    b_id : req.params.b_id,
     ls_id : req.params.ls_id
   };
-  
+  let data = [];
   try {
   var selectQuery = req.mybatisMapper.getStatement(
     "livestock",
@@ -40,7 +39,7 @@ app.get("/b&ls/:b_id & :ls_id", async function(req, res) {
     selectParms,
     { language: "sql", indent : "  "}
   );
-  let data = [];
+
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
@@ -57,12 +56,11 @@ app.get("/b&ls/:b_id & :ls_id", async function(req, res) {
   res.json(data);
 });
 
-app.get("/m&ls/:m_id & :ls_id", async function(req, res) {
+app.get("/member/:m_id", async function(req, res) {
   var selectParms = {
     m_id : req.params.m_id,
-    ls_id : req.params.ls_id
   };
-  
+  let data = [];
   try {
   var selectQuery = req.mybatisMapper.getStatement(
     "livestock",
@@ -70,7 +68,7 @@ app.get("/m&ls/:m_id & :ls_id", async function(req, res) {
     selectParms,
     { language: "sql", indent : "  "}
   );
-  let data = [];
+ 
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
@@ -87,13 +85,11 @@ app.get("/m&ls/:m_id & :ls_id", async function(req, res) {
   res.json(data);
 });
 
-app.get("/m&b&ls/:m_id & :b_id & :ls_id", async function(req, res) {
+app.get("/barn/:b_id", async function(req, res) {
   var selectParms = {
-    m_id : req.params.m_id,
-    b_id : req.params.b_id,
-    ls_id : req.params.ls_id
+    b_id : req.params.b_id
   };
-  
+  let data = [];
   try {
   var selectQuery = req.mybatisMapper.getStatement(
     "livestock",
@@ -101,7 +97,7 @@ app.get("/m&b&ls/:m_id & :b_id & :ls_id", async function(req, res) {
     selectParms,
     { language: "sql", indent : "  "}
   );
-  let data = [];
+  
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
@@ -173,8 +169,6 @@ app.put("/update/:ls_id", async function(req, res) {
   res.json({ success: "put call succeed!", url: req.url, body: req.body });
 });
 
-// 수정요망 - 값이 있는지 확인하고 없으면 없다는 메시지 출력
-// 값이 있으면 삭제후 확인 메시지 출력
 app.delete("/del/:ls_id", async function(req, res) {
 
   var deleteParms = {

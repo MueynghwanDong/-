@@ -2,7 +2,6 @@ var express = require("express");
 var app = express.Router();
 const jwt = require('jsonwebtoken');
 var sanitizeHtml = require('sanitize-html');
-//const checkLoggedIn = require('../../middleware');
 const {board} = require('../../models');
 const bodyparser = require('body-parser');
 
@@ -43,7 +42,6 @@ const noOption = {
 app.get("/", async function(req, res) {
 
   var p = (req.query.page);
-  // console.log(req.query);
   var searchType = (req.query.searchType);
   var searchKeyword = (req.query.searchKeyword);
   if( p == "" || p == null || p == undefined || ( p != null && typeof p == "object" && !Object.keys(p).length ))
@@ -52,7 +50,6 @@ app.get("/", async function(req, res) {
   }else{
     page = (parseInt(req.query.page, 10));
   }
-  //page = (parseInt(req.query.page, 10));
   no = (page-1) * 10;
   no = Number(no);
   var selectParms = {
@@ -105,9 +102,6 @@ app.get("/", async function(req, res) {
   }
   // console.log(tcnt);
   currentpage = parseInt(tcnt[0].tcnt/10)+1;
-  // console.log(currentpage);
-  //console.log(data);
-  // totalpage = parseInt(totalcnt/10) +1;
   res.set('last-page',currentpage);
   res.json(data);
 });
@@ -119,6 +113,19 @@ app.get("/:bno", async function(req, res) {
   let data;
 
   try {
+
+    var rcnt = {
+      bno : req.params.bno,
+    };
+    var rcntQuery = req.mybatisMapper.getStatement(
+      "board",
+      "initialrcnt",
+      rcnt,
+          { language: "sql", indent : "  "}
+    );
+      await req.sequelize.query(rcntQuery, {
+        type: req.sequelize.QueryTypes.UPDATE
+      });
 
   var selectQuery = req.mybatisMapper.getStatement(
     "board",
@@ -146,7 +153,6 @@ app.post("/insert", async function(req, res) {
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   
   const m_id = decoded.m_id;
-  // console.log(m_id);
       try{
   
   if(m_id===null || m_id === undefined || m_id === "undefined"){
@@ -155,13 +161,10 @@ app.post("/insert", async function(req, res) {
     return;
   }
 }catch(error){
-  //res.send("로그인하고 하기");
   console.log("에러");
   res.status(401).send({ msg: "로그인 정보가 없습니다..", error: error });
 
   return;
-  // res.status(401).send({ msg: "에러!!.", error: e });
-  //   return;
 }
 String.prototype.replaceAll = function(org, dest) {
   return this.split(org).join(dest);
@@ -194,13 +197,11 @@ nt = nt.replaceAll("<br />","\n");
     type: req.sequelize.QueryTypes.SELECT,
   });
   res.body = idx;
-  // console.log(idx);
 } catch (error) {
   res.status(403).send({ msg: "db insert에 실패하였습니다.", error: error });
   return;
 }
 res.json(res.body);
-//res.json({ success: "post call succeed!", url: req.url, body: req.body });
 });
 app.put("/vcnt/:bno", async function(req, res) {
 
@@ -257,7 +258,6 @@ app.put("/update/:bno", async function(req, res) {
 
   let bno = req.params.bno;
   const bd = await board.findOne({where : {bno}});
-  // 작성자와 수정자가 같은 지 확인 하기
   if(m_id !== bd.m_id){
     console.log("사용자의 게시물이 아닙니다.");
     return res.status = 401;
@@ -293,11 +293,8 @@ app.put("/update/:bno", async function(req, res) {
   let temp = {"bno" : bno};
   res.body = temp;
   res.json(res.body);
-  //res.json({ success: "put call succeed!", url: req.url, body: req.body });
 });
 
-// 수정요망 - 값이 있는지 확인하고 없으면 없다는 메시지 출력
-// 값이 있으면 삭제후 확인 메시지 출력
 app.delete("/del/:bno", async function(req, res) {
 
   const token = req.cookies.access_token;
@@ -307,7 +304,6 @@ app.delete("/del/:bno", async function(req, res) {
 
   let bno = req.params.bno;
   const bd = await board.findOne({where : {bno}});
-  // 작성자와 수정자가 같은 지 확인 하기
   if(m_id !== bd.m_id){
     console.log("사용자의 게시물이 아닙니다.");
     return res.status = 401;
