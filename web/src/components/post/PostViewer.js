@@ -8,12 +8,17 @@ const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
 `;
 
-const PostHead = styled.div`
+const Head = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
   padding-bottom: 1rem;
   margin-bottom: 3rem;
   h1 {
     font-size: 3rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  h3 {
+    font-size: 1.8rem;
     line-height: 1.5;
     margin: 0;
   }
@@ -61,7 +66,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
       <Helmet>
         <title>{title} - REACTERS</title>
       </Helmet>
-      <PostHead>
+      <Head>
         <h1>{title} <small><small>[{replycnt}]</small></small></h1>
         <SubInfo>
           <span>
@@ -71,10 +76,13 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
           <span>{viewcnt}</span>
         </SubInfo>
       {actionButtons}
-      </PostHead>
+      </Head>
       <PostContent
         dangerouslySetInnerHTML={{ __html: content }}
       />
+      <Head>
+        <h3>댓글</h3>
+      </Head>
     </PostViewerBlock>
   );
 };

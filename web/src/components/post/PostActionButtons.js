@@ -37,8 +37,8 @@ const PostActionButtons = ({ onEdit, onRemove, onList, isAuthenticated }) => {
     setModal(false);
   };
   const onConfirm = () => {
-    setModal(false);
     onRemove();
+    setModal(false);
   };
 
   return (
@@ -55,6 +55,7 @@ const PostActionButtons = ({ onEdit, onRemove, onList, isAuthenticated }) => {
         visible={modal}
         onConfirm={onConfirm}
         onCancel={onCancel}
+        type="포스트"
       />
     </>
   );

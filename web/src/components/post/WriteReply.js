@@ -19,6 +19,7 @@ const StyledInput = styled.input`
   padding-bottom : 0.5rem;
   margin-left : 0.5rem;
   margin-right : 1rem;
+  margin-bottom: 1rem;
   outline:none;
   width: 800px;
   &:focus{

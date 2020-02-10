@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import palette from '../../lib/styles/palette';
 import WriteReply from './WriteReply';
+import AskRemoveModal from './AskRemoveModal';
 
 const ReplyListBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -44,19 +45,49 @@ const ActionButton = styled.button`
   & + & {
     margin-left: 0.25rem;
   }
-  margin-left: 0.25rem;
+`;
+
+const IdButton = styled.button`
+padding: 0.25rem 0.5rem;
+border-radius: 4px;
+color: ${palette.gray[0]};
+background: ${palette.cyan[6]};
+font-weight: bold;
+border: none;
+outline: none;
+font-size: 1rem;
+margin-right: 0.5rem;
 `;
 
 const ReplyItem = ({ id, reply, onEdit, onRemove, isAuthenticated, originalReplyId, onSubmit, replytext, onChangeField }) => {
+  const [modal, setModal] = useState(false);
+  const onRemoveClick = () => {
+    setModal(true);
+  };
+  const onCancel = () => {
+    setModal(false);
+  };
+  const onConfirm = () => {
+    onRemove(id);
+    setModal(false);
+  };
+
   return (
     <ReplyItemBlock>
-      {reply["m_id"]}
-      {isAuthenticated(id) && <>
+      <IdButton>{reply["m_id"]}</IdButton>
+      {isAuthenticated(id) &&
         <ActionButton onClick={() => onEdit(id)} >수정</ActionButton>
-        <ActionButton onClick={() => onRemove(id)} >삭제</ActionButton>
-        </>
+      }
+      {isAuthenticated(id) &&
+        <ActionButton onClick={onRemoveClick} >삭제</ActionButton>  
       }
       {originalReplyId === reply.rno ? <WriteReply replytext={replytext} onSubmit={e => onSubmit(e, id)} onChangeField={onChangeField} /> : <p>{reply.replytext}</p>}
+      <AskRemoveModal
+        visible={modal}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+        type="댓글"
+      />
     </ReplyItemBlock>
   );
 };
