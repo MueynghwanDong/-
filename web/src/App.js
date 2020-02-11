@@ -7,9 +7,10 @@ import PostPage from './pages/PostPage';
 import RegisterPage from './pages/RegisterPage';
 import Main from './pages/Main';
 import QuestionListPage from './pages/QuestionListPage';
-import { Helmet } from 'react-helmet-async';
 import MyPage from './pages/MyPage';
+import LivestockPage from './pages/LivestockPage';
 
+import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
         <Route component={PostPage} path={"/posts/:bno"} />
         <Route component={PostListPage} path={'/posts'} />
         <Route component={QuestionListPage} path={"/faq"} />
+        <Route component={LivestockPage} path={"/mypage/:ls_id"} />
         <Route component={MyPage} path={"/mypage"} />
         <Route component={Main} />
       </Switch>

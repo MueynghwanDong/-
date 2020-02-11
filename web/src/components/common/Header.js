@@ -134,7 +134,7 @@ const Header = ({user, onLogin, onLogout}) => {
             <img src='/images/mark_image.jpg' width='60' hegiht='60' />
           </Link>
                 <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle} component={Link} to='/mypage'>
-                    가축관리시스템                   
+                    (우리회사)                   
                 </Typography>
                     {/* <nav>
                         <Link variant="button" color="textPrimary" href="#" className={classes.link}>

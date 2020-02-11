@@ -1,13 +1,13 @@
 import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
-import My from '../components/my/My';
+import Livestock from '../components/livestock/Livestock';
 
-const MyPage = () =>{
+const LivestockPage = () =>{
     return (
       <>
       <HeaderContainer />
-      <My />
+      <Livestock />
       </>
     );
 };
-export default MyPage;
+export default LivestockPage;
