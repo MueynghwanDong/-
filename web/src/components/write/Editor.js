@@ -6,7 +6,7 @@ import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 
 const EditorBlock = styled(Responsive)`
-  padding-top: 5rem;
+  padding-top: 8rem;
   padding-bottom: 5rem;
 `;
 const TitleInput = styled.input`
