@@ -28,7 +28,7 @@ const ActionButton = styled.button`
   }
 `;
 
-const PostActionButtons = ({ onEdit, onRemove, onList }) => {
+const PostActionButtons = ({ onEdit, onRemove, onList, isAuthenticated }) => {
   const [modal, setModal] = useState(false);
   const onRemoveClick = () => {
     setModal(true);
@@ -37,21 +37,25 @@ const PostActionButtons = ({ onEdit, onRemove, onList }) => {
     setModal(false);
   };
   const onConfirm = () => {
-    setModal(false);
     onRemove();
+    setModal(false);
   };
 
   return (
     <>
       <PostActionButtonsBlock>
         <ActionButton onClick={onList}>홈</ActionButton>
-        <ActionButton onClick={onEdit}>수정</ActionButton>
-        <ActionButton onClick={onRemoveClick}>삭제</ActionButton>
+        {isAuthenticated() && <>
+          <ActionButton onClick={onEdit}>수정</ActionButton>
+          <ActionButton onClick={onRemoveClick}>삭제</ActionButton>
+          </>
+        }
       </PostActionButtonsBlock>
       <AskRemoveModal
         visible={modal}
         onConfirm={onConfirm}
         onCancel={onCancel}
+        type="포스트"
       />
     </>
   );

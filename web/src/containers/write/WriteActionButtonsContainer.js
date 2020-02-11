@@ -36,11 +36,11 @@ const WriteActionButtonsContainer = ({ history }) => {
   // 성공 혹은 실패 시 할 작업
   useEffect(() => {
     if (post) {
-      var { bno } = post;
+      const { bno } = post;
       if (bno) {
         history.push(`/posts/${bno}`);
       } else {
-        var { bno } = post[0];
+        const { bno } = post[0];
         history.push(`/posts/${bno}`)
       }
     }

@@ -168,7 +168,9 @@ const tiers = [
 // export default function Pricing() {
 
 const Main = () => {
-    const classes = useStyles();
+  const classes = useStyles();
+
+  const { user } = useSelector(({ user }) => ({ user: user.user }));
 
   return (
     <React.Fragment>

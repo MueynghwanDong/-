@@ -42,15 +42,22 @@ const PostViewerContainer = ({ match, history }) => {
 
   const onList = () => {
     history.push('/posts');
-  }
+  };
+
+  const isAuthenticated = () => {
+    if (!user) return false;
+    if (user["m_id"] === post["m_id"]) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <PostViewer
       post={post}
       loading={loading}
       error={error}
-      actionButtons={<PostActionButtons onEdit={onEdit} onRemove={onRemove} onList={onList}/>}
-      ownPost={user && user.m_id === post && post.bno}
+      actionButtons={<PostActionButtons onEdit={onEdit} onRemove={onRemove} onList={onList} isAuthenticated={isAuthenticated}/>}
     />
   );
 };

@@ -76,7 +76,7 @@ const RegisterForm = ({ history }) => {
   // user 값이 잘 설정되었는지 확인
   useEffect(() => {
     if (user) {
-      history.push('/');
+      history.push('/mypage');
       try {
         localStorage.setItem('user', JSON.stringify(user));
       } catch (e) {

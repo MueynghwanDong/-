@@ -10,6 +10,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const QuestionListBlock = styled(Responsive)`
   margin-top: 3rem;
+  h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
 `;
 
 const QuestionItemBlock = styled.div`
@@ -36,7 +42,7 @@ const QuestionItemBlock = styled.div`
 `;
 
 const QuestionItem = ({ question }) => {
-  const { title, body } = question;
+  const { title, content } = question;
   return (
     <QuestionItemBlock>
       <ExpansionPanel>
@@ -44,7 +50,7 @@ const QuestionItem = ({ question }) => {
           <p><b>{title}</b></p>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <p>{body}</p>
+          <p>{content}</p>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </QuestionItemBlock>
@@ -59,6 +65,7 @@ const QuestionList = ({ questions, loading, error }) => {
 
   return (
     <QuestionListBlock>
+    <h1>FAQ</h1>
       {/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
       {!loading && questions && (
         <div>

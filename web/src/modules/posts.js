@@ -5,16 +5,23 @@ import createRequestSaga, {
 import * as postsAPI from '../lib/api/posts';
 import { takeLatest } from 'redux-saga/effects';
 
+const INITIALIZE = 'posts/INITIALIZE';
+const CHANGE_FIELD = 'posts/CHANGE_FIELD';
 const [
   LIST_POSTS,
   LIST_POSTS_SUCCESS,
   LIST_POSTS_FAILURE,
 ] = createRequestActionTypes('posts/LIST_POSTS');
 
+export const initialize = createAction(INITIALIZE);
 export const listPosts = createAction(
   LIST_POSTS,
   ({ page, searchKeyword, searchType }) => ({ page, searchKeyword, searchType }),
 );
+export const changeField = createAction(CHANGE_FIELD, ({ key, value }) =>({
+  key,
+  value,
+}))
 
 const listPostsSaga = createRequestSaga(LIST_POSTS, postsAPI.listPosts);
 export function* postsSaga() {
@@ -25,10 +32,18 @@ const initialState = {
   posts: null,
   error: null,
   lastPage: 1,
+  page: 1,
+  searchType: 'all',
+  searchKeyword: null,
 };
 
 const posts = handleActions(
   {
+    [INITIALIZE]: state => initialState,
+    [CHANGE_FIELD]: (state, { payload: { key, value }}) => ({
+      ...state,
+      [key]: value,
+    }),
     [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => ({
       ...state,
       posts,

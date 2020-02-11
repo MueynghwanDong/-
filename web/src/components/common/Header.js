@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
 
   }));
   
-const Header = () => {
+const Header = ({user, onLogin, onLogout}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme()

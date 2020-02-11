@@ -18,7 +18,7 @@ const SubInfoBlock = styled.div`
   }
 `;
 
-const SubInfo = ({ m_id, regdate, hasMarginTop }) => {
+const SubInfo = ({ m_id, regdate, hasMarginTop, viewcnt }) => {
   return (
     <SubInfoBlock hasMarginTop={hasMarginTop}>
       <span>
@@ -27,6 +27,7 @@ const SubInfo = ({ m_id, regdate, hasMarginTop }) => {
         </b>
       </span>
       <span>{new Date(regdate).toLocaleDateString()}</span>
+  <span>{viewcnt}</span>
     </SubInfoBlock>
   );
 };
