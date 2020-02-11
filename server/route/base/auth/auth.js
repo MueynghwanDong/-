@@ -23,7 +23,6 @@ router.post('/join', async(req,res,next)=>{
       location : Joi.string(),
     });
     const result = Joi.validate(req.body, schema);
-    //console.log(result);
     if(result.error){
       res.status = 400;
       res.body = result.error;
@@ -50,7 +49,6 @@ router.post('/join', async(req,res,next)=>{
         const user = new members({
           m_id, pw,
         });
-        //console.log(user);
         const sr = async function(){
           return user.toJSON();
         }
@@ -60,17 +58,18 @@ router.post('/join', async(req,res,next)=>{
           const token = jwt.sign({
             m_id : member.m_id,
             password : member.pw,
+            // _id : req.sessionID,
           },
           process.env.JWT_SECRET,
           {
-            expiresIn: '1d'
+            expiresIn: 7200000
           },
           );
           return token;
         };
         const token = await generateToken();
         res.cookie('access_token',token,{
-          maxAge : 1000 * 60 * 60 * 24 *1,
+          maxAge : 1000 * 60 * 60 * 2, // 2 시간
           httpOnly : true,
         });
         return res.send("회원가입 성공");
@@ -81,6 +80,7 @@ router.post('/join', async(req,res,next)=>{
 });
 // 로그인이 안되어있는 상태인지 확인하는 작업 필요
 router.post('/login', async(req, res, next) => {
+  // console.log(req.sessionID);
   const token = req.cookies.access_token;
   if(token!=="undefined" && token){
     return res.status(403).send('로그아웃 필요');
@@ -95,7 +95,6 @@ router.post('/login', async(req, res, next) => {
   }
   try{
     const user = await members.findOne({where : {m_id}});
-   // console.log(user);
 
     if(!user){
       res.status = 401;
@@ -115,17 +114,10 @@ router.post('/login', async(req, res, next) => {
       return res.send("pw가 다릅니다. - 로그인 화면 이동");      
     }
     const sr = async function(){
-      //console.log(member.toJSON());
       return user.toJSON();
     }
     res.body = await sr();
-    // res.body.user = {
-    //   user : {
-    //     username : user.m_id,
-    //     password : user.pw,
-    //   }
-    // }
-    // console.log(res.body.user);
+
     const generateToken = function(){
       const token = jwt.sign({
         m_id : user.m_id,
@@ -133,14 +125,14 @@ router.post('/login', async(req, res, next) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: '1d'
+        expiresIn: 7200000
       },
       );
       return token;
     };
     const token =  generateToken();
     res.cookie('access_token',token,{
-      maxAge : 1000 * 60 * 60 * 24 *1,
+      maxAge : 1000 * 60 * 60 * 2,
       httpOnly : true,
     });
     console.log(res.body);
@@ -152,17 +144,46 @@ router.post('/login', async(req, res, next) => {
  });
   
 router.post('/check', async (req,res,next) =>{
+
+  const verifyToken = (t) => {
+    return new Promise((resolve, reject) => {
+      jwt.verify(t, process.env.JWT_SECRET, (err, v) => {
+        if(!t || t===undefined || t==="undefined"){
+          console.log("토큰값이 없다..?");
+          reject();
+        }
+        if (err) reject(err);
+        resolve(v);
+      })
+    })
+  }
+
   var token = req.cookies.access_token;
-   var decoded = jwt.verify(token, process.env.JWT_SECRET);
-   console.log(decoded);   
-  var data = {
-    m_id : decoded.m_id,
-    password : decoded.password,
-  };
+  //  var decoded = jwt.verify(token, process.env.JWT_SECRET);
+  //  console.log("에러 확인할거임..");
+  async function doit(token){
+    try{
+     
+      decoded = await verifyToken(token);
+       console.log('Task Done with', decoded);
+       return decoded;
+    } catch (error) {
+        // console.log('Task Failure', error);
+        return;
+    }
+  }
+  var decoded =  await doit(token);
+  if(!decoded || decoded===undefined || decoded==="undefined"){
+    console.log("로그인이 안된 상태");
+    return;
+  }else{
+  // console.log(req);
+   console.log(decoded); 
+  dm_id = decoded.m_id;
   console.log("check 확인");
   const now = Math.floor(Date.now() / 1000);
-   if(decoded.exp - now < 60 * 60 *24 * 0.5){
-     const member = await members.findOne(decoded.m_id);
+   if(decoded.exp - now < 60 * 60 *1){
+    const member = await members.findOne({where : {dm_id}});
      const generateToken = function(){
       const mtoken = jwt.sign({
         m_id : member.m_id,
@@ -170,23 +191,21 @@ router.post('/check', async (req,res,next) =>{
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: '0.5d'
+        expiresIn: 7200000
       },
       );
       
       return mtoken;
     };
     res.cookie('access_token',token,{
-      maxAge : 1000 * 60 * 60 * 24 *1,
+      maxAge : 1000 * 60 * 60 * 2,
       httpOnly : true,
     });
    }  
    const sr = async function(){
-    //console.log(member.toJSON());
     user = {
-        //"_id" : token,
-        "m_id": decoded.m_id
-        //"password": decoded.password
+        "m_id": decoded.m_id,
+        //"_id" : req.sessionID,
   };
     return user;
   }
@@ -194,19 +213,18 @@ router.post('/check', async (req,res,next) =>{
    console.log(res.body);
 
    return res.send(res.body);
-  //return res.redirect('/'); // 어디로 이동해야할지??
+  }
 });
 
 
 // 로그인 했는지 확인한은 작업 필요
   router.post('/logout', async(req, res) => {
     const token = req.cookies.access_token;
-  // 로그아웃 버튼 클릭 시 check를 통해 값 비교를 해서 토큰 값으로 추출된 아이디 비밀번호를 post로 넘겨줘야함.
+    // console.log("로그아웃!!!!!!!");
     res.cookie('access_token');
     res.status = 204;
     req.logout();
     req.session.destroy();
-    //localStorage.clear();
     return res.redirect('/');
   });
   

@@ -15,7 +15,6 @@ const bodyParser = require("body-parser");
 const app = express();
 const methodOverride = require('method-override');
 
-
 sequelize.sync().then(()=> {
   console.log("연결 성공");
 }).catch(err =>{
