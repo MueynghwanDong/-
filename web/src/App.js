@@ -11,25 +11,45 @@ import { Helmet } from 'react-helmet-async';
 import MyPage from './pages/MyPage';
 import NotFoundPage from './pages/NotFoundPage'
 
-const App = () =>{
-  return (
-    <>
-    <Helmet>
-      <title>REACTERS</title>
-    </Helmet>
-    <Switch>
-      <Route component={Main} path={"/"} exact />
-      <Route component={LoginPage} path={"/login"} />
-      <Route component={RegisterPage} path={'/register'} />
-      <Route component={WritePage} path={"/write"} />
-      <Route component={PostPage} path={"/posts/:bno"} />
-      <Route component={PostListPage} path={'/posts'} />
-      <Route component={QuestionListPage} path={"/faq"} />
-      <Route component={MyPage} path={"/mypage"} />
-      <Route component={NotFoundPage} />
-    </Switch>
-    </>
-  );
+import { useSelector } from 'react-redux';
+
+const App = () => {
+  const { user } = useSelector(({ user }) => ({
+    user: user.user,
+  }));
+  if (user) {
+    return (
+      <>
+      <Helmet>
+        <title>REACTERS</title>
+      </Helmet>
+      <Switch>
+        <Route component={Main} path={"/"} exact />
+        <Route component={LoginPage} path={"/login"} />
+        <Route component={RegisterPage} path={'/register'} />
+        <Route component={WritePage} path={"/write"} />
+        <Route component={PostPage} path={"/posts/:bno"} />
+        <Route component={PostListPage} path={'/posts'} />
+        <Route component={QuestionListPage} path={"/faq"} />
+        <Route component={MyPage} path={"/mypage"} />
+        <Route component={Main} />
+      </Switch>
+      </>
+    );
+  } else {
+    return (
+      <>
+      <Helmet>
+        <title>REACTERS</title>
+      </Helmet>
+      <Switch>
+        <Route component={LoginPage} path={"/login"} />
+        <Route component={RegisterPage} path={'/register'} />
+        <Route component={Main} />
+      </Switch>
+      </>
+    );    
+  }
 }
 
 export default App;
