@@ -5,6 +5,7 @@ import { AppBar, Button, Toolbar, Typography, Drawer,  List, Divider, IconButton
 import { ScheduleSharp, Mail, Inbox, ChevronRight, ChevronLeft, Menu, Pets, HelpOutline, Assignment } from '@material-ui/icons'
 import { blue } from '@material-ui/core/colors'
 // import { MenuIcon, ChevronLeftIcon, ChevronRightIcon, InboxIcon, MailIcon } from '@material-ui/icons'
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -101,7 +102,7 @@ const Header = ({user, onLogin, onLogout}) => {
       };
     const new_url = window.location.pathname
 
-    const IconList = [ <Pets/>, <HelpOutline/>, <ScheduleSharp/>, <Assignment/> ]
+    const IconList = [ <Pets/>, <Assignment/>, <ScheduleSharp/>, <HelpOutline/> ]
     // 'My Page', 'FAQ', 'Scheduler', 'posts'?
 
     return (
@@ -120,7 +121,7 @@ const Header = ({user, onLogin, onLogout}) => {
           { new_url ==="/login" || new_url === "/register" ?
             <></>:        
             <IconButton
-            color="inherit"
+            color="black"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -129,12 +130,11 @@ const Header = ({user, onLogin, onLogout}) => {
             <Menu />
             </IconButton>
 }   
-          <div> 
-            <img src='/images/mark_image.jpg' width='60' hegiht='60'/>
-          </div>
-                <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle}>
-                    Company name
-                   
+          <Link to='/mypage'> 
+            <img src='/images/mark_image.jpg' width='60' hegiht='60' />
+          </Link>
+                <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle} component={Link} to='/mypage'>
+                    가축관리시스템                   
                 </Typography>
                     {/* <nav>
                         <Link variant="button" color="textPrimary" href="#" className={classes.link}>
@@ -147,7 +147,7 @@ const Header = ({user, onLogin, onLogout}) => {
                             hmmm2
                         </Link> */}
                     {/* </nav>  */}
-                <Button href="#" color="white" variant="outlined" className={classes.link}>
+                <Button onClick={onLogout} color="white" variant="outlined" className={classes.link}>
                     LogOut
                 </Button>
                 {/* Login Logout은 조건에 따라 하나만 뜨도록 */}
@@ -172,13 +172,34 @@ const Header = ({user, onLogin, onLogout}) => {
     </div>
     <Divider />
     <List>
-      {['My Page', 'FAQ', 'Scheduler', 'posts'].map((text, index) => (
-        <ListItem button key={text}>
+      <Link to='/mypage'>
+        <ListItem button key='mypage'>
           {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
-          <ListItemIcon>{IconList[index]}</ListItemIcon>
-          <ListItemText primary={text} />
+          <ListItemIcon>{IconList[0]}</ListItemIcon>
+          <ListItemText primary='내 축사' />
         </ListItem>
-      ))}
+      </Link>
+      <Link to='/posts'>
+        <ListItem button key='posts'>
+          {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
+          <ListItemIcon>{IconList[1]}</ListItemIcon>
+          <ListItemText primary='게시판' />
+        </ListItem>
+      </Link>
+      <Link to='/mypage'>
+        <ListItem button key='scheduler'>
+          {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
+          <ListItemIcon>{IconList[2]}</ListItemIcon>
+          <ListItemText primary='일정 관리' />
+        </ListItem>
+      </Link>
+      <Link to='/faq'>
+        <ListItem button key='faq'>
+          {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
+          <ListItemIcon>{IconList[3]}</ListItemIcon>
+          <ListItemText primary='FAQ' />
+        </ListItem>
+      </Link>
     </List>
     <Divider />
     {/* <List>

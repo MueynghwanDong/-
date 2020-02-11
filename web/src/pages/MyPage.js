@@ -1,10 +1,11 @@
 import React from 'react';
-import Header from '../containers/common/HeaderContainer';
+import HeaderContainer from '../containers/common/HeaderContainer';
 
 const MyPage = () =>{
     return (
       <>
-      <Header />
+      <HeaderContainer />
+      <h1>마이페이지</h1>
       <h1>마이페이지</h1>
       </>
     );

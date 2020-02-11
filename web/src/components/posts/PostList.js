@@ -7,7 +7,7 @@ import SubInfo from '../common/SubInfo';
 import { Link } from 'react-router-dom';
 
 const PostListBlock = styled(Responsive)`
-  margin-top: 3rem;
+  margin-top: 8rem;
   h1 {
     font-size: 3rem;
     line-height: 1.5;
@@ -62,7 +62,7 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
   return (
     <PostListBlock>
       <Link to="/posts">
-        <h1>포스트</h1>
+        <h1>게시판</h1>
       </Link>
       <WritePostButtonWrapper>
         {showWriteButton && (

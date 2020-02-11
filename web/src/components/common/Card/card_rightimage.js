@@ -53,7 +53,7 @@ const Card_rightimage = () => {
                     더 편하게 관리하세요
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
-                (우리 기술)과 고객님이 쌓아온 경험을 합친다면 더 높은 효율로 축가를 운용해 더 높은 이윤을 기록할 수 있습니다.
+                (우리 기술)과 고객님이 쌓아온 경험을 합친다면 더 높은 효율로 축사를 운용해 더 높은 이윤을 기록할 수 있습니다.
                 </Typography>
                 </CardContent>
                 

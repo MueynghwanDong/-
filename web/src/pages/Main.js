@@ -12,6 +12,7 @@ import Footer from '../components/common/Footer';
 import MainCard from '../components/common/Card/main_card'
 import Card_rightimage from '../components/common/Card/card_rightimage';
 import { Opacity } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 
 
 const BackgroundVideo=()=>{
@@ -45,7 +46,7 @@ const BackgroundVideo=()=>{
           fontSize: '30px',
         }}
        >
-         더 현명하고, 똑똑한 방법으로 축가를 운영합니다.
+         더 현명하고, 똑똑한 방법으로 축사를 운영합니다.
        </div>
        
 
@@ -177,11 +178,11 @@ const Main = () => {
       <CssBaseline />
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <div> 
+          <Link to='/mypage'> 
             <img src='/images/mark_image.jpg' width='60' hegiht='60'/>
-          </div>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            Company name
+          </Link>
+          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to='mypage'>
+            가축관리시스템
           </Typography>
         
           {/* <Button  color="primary" variant="outlined" className={classes.link}> */}
@@ -194,7 +195,7 @@ const Main = () => {
       <BackgroundVideo/>
       <Container maxWidth="sm" component="main" className={classes.heroContent} paddingBottom="20px">
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom paddingBottom="20px !important">
-         우리 이름  
+         가축관리시스템 
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p" paddingBottom="20px">
           더 편하고 건강하게 축사를 관리하세요

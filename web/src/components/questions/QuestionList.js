@@ -9,12 +9,12 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const QuestionListBlock = styled(Responsive)`
-  margin-top: 3rem;
+  margin-top: 8rem;
   h1 {
     font-size: 3rem;
     line-height: 1.5;
     margin: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 `;
 

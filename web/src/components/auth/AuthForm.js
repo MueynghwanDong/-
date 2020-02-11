@@ -9,6 +9,7 @@ import { AccountCircle, VpnKey, Email, Explore, EmojiPeople, EmojiPeopleTwoTone,
 import Icon from '@material-ui/core/Icon'
 // 스타일링 된 input
 const StyledInput = styled.input`
+    background-color: ${palette.gray[1]};
     font-size:1rem;
     border: none;
     border-bottom: 1px solid ${palette.gray[5]};
@@ -97,9 +98,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                     <h3>{text}</h3>
                     
 
-                        <AccountCircle
-                            style={{color:blue[300]}}
-                        />
+                        <AccountCircle/>
                         <StyledInput 
                             autoComplete="username" 
                             name="m_id" 
@@ -185,13 +184,13 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                                 <Typography
                                     variant="h6"
                                 >
-                                 <Link to='/register'>Go to Signup  </Link>
+                                 <Link to='/register'>회원가입</Link>
                                 </Typography>
                             ) : (
                                 <Typography
                                     variant='h6'
                                 >
-                                <Link to='/login' >Go to Signin  </Link>
+                                <Link to='/login' >로그인</Link>
                                 </Typography>
                             )}
                         </Footer>
