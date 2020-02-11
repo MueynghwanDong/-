@@ -9,7 +9,6 @@ import Main from './pages/Main';
 import QuestionListPage from './pages/QuestionListPage';
 import { Helmet } from 'react-helmet-async';
 import MyPage from './pages/MyPage';
-import NotFoundPage from './pages/NotFoundPage'
 
 import { useSelector } from 'react-redux';
 
