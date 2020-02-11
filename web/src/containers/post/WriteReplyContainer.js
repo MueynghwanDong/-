@@ -7,7 +7,7 @@ import { initialize, writeReply, changeField } from '../../modules/writeR';
 const WriteReplyContainer = ({ match }) => {
   const dispatch = useDispatch();
   const { bno } = match.params;
-  const { replytext, originalReplyId } = useSelector(({ writeR, replys }) => ({
+  const { replytext, originalReplyId } = useSelector(({ writeR }) => ({
     replytext: writeR.replytext,
     originalReplyId: writeR.originalReplyId,
   }));

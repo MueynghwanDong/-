@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReplyList from '../../components/post/ReplyList';
@@ -22,13 +22,16 @@ const ReplyListContainer = ({ match }) => {
     }),
   );
 
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [
     dispatch,
   ]);
 
   useEffect(() => {
     dispatch(listReplys({ bno }));
-  }, [dispatch, reply])
+    setIsDeleted(false);
+  }, [dispatch, reply, isDeleted])
 
   const onEdit = id => {
     dispatch(setOriginalReply(replys[id]));
@@ -43,6 +46,7 @@ const ReplyListContainer = ({ match }) => {
   const onRemove = async id => {
     try {
       await removeReply(replys[id].rno);
+      setIsDeleted(true);
     } catch (e) {
       console.log(e);
     }
