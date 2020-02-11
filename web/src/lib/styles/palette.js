@@ -1,6 +1,7 @@
 // import { colors } from '@material-ui/core';
 
 const palette = {
+  primary : '#BFC3C1',
   gray: [
     '#f8f9fa',
     '#f1f3f5',
@@ -12,6 +13,7 @@ const palette = {
     '#495057',
     '#343a40',
     '#212529',
+    
   ],
   cyan: [
     '#e3fafc',
@@ -27,6 +29,8 @@ const palette = {
   ],
   white : '#FFFFFF',
   black : '#000000',
+  green : '#24EC88',
+  common: '#0b7285',
 
 };
 

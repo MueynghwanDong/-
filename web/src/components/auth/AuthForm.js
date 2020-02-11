@@ -3,20 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
-import { makeStyles } from '@material-ui/styles';
-// import {
-//     Grid,
-//     IconButton,
-//     TextField,
-//     Typography
-//   } from '@material-ui/core';
-const AuthFormBlock = styled.div`
-    h3{
-        margin : 0;
-        color: ${palette.gray[8]};
-        margin-bottom: 1rem;
-    }
-`;
+import { makeStyles, Typography } from '@material-ui/core';
+import {blue, green} from '@material-ui/core/colors'
+import { AccountCircle, VpnKey, Email, Explore, EmojiPeople, EmojiPeopleTwoTone,} from "@material-ui/icons"
+import Icon from '@material-ui/core/Icon'
 // 스타일링 된 input
 const StyledInput = styled.input`
     font-size:1rem;
@@ -31,9 +21,9 @@ const StyledInput = styled.input`
     }
     & + & {
         margin-top: 1rem;
+        
     }
 `;
-
 const Footer = styled.div`
     margin-top:2rem;
     text-align:right;
@@ -64,7 +54,7 @@ const ErrorMessage = styled.div`
 
 const useStyles = makeStyles(theme => ({
     quote: {
-        backgroundImage: 'url(/images/auth.jpg)',
+        backgroundImage: 'url(/cow/auth.jpg)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
@@ -75,25 +65,50 @@ const useStyles = makeStyles(theme => ({
     grid:{
         height:'100%'
     },
+    contentBody: {
+        [theme.breakpoints.down('md')]: {
+            justifyContent: 'center'
+          },
+        flexGrow: 1,
+        display: 'flex',    
+        alignItems: 'center',
+        width:'500px'
+        
+    },
+    footer: {
+        backgroundColor: blue[50]
+    },
+    container:{
+        flex : '1',
+        flexDiretion : 'row'
+    },
 
+    
  }))
 
 const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
-    
     const classes = useStyles();
-
     const text = textmap[type];
     return (
-
-            <AuthFormBlock>
-                <form onSubmit={onSubmit}>
+            <div className={classes.contentBody}>
+                <form 
+                    onSubmit={onSubmit}
+                >
                     <h3>{text}</h3>
+                    
+
+                        <AccountCircle
+                            style={{color:blue[300]}}
+                        />
                         <StyledInput 
                             autoComplete="username" 
                             name="m_id" 
                             placeholder="아이디"
                             onChange={onChange}
                             value={form.m_id}
+                        />
+                        <VpnKey
+                            // style= {{color:green[500]}}
                         />
                         <StyledInput 
                             autoComplete="new-password" 
@@ -103,6 +118,8 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.pw}
                         />
+                        
+           
                         {type === 'register' && (
                           <StyledInput
                             autoComplete="new-password"
@@ -113,7 +130,10 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             value={form.pwConfirm}
                           />
                         )}
+                        
                         {type === 'register' && (
+                        <div>
+                        <EmojiPeople/>
                           <StyledInput
                             autoComplete="name"
                             name="name"
@@ -121,8 +141,12 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.name}
                           />
+                        </div>
                         )}
+                        
                         {type === 'register' && (
+                        <div>
+                        <Email/>
                           <StyledInput
                             autoComplete="email"
                             name="email"
@@ -131,8 +155,13 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.email}
                           />
+                          </div>
                         )}
+                        
+
                         {type === 'register' && (
+                        <div>
+                        <Explore/>
                           <StyledInput
                             autoComplete="location"
                             name="location"
@@ -140,21 +169,35 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.location}
                           />
+                        </div>
                         )}
                         {error && <ErrorMessage>{error}</ErrorMessage>}
-                        <ButtonWithMarginTop cyan fullWidth style={{marginTop: '1rem'}}>
+
+                        <ButtonWithMarginTop
+                        cyan 
+                        fullWidth
+                        // width = '100%' 
+                        style={{marginTop: '1rem'}}>
                             {text}
                         </ButtonWithMarginTop>
+                        <Footer>
+                            {type === 'login' ? (   
+                                <Typography
+                                    variant="h6"
+                                >
+                                 <Link to='/register'>Go to Signup  </Link>
+                                </Typography>
+                            ) : (
+                                <Typography
+                                    variant='h6'
+                                >
+                                <Link to='/login' >Go to Signin  </Link>
+                                </Typography>
+                            )}
+                        </Footer>
                     </form>
-                    <Footer>
-                        {type === 'login' ? (
-                            <Link to='/register'>회원가입</Link>
-                        ) : (
-                            <Link to='/login'>로그인</Link>
-                        )}
-                    </Footer>
-                </AuthFormBlock>
-
+                      
+            </div>
     );
 };
 
