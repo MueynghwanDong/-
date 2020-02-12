@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
-import styled from 'styled-components';
+import React from 'react';
+// import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Grid, makeStyles, Typography, IconButton  } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Header from '../common/Header'
 // import Footer from '../common/Footer';
-import { blue, grey }from '@material-ui/core/colors/'
+import { grey }from '@material-ui/core/colors/'
 
 
 // const AuthTemplateBlock = styled.div`
@@ -23,34 +23,38 @@ import { blue, grey }from '@material-ui/core/colors/'
   
 // `;
 
-const WhiteBox = styled.div`
-  .logo-area {
-    display: block;
-    padding-bottom: 2rem;
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 2px;
-  }
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
-  height: 100%;
+// const WhiteBox = styled.div`
+//   .logo-area {
+//     display: block;
+//     padding-bottom: 2rem;
+//     text-align: center;
+//     font-weight: bold;
+//     letter-spacing: 2px;
+//   }
+//   box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
+//   height: 100%;
   
   
-  background: white;
-  border-radius: 2px;
+//   background: white;
+//   border-radius: 2px;
   
   
-`;
+// `;
 
 
 const useStyles = makeStyles(theme => ({
     root: {
       backgroundColor: grey[200], 
     //   theme.palette.background.default,
-      height: '100%'    
-    },
+      height: '100%',
+
+  },
     grid: {
-      height: '100vh'
+      height: '100vh',
+      
     },
+      // width: '100vh'
+    
     quoteContainer: {
     //   backgroundImage: 'url(/images/auth.jpg)',   
       // display: fixed,
@@ -88,17 +92,21 @@ const useStyles = makeStyles(theme => ({
     bio: {
       color: theme.palette.white
     },
-    contentContainer: {},
+    contentContainer: {
+      
+  },
     content: {
       height: '100%',
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: 'column',
+      // flexDirection: 'row',  
       // backgroundImage: 'url(/images/plain.jpeg)',
+      
     },
     contentHeader: {
       display: 'flex',
       alignItems: 'center',
-      paddingTop: theme.spacing(0),
+      paddingTop: theme.spacing(10),
       paddingBototm: theme.spacing(2),
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2)
@@ -110,6 +118,7 @@ const useStyles = makeStyles(theme => ({
       flexGrow: 1,
       display: 'flex',
       alignItems: 'center',
+      marginLeft: '20px',
       [theme.breakpoints.down('md')]: {
         justifyContent: 'center'
       }
@@ -160,10 +169,7 @@ const AuthTemplate = ({ children }) => {
             <Grid 
                 className={classes.grid}
                 container
-
             >
-            
-        
                 <Grid
                     className={classes.quoteContainer}    
                     item lg={6}
@@ -183,31 +189,20 @@ const AuthTemplate = ({ children }) => {
                     className={classes.content}
                     item 
                     lg={6}
-                    // xs={12}
+                    xs={12}
                 >
-
                     <div className={classes.content}>
-                        <div className={classes.contentHeader}>
+                        {/* <div className={classes.contentHeader}>
                         <IconButton  >
-                          <ArrowBackIcon>
-                            
+                          <ArrowBackIcon>           
                           </ArrowBackIcon>
                         </IconButton>  
-                        </div> 
-                            {/* <div className="logo-area">
-                            <Link to="/">REACTERS</Link>
-                            
-                            </div> */}
-                        {children}
+                        </div>  */}
+                        <div className={classes.contentBody} >
+                          {children}
+                        </div>
                     </div>
-
                 </Grid>
-                {/* <Container>
-                    <Footer
-                        className={classes.footer}
-                    />
-                </Container> */}
-                
             </Grid>
         {/* </AuthTemplateBlock> */}
 

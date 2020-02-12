@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
-
+import DatePicker from 'react-datepicker';
 const MyPage = () =>{
+    const [startDate, setStartDate] = useState(new Date());
     return (
       <>
       <HeaderContainer />
-      <h1>마이페이지</h1>
-      <h1>마이페이지</h1>
+      <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+
       </>
     );
 };

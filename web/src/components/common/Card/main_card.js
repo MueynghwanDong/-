@@ -1,8 +1,5 @@
 import React from 'react';
-import { Card,  CardContent, Grid,  Typography,  Container, makeStyles,
-  CardActionArea, CardMedia}
-
-from '@material-ui/core'
+import { Card,  CardContent, Grid,  Typography,  Container, CardMedia} from '@material-ui/core'
 
 
 const MainCard = () => {
@@ -12,7 +9,7 @@ const MainCard = () => {
         <Container maxWidth="md" component="main">
             <Grid container spacing={10} alignItems="flex-end">
                 <Grid item  xs={12} sm={6} md={4}>
-                    <Card className>
+                    <Card>
 
                             <CardMedia style = {{ height: 0, paddingTop: '60%'}}
                             image= {require('../../../pages/card_image/개체관리.jpg')}
@@ -33,7 +30,7 @@ const MainCard = () => {
                     </Card>
                 </Grid>
                 <Grid item  xs={12} sm={6} md={4}>
-                    <Card className>
+                    <Card >
                     
                         <CardMedia style = {{ height: 0, paddingTop: '60%'}}
                         image= {require('../../../pages/card_image/축사관리.jpeg')}
@@ -54,7 +51,7 @@ const MainCard = () => {
                     </Card>
                 </Grid>
                 <Grid item  xs={12} sm={6} md={4}>
-                    <Card className>
+                    <Card >
                             <CardMedia style = {{ height: 0, paddingTop: '60%'}}
                             image= {require('../../../pages/card_image/원격관리.jpg')}
                             />
