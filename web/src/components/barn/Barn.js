@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import palette from '../../lib/styles/palette';
 
-import LivestockChart from '../common/Chart/LivestockChart';
+import BarnChart from '../common/Chart/BarnChart';
 import { Link } from 'react-router-dom';
 
-const LivestockBlock = styled(Responsive)`
+const BarnBlock = styled(Responsive)`
   margin-top: 8rem;
   h1 {
     font-size: 3rem;
@@ -19,12 +19,12 @@ const My = () => {
   // 에러 발생 시
 
   return (
-    <LivestockBlock>
-      <h1>내 가축</h1>
+    <BarnBlock>
+      <h1>내 축사</h1>
+      <h4>가축 수 ex) 4마리</h4>
       <Link to="/mypage">홈</Link>
-      <h4>가축 종류 적혀는 곳 ex)소</h4>
-      <LivestockChart myProps={'myProps'} />
-    </LivestockBlock>
+      <BarnChart myProps={'myProps'} />
+    </BarnBlock>
   );
 };
 

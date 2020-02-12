@@ -13,6 +13,7 @@ import MainCard from '../components/common/Card/main_card'
 import Card_rightimage from '../components/common/Card/card_rightimage';
 import { Opacity } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
 
 
 const BackgroundVideo=()=>{
@@ -174,6 +175,10 @@ const Main = () => {
   const { user } = useSelector(({ user }) => ({ user: user.user }));
 
   return (
+    <>
+    <Helmet>
+      <title>(우리회사)</title>
+    </Helmet>
     <React.Fragment>
       <CssBaseline />
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
@@ -219,6 +224,7 @@ const Main = () => {
       </Container>
       {/* End footer */}
     </React.Fragment>
+    </>
   );
 }
 

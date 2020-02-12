@@ -18,6 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,7 +59,9 @@ const BarnItem = () => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            축
+            <Link to="/mypage/barn/1">
+              축
+            </Link>
           </Avatar>
         }
         action={
@@ -93,21 +96,31 @@ const BarnItem = () => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>
-            가축1
-          </Typography>
+          <Link to="/mypage/livestock/1">
+            <Typography paragraph>
+              가축1
+            </Typography>
+          </Link>
+          <Link to="/mypage/livestock/1">
           <Typography paragraph>
             가축2
           </Typography>
+          </Link>
+          <Link to="/mypage/livestock/1">
           <Typography paragraph>
             가축3
           </Typography>
+          </Link>
+          <Link to="/mypage/livestock/1">
           <Typography paragraph>
             가축4
           </Typography>
+          </Link>
+          <Link to="/mypage/livestock/1">
           <Typography>
             가축5
           </Typography>
+          </Link>
         </CardContent>
       </Collapse>
     </Card>

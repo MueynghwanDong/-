@@ -2,6 +2,8 @@ import React from 'react';
 import Header from '../containers/common/HeaderContainer';
 import styled from 'styled-components';
 import Responsive from '../components/common/Responsive';
+import Footer from '../components/common/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const NotFoundBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -15,10 +17,14 @@ const NotFoundBlock = styled(Responsive)`
 const NotFoundPage = () =>{
     return (
       <>
+      <Helmet>
+        <title>404 Not Found - (우리회사)</title>
+      </Helmet>
       <Header />
       <NotFoundBlock>
         <h1>404 Not Found</h1>
       </NotFoundBlock>
+      <Footer />
       </>
     );
 };
