@@ -56,19 +56,16 @@ const BarnItem = () => {
   };
   return (
     <Card className={classes.card}>
+       <Link to="/mypage/barn/1">
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            <Link to="/mypage/barn/1">
+           
               축
-            </Link>
+            
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+
         title="축사 이름"
         subheader="축사 등록 날짜"
       />
@@ -77,6 +74,7 @@ const BarnItem = () => {
         image={require('../../../pages/card_image/소간지.jpg')}
         title="축사 이름"
       />
+      </Link>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           축사 설명

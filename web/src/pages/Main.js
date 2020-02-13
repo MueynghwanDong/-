@@ -160,8 +160,8 @@ const Main = () => {
       </AppBar>
       {/* Hero unit */}
       <BackgroundVideo/>
-      <Container maxWidth="sm" component="main" className={classes.heroContent} paddingBottom="20px">
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom paddingBottom="20px !important">
+      <Container maxWidth="sm" component="main" className={classes.heroContent} paddingbottom="20px">
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" paddinbbottom="20px !important">
          (우리회사) 
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p" paddingbottom="20px">

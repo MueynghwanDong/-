@@ -9,6 +9,10 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Animation } from '@devexpress/dx-react-chart';
 import Grid from '@material-ui/core/Grid';
+// import { makeStyles } from '@material-ui/core'
+
+
+
 
 const data = {
   '20-02-11-18:00': [
@@ -64,6 +68,7 @@ export default class Demo extends React.PureComponent {
     this.state = {
       data: data[option[0]],
       hideLegend: false,
+      
     };
     this.changeData = this.changeData.bind(this);
     this.id = undefined;
@@ -105,8 +110,11 @@ export default class Demo extends React.PureComponent {
     return (
       <Paper>
         <Chart
+
           data={chartData}
+          
         >
+      
           <ValueScale name="body_temperature" />
           <ValueScale name="heart_rate" />
           <ValueScale name="step_count" />
@@ -117,6 +125,7 @@ export default class Demo extends React.PureComponent {
           <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
+            
             name="체온"
             valueField="body_temperature"
             argumentField="time"
@@ -141,10 +150,12 @@ export default class Demo extends React.PureComponent {
             <Legend />
           }
         </Chart>
-        <Grid container> {/* grid 비율 바꿔야됨 */}
-          <Grid item xs={12} sm={6} md={4}>
+        <Grid container>  {/* grid 비율 바꿔야됨 */}
+          <Grid item xs={12} sm={6} md={4} >
           <Chart
             data={chartData}
+            height={300}
+            
           >
             <ValueScale name="body_temperature" />
 
@@ -152,6 +163,7 @@ export default class Demo extends React.PureComponent {
             <ValueAxis scaleName="body_temperature" position="right" showGrid={false} showLine showTicks />
 
             <SplineSeries
+              
               name="체온"
               valueField="body_temperature"
               argumentField="time"
@@ -166,13 +178,13 @@ export default class Demo extends React.PureComponent {
           <Grid item xs={12} sm={6} md={4}>
           <Chart
             data={chartData}
+            height={300}
           >
             <ValueScale name="heart_rate" />
 
             <ArgumentAxis />
             <ValueAxis scaleName="heart_rate" position="right" showGrid={false} showLine showTicks />
-
-            <SplineSeries
+            <SplineSeries    
               name="심박수"
               valueField="heart_rate"
               argumentField="time"
@@ -187,21 +199,28 @@ export default class Demo extends React.PureComponent {
           <Grid item xs={12} sm={6} md={4}>
           <Chart
             data={chartData}
+            height={300}
           >
             <ValueScale name="step_count" />
 
             <ArgumentAxis />
             <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
-
+            
             <SplineSeries
+              width={50}
               name="활동량"
               valueField="step_count"
               argumentField="time"
               scaleName="step_count"
             />
+           
             <Animation />
             {  !hideLegend &&
-              <Legend />
+              <Legend 
+                style={{
+                  writingMode:'vertical-rl'
+                }}
+              />
             }
           </Chart>
           </Grid>
