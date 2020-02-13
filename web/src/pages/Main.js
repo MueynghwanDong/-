@@ -1,58 +1,60 @@
-import React from 'react';
-import StarIcon from '@material-ui/icons/StarBorder';
+import React, {useState} from 'react';
+import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
-import { AppBar, Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Toolbar, Typography,  Container, makeStyles,
-  CardActionArea, CardMedia}
-
-from '@material-ui/core'
-import { red, blue } from '@material-ui/core/colors'
+import { AppBar, CssBaseline,  Toolbar, Typography,  Container, makeStyles,} from '@material-ui/core'
+import { red, } from '@material-ui/core/colors'
 // import { withTheme } from 'styled-components';
 import class_video from './BackgroundVideo.module.css';
 import Footer from '../components/common/Footer';
 import MainCard from '../components/common/Card/main_card'
 import Card_rightimage from '../components/common/Card/card_rightimage';
-import { Opacity } from '@material-ui/icons';
+import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 
 
+
 const BackgroundVideo=()=>{
+
   const videoSource="/Cows.mp4";
+
   return(
     <div className={class_video.Container}
-      width='80%'  
+      height='100%'  
     >
+
       <video autoPlay="autoplay" loop="loop" muted className={class_video.Video} >
+     
+
         <source src={videoSource} type="video/mp4" />
         Your browser does not support the video tag.
+
      </video>
+
      <div className = {class_video.Content}
         style = {{
-          top: '300px;',
-          right: '10px;',
           color: '#f1f1f1',
           // width: '150px',
           // height: '300px',
           display: 'flex',
           backgroundColor: 'rgba(0, 0, 0, 0)',
-          justifycontent: 'right',
+          // justifycontent: 'right',
           alignitems:' center',
           padding: 0,
         }}
      >
-       <div style ={{
-          position :'absolute', 
-          right: '0', 
-          bottom: '20px', 
-          fontSize: '30px',
-        }}
-       >
+     
+     <p style = {{
+          position :'absolute',
+          fontSize: '2vw',
+          right:10
+       }}>
          더 현명하고, 똑똑한 방법으로 축사를 운영합니다.
-       </div>
-       
+       </p>
+    
 
      </div>
-     
+
     </div>
   )
 }
@@ -125,53 +127,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const tiers = [
-  {
-    title: '개체관리',
-    price: '0',
-    description: [ 
-      '개체 별 상태 확인을 통한 체계적 관리', 
-      '발정확인을 통한 번식 증대를 통해 더 높은 이윤', 
-      '지정한 시간마다 데이터를 수집합니다.', 
-    ],
-    // buttonText: 'Sign up for free',
-    // buttonVariant: 'outlined',
-  },
-  {
-    title: '축사관리',
-    // subheader: 'Most popular',
-    price: '15',
-    description: [
-      '가축에게 최적의 환경을 제공합니다.',
-      '메탄 감지를 통해 화제를 예방합니다.',
-      'CO2 감지를 통해 쾌적한 축사 환경을 유지',
-      
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: '원격관리',
-    price: '30',
-    description: [
-      '당신의 시간을 아껴 드립니다.',
-      'CCTV를 통해 언제 어디서든 가축을 볼 수 있습니다.',
-      '24시간 서버관리를 통해 사고 발생 시 도움을 드립니다.'
-      
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-  },
-];
-
-
 
 
 // export default function Pricing() {
 
 const Main = () => {
   const classes = useStyles();
-
+  const [startDate, setStartDate] = useState(new Date());
   const { user } = useSelector(({ user }) => ({ user: user.user }));
 
   return (
@@ -184,7 +146,7 @@ const Main = () => {
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Link to='/mypage'> 
-            <img src='/images/mark_image.jpg' width='60' hegiht='60'/>
+            <img src='/images/mark_image.jpg' alt='' width='60' hegiht='60'/>
           </Link>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to='mypage'>
             (우리회사)
@@ -202,26 +164,29 @@ const Main = () => {
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom paddingBottom="20px !important">
          (우리회사) 
         </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" component="p" paddingBottom="20px">
+        <Typography variant="h5" align="center" color="textSecondary" component="p" paddingbottom="20px">
           더 편하고 건강하게 축사를 관리하세요
         </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" component="p" paddingBottom="20px">
+        <Typography variant="h5" align="center" color="textSecondary" component="p" paddingbottom="20px">
           더 이상 시간에 구애받지 마세요
         </Typography>
       </Container>
       
-      <Container maxWidth="sm" component="main" className={classes.heroContent} >
+      <Container maxWidth="md" component="main" className={classes.heroContent} >
         <Card_rightimage />
       </Container>
      
       {/* End hero unit */}
       <MainCard />
        {/* Footer */}
-
+      <Container>
+      <DatePicker selected={startDate} onChange={date => setStartDate(date)} /> 
+      </Container>
       <Container maxWidth="md" component="footer" className={classes.footer}>
-        
+      
         <Footer/>
       </Container>
+     
       {/* End footer */}
     </React.Fragment>
     </>

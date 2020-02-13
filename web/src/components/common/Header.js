@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx'
 import { AppBar, Button, Toolbar, Typography, Drawer,  List, Divider, IconButton, ListItem, ListItemIcon, ListItemText, makeStyles, useTheme, } from '@material-ui/core'
 // import Responsive from './Responsive';
-import { ScheduleSharp, Mail, Inbox, ChevronRight, ChevronLeft, Menu, Pets, HelpOutline, Assignment } from '@material-ui/icons'
-import { blue } from '@material-ui/core/colors'
+import { ScheduleSharp,  ChevronRight, ChevronLeft, Menu, Pets, HelpOutline, Assignment } from '@material-ui/icons'
+// import { blue } from '@material-ui/core/color'
 // import { MenuIcon, ChevronLeftIcon, ChevronRightIcon, InboxIcon, MailIcon } from '@material-ui/icons'
 import { Link } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         transition: theme.transitions.create(['margin', 'width'], {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
-          backgroundColor: 'rgb(0, 0,0,  0.88)'
+          // backgroundColor: 'rgb(0, 0,0,  0.88)'
         }),
       },
       appBarShift: {
@@ -121,7 +121,7 @@ const Header = ({user, onLogin, onLogout}) => {
           { new_url ==="/login" || new_url === "/register" ?
             <></>:        
             <IconButton
-            color="black"
+            // color="black"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -131,7 +131,7 @@ const Header = ({user, onLogin, onLogout}) => {
             </IconButton>
 }   
           <Link to='/mypage'> 
-            <img src='/images/mark_image.jpg' width='60' hegiht='60' />
+            <img src='/images/mark_image.jpg' alt='Nope' width='60' hegiht='60' />
           </Link>
                 <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle} component={Link} to='/mypage'>
                     (우리회사)                   
@@ -147,7 +147,7 @@ const Header = ({user, onLogin, onLogout}) => {
                             hmmm2
                         </Link> */}
                     {/* </nav>  */}
-                <Button onClick={onLogout} color="white" variant="outlined" className={classes.link}>
+                <Button onClick={onLogout}  variant="outlined" className={classes.link}>
                     LogOut
                 </Button>
                 {/* Login Logout은 조건에 따라 하나만 뜨도록 */}

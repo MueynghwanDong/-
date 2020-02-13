@@ -68,12 +68,17 @@ const useStyles = makeStyles(theme => ({
     },
     contentBody: {
         [theme.breakpoints.down('md')]: {
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexGrow: 1,
+            display: 'flex',    
+            alignItems: 'center',
+            width:'50%',
+
           },
         flexGrow: 1,
         display: 'flex',    
         alignItems: 'center',
-        width:'500px'
+        width:'50%'
         
     },
     footer: {
@@ -106,9 +111,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.m_id}
                         />
-                        <VpnKey
-                            // style= {{color:green[500]}}
-                        />
+                        <VpnKey/>
                         <StyledInput 
                             autoComplete="new-password" 
                             name="pw" 
@@ -118,8 +121,10 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             value={form.pw}
                         />
                         
-           
+                        
                         {type === 'register' && (
+                        <div>
+                            <VpnKey/>
                           <StyledInput
                             autoComplete="new-password"
                             name="pwConfirm"
@@ -128,6 +133,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             onChange={onChange}
                             value={form.pwConfirm}
                           />
+                          </div>
                         )}
                         
                         {type === 'register' && (
