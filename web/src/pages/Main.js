@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import DatePicker from 'react-datepicker';
+
 import { Link } from 'react-router-dom';
 import { AppBar, CssBaseline,  Toolbar, Typography,  Container, makeStyles,} from '@material-ui/core'
 import { red, } from '@material-ui/core/colors'
@@ -8,7 +8,7 @@ import class_video from './BackgroundVideo.module.css';
 import Footer from '../components/common/Footer';
 import MainCard from '../components/common/Card/main_card'
 import Card_rightimage from '../components/common/Card/card_rightimage';
-import "react-datepicker/dist/react-datepicker.css";
+
 import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 
@@ -133,7 +133,6 @@ const useStyles = makeStyles(theme => ({
 
 const Main = () => {
   const classes = useStyles();
-  const [startDate, setStartDate] = useState(new Date());
   const { user } = useSelector(({ user }) => ({ user: user.user }));
 
   return (
@@ -180,7 +179,7 @@ const Main = () => {
       <MainCard />
        {/* Footer */}
       <Container>
-      <DatePicker selected={startDate} onChange={date => setStartDate(date)} /> 
+ 
       </Container>
       <Container maxWidth="md" component="footer" className={classes.footer}>
       
