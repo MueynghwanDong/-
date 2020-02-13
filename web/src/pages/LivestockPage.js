@@ -1,20 +1,19 @@
 import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
-import QuestionListContainer from '../containers/questions/QuestionListContainer';
+import Livestock from '../components/livestock/Livestock';
 import Footer from '../components/common/Footer';
 import { Helmet } from 'react-helmet-async';
 
-const QuestionListPage = () => {
-  return (
-    <>
+const LivestockPage = () =>{
+    return (
+      <>
       <Helmet>
-        <title>FAQ - (우리회사)</title>
+        <title>내 가축 - (우리회사)</title>
       </Helmet>
       <HeaderContainer />
-      <QuestionListContainer />
+      <Livestock />
       <Footer />
-    </>
-  );
+      </>
+    );
 };
-
-export default QuestionListPage;
+export default LivestockPage;

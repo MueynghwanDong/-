@@ -7,9 +7,11 @@ import PostPage from './pages/PostPage';
 import RegisterPage from './pages/RegisterPage';
 import Main from './pages/Main';
 import QuestionListPage from './pages/QuestionListPage';
-import { Helmet } from 'react-helmet-async';
 import MyPage from './pages/MyPage';
+import LivestockPage from './pages/LivestockPage';
+import BarnPage from './pages/BarnPage';
 
+import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
 const App = () => {
@@ -20,7 +22,7 @@ const App = () => {
     return (
       <>
       <Helmet>
-        <title>REACTERS</title>
+        <title>(우리회사)</title>
       </Helmet>
       <Switch>
         <Route component={Main} path={"/"} exact />
@@ -30,7 +32,9 @@ const App = () => {
         <Route component={PostPage} path={"/posts/:bno"} />
         <Route component={PostListPage} path={'/posts'} />
         <Route component={QuestionListPage} path={"/faq"} />
-        <Route component={MyPage} path={"/mypage"} />
+        <Route component={LivestockPage} path={"/mypage/livestock/:ls_id"} />
+        <Route component={BarnPage} path={"/mypage/barn/:b_id"} />
+        <Route component={MyPage} path={"/mypage"} exact />
         <Route component={Main} />
       </Switch>
       </>
@@ -39,7 +43,7 @@ const App = () => {
     return (
       <>
       <Helmet>
-        <title>REACTERS</title>
+        <title>(우리회사)</title>
       </Helmet>
       <Switch>
         <Route component={LoginPage} path={"/login"} />

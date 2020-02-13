@@ -10,6 +10,7 @@ import MainCard from '../components/common/Card/main_card'
 import Card_rightimage from '../components/common/Card/card_rightimage';
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -136,6 +137,10 @@ const Main = () => {
   const { user } = useSelector(({ user }) => ({ user: user.user }));
 
   return (
+    <>
+    <Helmet>
+      <title>(우리회사)</title>
+    </Helmet>
     <React.Fragment>
       <CssBaseline />
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
@@ -143,9 +148,8 @@ const Main = () => {
           <Link to='/mypage'> 
             <img src='/images/mark_image.jpg' alt='' width='60' hegiht='60'/>
           </Link>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to='mypage' fontSize="3em" >
-            가축관리시스템
-            
+          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to='mypage'>
+            (우리회사)
           </Typography>
         
           {/* <Button  color="primary" variant="outlined" className={classes.link}> */}
@@ -156,9 +160,9 @@ const Main = () => {
       </AppBar>
       {/* Hero unit */}
       <BackgroundVideo/>
-      <Container maxWidth="sm" component="main" className={classes.heroContent} paddingbottom="20px">
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" paddingbottom="20px !important">
-         가축관리시스템 
+      <Container maxWidth="sm" component="main" className={classes.heroContent} paddingBottom="20px">
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom paddingBottom="20px !important">
+         (우리회사) 
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p" paddingbottom="20px">
           더 편하고 건강하게 축사를 관리하세요
@@ -185,6 +189,7 @@ const Main = () => {
      
       {/* End footer */}
     </React.Fragment>
+    </>
   );
 }
 
