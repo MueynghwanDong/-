@@ -4,10 +4,12 @@
 <mapper namespace="livestock">
 	<select id="selectlivestock">
 		SELECT
-		*
+		*, substring(time,12,5) as t
 		FROM
 		ptj_sub1.livestock
-		WHERE ls_id = #{ls_id}
+		WHERE ls_id = #{ls_id} and year(time) =#{year} 
+		and month(time) =#{month} and day(time) =#{day}
+		order by time;
 	</select>
 
 	<select id="selectlivestock2">
@@ -16,14 +18,16 @@
 		FROM
 		ptj_sub1.livestock
 		WHERE m_id = #{m_id}
+		order by ls_id
 	</select>
 
 	<select id="selectlivestock3">
 		SELECT
-		*
+		ls_id
 		FROM
 		ptj_sub1.livestock
 		WHERE b_id = #{b_id}
+		order by ls_id
 	</select>
     <select id="alllivestock">
 		SELECT

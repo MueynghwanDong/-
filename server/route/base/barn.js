@@ -27,8 +27,32 @@ app.get("/", async function(req, res) {
 });
 
 app.get("/:b_id", async function(req, res) {
+
+  var today;
+  var year;
+  var month;
+  var day;
+
+  var ls_date = req.query.ls_date;
+  if(ls_date===null || ls_date==="" || !ls_date){
+     today = new Date();
+     day = today.getDate();
+     month = today.getMonth()+1; 
+     year = today.getFullYear();
+  }
+else{
+ var arr = ls_date.split('-');
+  year = arr[0];
+  month = arr[1];
+  day = arr[2];
+} 
+
+
   var selectParms = {
-    b_id : req.params.b_id
+    b_id : req.params.b_id,
+    year : year,
+    month : month,
+    day : day
   };
   let data = [];
   try {
@@ -55,7 +79,8 @@ app.get("/:b_id", async function(req, res) {
   res.json(data);
 });
 
-app.get("member/:m_id", async function(req, res) {
+app.get("/member/:m_id", async function(req, res) {
+
   var selectParms = {
     m_id : req.params.m_id
   };
@@ -75,12 +100,12 @@ app.get("member/:m_id", async function(req, res) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
+  console.log(data);
 
   if (data.length == 0) {
     res.json(data);
     return;
   }
-
   res.json(data);
 });
 

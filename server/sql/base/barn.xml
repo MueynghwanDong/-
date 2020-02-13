@@ -4,17 +4,20 @@
 <mapper namespace="BARN">
 	<select id="selectbarn">
 		SELECT
-		*
+		*, substring(time,12,5) as t
 		FROM
 		ptj_sub1.barns
-		WHERE b_id = #{b_id}
+		WHERE b_id = #{b_id} and year(time) =#{year} 
+		and month(time) =#{month} and day(time) =#{day}
+		order by time;
 	</select>
 	<select id="selectmember">
 		SELECT
-		*
+		b_id
 		FROM
 		ptj_sub1.barns
 		WHERE m_id = #{m_id}
+		order by b_id
 	</select>
     <select id="allbarn">
 		SELECT

@@ -40,7 +40,6 @@ const noOption = {
 
 
 app.get("/", async function(req, res) {
-
   var p = (req.query.page);
   var searchType = (req.query.searchType);
   var searchKeyword = (req.query.searchKeyword);

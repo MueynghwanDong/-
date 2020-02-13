@@ -2,7 +2,7 @@ var express = require("express");
 var app = express.Router();
 
 app.get("/", async function(req, res) {
-
+  
   var selectQuery = req.mybatisMapper.getStatement(
     "livestock",
     "alllivestock",
@@ -28,8 +28,29 @@ app.get("/", async function(req, res) {
 });
 
 app.get("/:ls_id", async function(req, res) {
+  var today;
+  var year;
+  var month;
+  var day;
+
+  var ls_date = req.query.ls_date;
+  if(ls_date===null || ls_date==="" || !ls_date){
+     today = new Date();
+     day = today.getDate();
+     month = today.getMonth()+1; 
+     year = today.getFullYear();
+  }
+else{
+ var arr = ls_date.split('-');
+  year = arr[0];
+  month = arr[1];
+  day = arr[2];
+} 
   var selectParms = {
-    ls_id : req.params.ls_id
+    ls_id : req.params.ls_id,
+    year : year,
+    month : month,
+    day : day
   };
   let data = [];
   try {
@@ -47,12 +68,15 @@ app.get("/:ls_id", async function(req, res) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-
+  //  console.log(data[0].kinds);
   if (data.length == 0) {
+    res.set('livestock-kinds',"null");
     res.json(data);
     return;
   }
+  var k = data[0].kinds;
 
+  res.set('livestock-kinds',k);
   res.json(data);
 });
 
@@ -105,7 +129,7 @@ app.get("/barn/:b_id", async function(req, res) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-
+  console.log(data);
   if (data.length == 0) {
     res.json(data);
     return;
