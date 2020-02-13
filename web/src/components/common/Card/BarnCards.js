@@ -47,8 +47,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const BarnItem = () => {
+const BarnItem = ({ barn, getLivestockIds }) => {
   const classes = useStyles();
+  const livestockIds = getLivestockIds(barn['b_id']);
+  console.log(livestockIds)
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -96,61 +98,34 @@ const BarnItem = () => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Link to="/mypage/livestock/1">
+          {livestockIds.map(livestock => (
+          <Link to={`/mypage/livestock/${livestock['l_id']}`}>
             <Typography paragraph>
-              가축1
+              {`가축 ${livestockIds.indexof(livestock) + 1}`}
             </Typography>
           </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography paragraph>
-            가축2
-          </Typography>
-          </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography paragraph>
-            가축3
-          </Typography>
-          </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography paragraph>
-            가축4
-          </Typography>
-          </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography>
-            가축5
-          </Typography>
-          </Link>
+          ))}
         </CardContent>
       </Collapse>
     </Card>
   )
 }
 
-const BarnCards = () => {
+const BarnCards = ({ m_id, getLivestockIds, getBarnIds }) => {
   const classes = useStyles();
+  const barnIds = getBarnIds(m_id);
+  console.log(barnIds)
 
   return (
     <Container maxWidth="md" component="main" className={classes.root}>
       <Grid container spacing={10} alignItems="flex-start">
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
+        {
+          barnIds.map(barn => (
+            <Grid item  xs={12} sm={6} md={4}>
+              <BarnItem barn={barn} getLivestockIds={getLivestockIds} />
+            </Grid>
+          ))
+        }
       </Grid>
     </Container>
   );

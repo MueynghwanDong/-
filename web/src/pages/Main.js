@@ -9,7 +9,6 @@ import Footer from '../components/common/Footer';
 import MainCard from '../components/common/Card/main_card'
 import Card_rightimage from '../components/common/Card/card_rightimage';
 import "react-datepicker/dist/react-datepicker.css";
-import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 
 
@@ -133,8 +132,6 @@ const useStyles = makeStyles(theme => ({
 
 const Main = () => {
   const classes = useStyles();
-  const [startDate, setStartDate] = useState(new Date());
-  const { user } = useSelector(({ user }) => ({ user: user.user }));
 
   return (
     <>
@@ -179,9 +176,6 @@ const Main = () => {
       {/* End hero unit */}
       <MainCard />
        {/* Footer */}
-      <Container>
-      <DatePicker selected={startDate} onChange={date => setStartDate(date)} /> 
-      </Container>
       <Container maxWidth="md" component="footer" className={classes.footer}>
       
         <Footer/>

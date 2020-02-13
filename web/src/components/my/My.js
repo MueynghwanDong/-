@@ -14,13 +14,17 @@ const MyBlock = styled(Responsive)`
   }
 `;
 
-const My = () => {
+const My = ({ m_id, getLivestockIds, getBarnIds}) => {
   // 에러 발생 시
 
   return (
     <MyBlock>
       <h1>내 축사</h1>
-      <BarnCards />
+      <BarnCards
+        m_id={m_id}
+        getLivestockIds={getLivestockIds}
+        getBarnIds={getBarnIds}
+      />
     </MyBlock>
   );
 };
