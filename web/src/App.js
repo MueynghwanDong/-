@@ -22,7 +22,7 @@ const App = () => {
     return (
       <>
       <Helmet>
-        <title>(우리회사)</title>
+        <title>소소하다</title>
       </Helmet>
       <Switch>
         <Route component={Main} path={"/"} exact />
@@ -43,7 +43,7 @@ const App = () => {
     return (
       <>
       <Helmet>
-        <title>(우리회사)</title>
+        <title>소소하다</title>
       </Helmet>
       <Switch>
         <Route component={LoginPage} path={"/login"} />

@@ -15,17 +15,19 @@ const BarnBlock = styled(Responsive)`
   }
 `;
 
-const My = () => {
-  // 에러 발생 시
-
+const Barn = ({ barnData, b_date, onChangeDate, barnCount }) => {
   return (
     <BarnBlock>
       <h1>내 축사</h1>
-      <h4>가축 수 ex) 4마리</h4>
       <Link to="/mypage">홈</Link>
-      <BarnChart myProps={'myProps'} />
+      <h4>{barnCount}</h4>
+      <BarnChart
+        barnData={barnData}
+        b_date={b_date}
+        onChangeDate={onChangeDate}
+      />
     </BarnBlock>
   );
 };
 
-export default My;
+export default Barn;

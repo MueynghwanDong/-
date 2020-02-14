@@ -15,7 +15,7 @@ const PostPage = () => {
   return (
     <>
       <Helmet>
-        {/* <title>{post.title} - (우리회사)</title> */}
+        {/* <title>{post.title} - 소소하다</title> */}
       </Helmet>
       <HeaderContainer />
       <PostViewerContainer />

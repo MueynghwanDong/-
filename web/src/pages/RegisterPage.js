@@ -7,7 +7,7 @@ const RegisterPage = () =>{
     return (
         <>
         <Helmet>
-          <title>회원가입 - (우리회사)</title>
+          <title>회원가입 - 소소하다</title>
         </Helmet>
         <AuthTemplate>
             <RegisterForm />
