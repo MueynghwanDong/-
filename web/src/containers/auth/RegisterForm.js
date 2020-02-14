@@ -26,7 +26,7 @@ const RegisterForm = ({ history }) => {
       })
     )
   };
-
+  
   // 폼 등록 이벤트 핸들러
   const onSubmit = e => {
     e.preventDefault();
@@ -34,12 +34,12 @@ const RegisterForm = ({ history }) => {
     if ([m_id, pw, pwConfirm, name, email, location].includes('')) {
       setError('빈 칸을 모두 입력하세요')
     }
-    if (pw !== pwConfirm) {
-      setError('비밀번호가 일치하지 않습니다.')
-      changeField({ form: 'register', key: 'pw', value: '' });
-      changeField({ form: 'register', key: 'pwConfirm', value: ''});
-      return;
-    }
+    // if (pw !== pwConfirm) {
+    //   setError('비밀번호가 일치하지 않습니다.')
+    //   changeField({ form: 'register', key: 'pw', value: '' });
+    //   changeField({ form: 'register', key: 'pwConfirm', value: ''});
+    //   return;
+    // }
     dispatch(register({ m_id, pw, name, email, location }));
   };
   
