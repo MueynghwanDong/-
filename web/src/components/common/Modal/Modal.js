@@ -30,7 +30,7 @@ const Modal = ({ isOpen, close }) => {
               }}
               />    
               </div> 
-              <h3 align='center' style={{color:'white'}} >오병관</h3>
+              <h3 align='center' style={{color:'black'}} >오병관</h3>
               <Typography> 좌우명 </Typography>
               <Typography> 담당? </Typography>
               <Typography>  <ContactMail /> : qverck@gmail.com</Typography>
@@ -54,7 +54,7 @@ const Modal = ({ isOpen, close }) => {
               }}
               />    
             </div>  
-            <h3 align='center' style={{color:'white'}}>박민기</h3>
+            <h3 align='center' style={{color:'black'}}>박민기</h3>
               <Typography> 좌우명 </Typography>
               <Typography> 담당? </Typography>
               <Typography>  <ContactMail /> : minkishome@gmail.com</Typography>
@@ -78,7 +78,7 @@ const Modal = ({ isOpen, close }) => {
               }}
               />
               </div> 
-              <h3 align='center' style={{color:'white'}}>명환</h3>
+              <h3 align='center' style={{color:'black'}}>명환</h3>
               <Typography> 좌우명 </Typography>
               <Typography> 담당? </Typography>
               <Typography>  <ContactMail /> : v8392070@gmail.com</Typography>
@@ -101,7 +101,7 @@ const Modal = ({ isOpen, close }) => {
               }}
               />    
               </div> 
-              <h3 align='center' style={{color:'white'}}>재웅</h3>
+              <h3 align='center' style={{color:'black'}}>재웅</h3>
               <Typography> 좌우명 </Typography>
               <Typography> 담당? </Typography>
               <Typography>  <ContactMail /> : koolerjaebee@gmail.com</Typography>

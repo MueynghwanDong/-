@@ -98,10 +98,8 @@ const useStyles = makeStyles(theme => ({
 
 const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
     const classes = useStyles();
-    const text = textmap[type];
-    const { handleSubmit, register, errors } = useForm();
-    onSubmit = values => {
-        console.log(values)
+
+
     }
     return (
             <div className={classes.contentBody}>
@@ -169,13 +167,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             type="email"
                             onChange={onChange}
                             value={form.email}
-                            ref={register({
-                                required: 'Required',
-                                pattern: {
-                                    value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                    message: "invalid email address"
-                                }
-                            })}
+                            }
 
                             />
                             {errors.email && errors.email.message}
