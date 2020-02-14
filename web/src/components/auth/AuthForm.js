@@ -7,8 +7,6 @@ import { makeStyles, Typography } from '@material-ui/core';
 import {blue, green} from '@material-ui/core/colors'
 import { AccountCircle, VpnKey, Email, Explore, EmojiPeople, EmojiPeopleTwoTone,} from "@material-ui/icons"
 import Icon from '@material-ui/core/Icon'
-import { useForm } from "react-hook-form"
-
 // 스타일링 된 input
 const StyledInput = styled.input`
     background-color: ${palette.gray[1]};
@@ -94,15 +92,9 @@ const useStyles = makeStyles(theme => ({
     
  }))
 
-
-
 const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
     const classes = useStyles();
     const text = textmap[type];
-    const { handleSubmit, register, errors } = useForm();
-    onSubmit = values => {
-        console.log(values)
-    }
     return (
             <div className={classes.contentBody}>
                 <form 
@@ -113,14 +105,12 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
 
                         <AccountCircle/>
                         <StyledInput 
-                            autoComplete="username"
+                            autoComplete="username" 
                             name="m_id" 
                             placeholder="아이디"
                             onChange={onChange}
                             value={form.m_id}
-
                         />
-                        
                         <VpnKey/>
                         <StyledInput 
                             autoComplete="new-password" 
@@ -131,7 +121,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             value={form.pw}
                         />
                         
-
+                        
                         {type === 'register' && (
                         <div>
                             <VpnKey/>
@@ -154,8 +144,8 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             name="name"
                             placeholder="이름"
                             onChange={onChange}
-                            value={form.name} 
-                          /> 
+                            value={form.name}
+                          />
                         </div>
                         )}
                         
@@ -169,16 +159,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             type="email"
                             onChange={onChange}
                             value={form.email}
-                            ref={register({
-                                required: 'Required',
-                                pattern: {
-                                    value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                    message: "invalid email address"
-                                }
-                            })}
-
-                            />
-                            {errors.email && errors.email.message}
+                          />
                           </div>
                         )}
                         
@@ -201,7 +182,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                         cyan 
                         fullWidth
                         // width = '100%' 
-                        style={{marginTop: '1rem',}}>
+                        style={{marginTop: '1rem'}}>
                             {text}
                         </ButtonWithMarginTop>
                         <Footer>
