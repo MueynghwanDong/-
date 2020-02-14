@@ -147,8 +147,8 @@ const Main = () => {
           <Link to='/mypage'> 
             <img src='/images/mark_image.jpg' alt='' width='60' hegiht='60'/>
           </Link>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to='mypage'>
-            (우리회사)
+          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to='mypage' style={{color:'green'}}>
+            {/* LMS */}
           </Typography>
         
           {/* <Button  color="primary" variant="outlined" className={classes.link}> */}
@@ -171,6 +171,8 @@ const Main = () => {
         </Typography>
       </Container>
       
+
+
       <Container maxWidth="md" component="main" className={classes.heroContent} >
         <Card_rightimage />
       </Container>
@@ -178,9 +180,7 @@ const Main = () => {
       {/* End hero unit */}
       <MainCard />
        {/* Footer */}
-      <Container>
- 
-      </Container>
+    
       <Container maxWidth="md" component="footer" className={classes.footer}>
       
         <Footer/>

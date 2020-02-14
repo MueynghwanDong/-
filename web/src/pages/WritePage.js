@@ -15,7 +15,7 @@ const WritePage = () =>{
       <HeaderContainer />
       <EditorContainer />
       <WriteActionButtonsContainer />
-      <Footer />
+      {/* <Footer /> */}
     </Responsive>
   );
 };

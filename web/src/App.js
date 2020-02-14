@@ -15,10 +15,10 @@ import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
 const App = () => {
-  const { user } = useSelector(({ user }) => ({
-    user: user.user,
-  }));
-  if (user) {
+  // const { user } = useSelector(({ user }) => ({
+  //   user: user.user,
+  // }));
+  // if (user) {
     return (
       <>
       <Helmet>
@@ -38,21 +38,21 @@ const App = () => {
         <Route component={Main} />
       </Switch>
       </>
-    );
-  } else {
-    return (
-      <>
-      <Helmet>
-        <title>(우리회사)</title>
-      </Helmet>
-      <Switch>
-        <Route component={LoginPage} path={"/login"} />
-        <Route component={RegisterPage} path={'/register'} />
-        <Route component={Main} />
-      </Switch>
-      </>
+  //   );
+  // } else {
+  //   return (
+  //     <>
+  //     <Helmet>
+  //       <title>(우리회사)</title>
+  //     </Helmet>
+  //     <Switch>
+  //       <Route component={LoginPage} path={"/login"} />
+  //       <Route component={RegisterPage} path={'/register'} />
+  //       <Route component={Main} />
+  //     </Switch>
+  //     </>
     );    
   }
-}
+// }
 
 export default App;

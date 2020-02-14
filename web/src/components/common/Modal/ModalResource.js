@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modal.scss';
-import {Grid} from '@material-ui/core';
+import {Grid, Container} from '@material-ui/core';
 
 
 
@@ -13,78 +13,58 @@ const ModalResource = ({ isOpen, close }) => {
         <div className="Modal-overlay" onClick={close} />
         <div className="Modal_resource">
           {/* <div className="content"> */}
-          <Grid style={{
-              float: 'left',
-              height: '50%',
-              width: '50%',
-            }}>
-              <img src='/images/react_logo.png'
-              alt = ''
-              style = {{
-                width: '100%',
-                height: '100%',
-                display: 'block'
-              }}
-              />
-            </Grid>
-            <div style={{
-              float: 'left',
-              height: '50%',
-              width: '50%',
-            }}>
-              <img src='/images/raspberry-pi-logo.png'
-              alt = ''
-              style = {{
-                width: '100%',
-                height: '100%',
-                display: 'block'
-              }}
-              />
-            </div>
-            <Grid style={{
-              float: 'left',
-              height: '50%',
-              width: '50%',
-            }}>
-              <img src='/images/arduino_logo.png'
-              alt = ''
-              style = {{
-                width: '100%',
-                height: '100%',
-                display: 'block'
-              }}
-              />
-            </Grid>
-            <div style={{
-              float: 'left',
-              height: '50%',
-              width: '50%',
-            }}>
-              <img src='/images/nodejs_logo.png'
-              alt = ''
-              style = {{
-                width: '100%',
-                height: '100%',
-                display: 'block'
-              }}
-              />
-            </div>
-              <Grid
+          <Grid style = {{ height: '30%', width:'100%', alignItems:'center'}}>
+            <img 
+              src='/images/logos/logo.png' alt=''
               style={{
-                height:'30%',
-                width:'100%',
+                width: '20%',
+                hight: 'auto',
+                display:'block',
+                position:'absolute',
+                marginLeft:'40%',
+                marginTop:'%'
+                // margin: 'auto'
               }}
-              >
-                <img src='/images/red_bull.jpg'
-              alt = ''
-              style = {{
-                width: '100%',
-                height: '100%',
-                display: 'block'
-              }}
-              />
+            />
+          </Grid>
+          <Container style={{ backgroundColor:'rgba(2, 1, 17, 0.733)', textAlign:'center'}}>
+            <Grid style = {{ display: 'inline-block', height: '70%', width:'70%',  paddingTop:'10px', paddingBottom:'30px' }}>
+              <Grid container style={{ height:'33%', width:'100%', flexDirection:'row',  }}>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center'}}>
+                  <img className="image_center" src='/images/logos/js.jpg' alt='logo' />
+                </Grid>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/node_js.jpg' alt='logo' />
+                </Grid>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/Raspbian.png' alt='logo' />
+                </Grid>
               </Grid>
-          </div>
+              <Grid container style={{ height:'33%', width:'100%', flexDirection:'row',   }}>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/css_html.png' alt='logo' />
+                </Grid>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/mysql.png' alt='logo' />
+                </Grid>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/react_logo.png' alt='logo' />
+                </Grid>
+              </Grid>
+              <Grid container style={{ height:'33%', width:'100%', flexDirection:'row' }}>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/arduino_logo.png' alt='logo' />
+                </Grid>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/redbull.png' alt='logo' />
+                </Grid>
+                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                  <img className="image_center" src='/images/logos/wemake.png' alt='logo' />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Container>
+        </div>
          
         {/* </div> */}
       </React.Fragment>

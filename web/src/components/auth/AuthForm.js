@@ -98,9 +98,11 @@ const useStyles = makeStyles(theme => ({
 
 const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
     const classes = useStyles();
+    const text = textmap[type];
 
 
-    }
+
+    
     return (
             <div className={classes.contentBody}>
                 <form 
@@ -165,12 +167,11 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             name="email"
                             placeholder="이메일"
                             type="email"
-                            onChange={onChange}
+                            // onChange={onChange}
+                            onChagne= {onChange}
                             value={form.email}
-                            }
-
                             />
-                            {errors.email && errors.email.message}
+
                           </div>
                         )}
                         
@@ -215,6 +216,6 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                       
             </div>
     );
-};
+                            };
 
 export default AuthForm;

@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
 import { makeStyles } from '@material-ui/core';
-import {Link, Grid, Typography, Box, Container, Button} from '@material-ui/core';
-import Modal from './Modal/Modal'
+import {Link, Grid, Typography,  Container,  } from '@material-ui/core';
+import Modal from './Modal/Modal';
 import ModalResource from './Modal/ModalResource';
+import Termsofuse from './Modal/Termsofuse';
 
 
 
@@ -16,7 +17,13 @@ function Copyright() {
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
+        <br/>
+        PHONE 
+        <a href='tel:010-2856-1214'>
+        : 010 - 2856 - 1214
+        </a>
       </Typography>
+        
     );
   }
 
@@ -53,7 +60,8 @@ const footers = [
         super(props);
         this.state = {
           isModalOpen: false,
-          isModalsOpen: false, 
+          isModalsOpen: false,
+          isModalOpenss:false,
         }
       }
       
@@ -70,6 +78,13 @@ const footers = [
       
       closeModals = () => {
         this.setState({ isModalOpens: false }); 
+      }
+      openModalterms = () => {
+        this.setState({ isModalOpenss: true });
+      }
+      
+      closeModalterms = () => {
+        this.setState({ isModalOpenss: false }); 
       }
      
     render ()
@@ -92,7 +107,7 @@ const footers = [
                   </Typography>
                 </Grid>
                 <Grid item xs={3} sm={3}>
-                  <Typography variant="h6" color="textPrimary" gutterBottom>
+                  <Typography variant="h6" color="textPrimary" gutterBottom onClick={this.openModalterms}>
                       Terms of Use
                   </Typography>
                 </Grid>
@@ -105,7 +120,7 @@ const footers = [
       </Container>
       <Modal isOpen={this.state.isModalOpens} close={this.closeModals}/>
       <ModalResource isOpen={this.state.isModalOpen} close={this.closeModal}/>
-
+      <Termsofuse isOpen={this.state.isModalOpenss} close={this.closeModalterms} />
       </React.Fragment>
     )
               }
