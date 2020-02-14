@@ -9,7 +9,10 @@ import posts, { postsSaga } from './posts';
 import questions, { questionsSaga } from './questions';
 import replys, { replysSaga } from './replys';
 import writeR, { writeRSaga } from './writeR';
+import barn, { barnSaga } from './barn'
+import barns, { barnsSaga } from './barns';
 import livestock, { livestockSaga } from './livestock'
+import livestocks, { livestocksSaga } from './livestocks';
 
 const rootReducer = combineReducers({
     auth,
@@ -21,7 +24,10 @@ const rootReducer = combineReducers({
     questions,
     replys,
     writeR,
-    livestock
+    barn,
+    barns,
+    livestock,
+    livestocks,
 });
 
 export function* rootSaga() {
@@ -34,7 +40,10 @@ export function* rootSaga() {
         questionsSaga(),
         replysSaga(),
         writeRSaga(),
+        barnSaga(),
+        barnsSaga(),
         livestockSaga(),
+        livestocksSaga(),
     ]);
 }
 

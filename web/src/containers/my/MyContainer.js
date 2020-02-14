@@ -1,33 +1,28 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { listLivestockId } from '../../../lib/api/livestock';
-import { listBarnId } from '../../../lib/api/barn';
+import { useDispatch, useSelector } from 'react-redux';
+import { listBarns } from '../../modules/barns';
 import My from '../../components/my/My';
 
 const MyContainer = () => {
-  const { user } = useSelector(({ user }) => ({ user: user.user }));
+  const dispatch = useDispatch()
+  const { barns, error, loading, user } = useSelector(
+    ({ barns, loading, user }) => ({
+      barns: barns.barns,
+      error: barns.error,
+      loading: loading['barns/LIST_BARNS'],
+      user: user.user,
+    }),
+  );
 
-  const getLivestockIds = async b_id => {
-    try {
-      return await listLivestockId(b_id);
-    } catch (e) {
-      console.log(e)
-    }
-  };
-
-  const getBarnIds = async m_id => {
-    try {
-      return await listBarnId(m_id);
-    } catch (e) {
-      console.log(e)
-    }
-  };
+  useEffect(() => {
+    dispatch(listBarns(user))
+  }, [dispatch, user])
 
   return (
-    <My 
-      m_id={user['m_id']}
-      getLivestockIds={getLivestockIds}
-      getBarnIds={getBarnIds}
+    <My
+      loading={loading}
+      error={error}
+      barns={barns}
     />
   );
 };

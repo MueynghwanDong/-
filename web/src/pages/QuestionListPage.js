@@ -8,7 +8,7 @@ const QuestionListPage = () => {
   return (
     <>
       <Helmet>
-        <title>FAQ - (우리회사)</title>
+        <title>FAQ - 소소하다</title>
       </Helmet>
       <HeaderContainer />
       <QuestionListContainer />

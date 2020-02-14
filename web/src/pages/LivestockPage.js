@@ -8,7 +8,7 @@ const LivestockPage = () =>{
     return (
       <>
       <Helmet>
-        <title>내 가축 - (우리회사)</title>
+        <title>내 가축 - 소소하다</title>
       </Helmet>
       <HeaderContainer />
       <LivestockContainer />

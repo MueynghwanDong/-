@@ -11,13 +11,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -47,11 +42,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const BarnItem = ({ barn, getLivestockIds }) => {
+const BarnItem = ({ b_id, loading, error, livestocks }) => {
   const classes = useStyles();
-  const livestockIds = getLivestockIds(barn['b_id']);
-  console.log(livestockIds)
   const [expanded, setExpanded] = React.useState(false);
+  // 에러 발생 시
+  if (error) {
+    console.log(error)
+    return <Card className={classes.card}><CardHeader title="에러가 발생했습니다"/></Card>
+  }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -60,11 +58,11 @@ const BarnItem = ({ barn, getLivestockIds }) => {
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            <Link to="/mypage/barn/1">
-              축
-            </Link>
-          </Avatar>
+          <Link to={`/mypage/barn/${b_id}`}>
+            <Avatar aria-label="recipe" className={classes.avatar}>
+                축
+            </Avatar>
+          </Link>
         }
         action={
           <IconButton aria-label="settings">
@@ -76,7 +74,7 @@ const BarnItem = ({ barn, getLivestockIds }) => {
       />
       <CardMedia
         className={classes.media}
-        image={require('../../../pages/card_image/소간지.jpg')}
+        image={require('../../pages/card_image/소간지.jpg')}
         title="축사 이름"
       />
       <CardContent>
@@ -97,38 +95,20 @@ const BarnItem = ({ barn, getLivestockIds }) => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {livestockIds.map(livestock => (
-          <Link to={`/mypage/livestock/${livestock['l_id']}`}>
-            <Typography paragraph>
-              {`가축 ${livestockIds.indexof(livestock) + 1}`}
-            </Typography>
-          </Link>
-          ))}
-        </CardContent>
+        {!loading && livestocks &&
+          <CardContent>
+            {livestocks.map(livestock => (
+            <Link to={`/mypage/livestock/${livestock['ls_id']}`}>
+              <Typography paragraph>
+                {`가축 ${livestocks.indexOf(livestock) + 1}`}
+              </Typography>
+            </Link>
+            ))}
+          </CardContent>
+        }
       </Collapse>
     </Card>
   )
 }
 
-const BarnCards = ({ m_id, getLivestockIds, getBarnIds }) => {
-  const classes = useStyles();
-  const barnIds = getBarnIds(m_id);
-  console.log(barnIds)
-
-  return (
-    <Container maxWidth="md" component="main" className={classes.root}>
-      <Grid container spacing={10} alignItems="flex-start">
-        {
-          barnIds.map(barn => (
-            <Grid item  xs={12} sm={6} md={4}>
-              <BarnItem barn={barn} getLivestockIds={getLivestockIds} />
-            </Grid>
-          ))
-        }
-      </Grid>
-    </Container>
-  );
-}
-
-export default BarnCards;
+export default BarnItem;
