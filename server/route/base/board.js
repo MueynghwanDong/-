@@ -99,7 +99,6 @@ app.get("/", async function(req, res) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-  // console.log(tcnt);
   currentpage = parseInt(tcnt[0].tcnt/10)+1;
   res.set('last-page',currentpage);
   res.json(data);
@@ -155,12 +154,10 @@ app.post("/insert", async function(req, res) {
       try{
   
   if(m_id===null || m_id === undefined || m_id === "undefined"){
-    console.log("에러");
     res.status = 401;
     return;
   }
 }catch(error){
-  console.log("에러");
   res.status(401).send({ msg: "로그인 정보가 없습니다..", error: error });
 
   return;
@@ -258,7 +255,6 @@ app.put("/update/:bno", async function(req, res) {
   let bno = req.params.bno;
   const bd = await board.findOne({where : {bno}});
   if(m_id !== bd.m_id){
-    console.log("사용자의 게시물이 아닙니다.");
     return res.status = 401;
   }
 
@@ -304,7 +300,6 @@ app.delete("/del/:bno", async function(req, res) {
   let bno = req.params.bno;
   const bd = await board.findOne({where : {bno}});
   if(m_id !== bd.m_id){
-    console.log("사용자의 게시물이 아닙니다.");
     return res.status = 401;
   }
 

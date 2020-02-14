@@ -102,7 +102,6 @@ app.post("/insert", async function(req, res) {
       type: req.sequelize.QueryTypes.INSERT,
     });
   } catch (error) {
-    console.log(error);
     res.status(403).send({ msg: "db insert에 실패하였습니다.", error: error });
     return;
   }

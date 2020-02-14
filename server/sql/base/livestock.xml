@@ -25,9 +25,13 @@
 		SELECT
 		ls_id
 		FROM
-		ptj_sub1.livestock
+		ptj_sub1.barn_livestock
 		WHERE b_id = #{b_id}
 		order by ls_id
+	</select>
+	<select id ="selkinds">
+	select kinds FROM ptj_sub1.barn_livestock
+	WHERE ls_id =#{ls_id}
 	</select>
     <select id="alllivestock">
 		SELECT

@@ -1,6 +1,5 @@
 const envJson = require(`${__dirname}/env/env.json`);
 const port = process.env.PORT ? envJson.port : 3001;
-//const jwtMiddleware  = require('./lib/jwtMiddleware');
 require('dotenv').config();
 const express = require("express");
 const session = require('express-session');
@@ -26,10 +25,10 @@ const cors = require("cors");
 
 var corsOptions = {
   origin: "*",
+  credentials: true,
   optionsSuccessStatus: 200
 };
 app.use(methodOverride('_method'));
-//app.use(jwtMiddleware);
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,13 +46,8 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 app.use(require(`${__dirname}/middleware/init`));
 app.use(require(`${__dirname}/middleware/db`));
-//app.use(require(`${__dirname}/middleware/checkLoggedIn`));
-
-
 
 app.use("/board", require(`${__dirname}/route/base/board`));
 app.use("/member", require(`${__dirname}/route/base/member`));

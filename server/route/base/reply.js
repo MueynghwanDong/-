@@ -184,7 +184,6 @@ app.put("/update/:rno", async function(req, res) {
 });
 
 app.delete("/del/:rno", async function(req, res) {
-  console.log(req.query);
   var deleteParms = {
     rno : req.params.rno
   };

@@ -33,29 +33,40 @@ app.get("/:b_id", async function(req, res) {
   var month;
   var day;
 
-  var ls_date = req.query.ls_date;
-  if(ls_date===null || ls_date==="" || !ls_date){
+  var b_date = req.query.b_date;
+  if(b_date===null || b_date==="" || !b_date){
      today = new Date();
      day = today.getDate();
      month = today.getMonth()+1; 
      year = today.getFullYear();
   }
 else{
- var arr = ls_date.split('-');
+ var arr = b_date.split('-');
   year = arr[0];
   month = arr[1];
   day = arr[2];
 } 
-
-
+let data = [];
+let k = [];
+try {
+  var selcount = {
+    b_id : req.params.b_id,
+  }
   var selectParms = {
     b_id : req.params.b_id,
     year : year,
     month : month,
     day : day
   };
-  let data = [];
-  try {
+  var selcnt = req.mybatisMapper.getStatement(
+    "BARN",
+    "selcount",
+    selcount,
+    { language: "sql", indent : "  "}
+  );
+  k = await req.sequelize.query(selcnt, {
+    type: req.sequelize.QueryTypes.SELECT
+  });
   var selectQuery = req.mybatisMapper.getStatement(
     "BARN",
     "selectbarn",
@@ -70,12 +81,12 @@ else{
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-
   if (data.length == 0) {
+    res.set('barn-cnt',k[0].count);
     res.json(data);
     return;
   }
-
+  res.set('barn-cnt',k[0].count);
   res.json(data);
 });
 
@@ -100,7 +111,6 @@ app.get("/member/:m_id", async function(req, res) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-  console.log(data);
 
   if (data.length == 0) {
     res.json(data);

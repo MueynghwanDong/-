@@ -15,7 +15,7 @@
 		SELECT
 		b_id
 		FROM
-		ptj_sub1.barns
+		ptj_sub1.mb
 		WHERE m_id = #{m_id}
 		order by b_id
 	</select>
@@ -48,8 +48,11 @@
         WHERE b_id =#{b_id}
     </update>
     <update id ="updatecount">
-        UPDATE ptj_sub1.barns
+        UPDATE ptj_sub1.mb
         SET count = count+1
         WHERE b_id =#{b_id}
     </update>
+	<select id = "selcount">
+	select count from ptj_sub1.mb where b_id =#{b_id}
+	</select>
 </mapper>

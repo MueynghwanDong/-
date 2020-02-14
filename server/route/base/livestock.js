@@ -13,7 +13,6 @@ app.get("/", async function(req, res) {
     data = await req.sequelize.query(selectQuery, {
       type: req.sequelize.QueryTypes.SELECT
     });
-    //console.log("TCL: data", data);
   } catch (error) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
@@ -46,14 +45,27 @@ else{
   month = arr[1];
   day = arr[2];
 } 
+let data = [];
+let k = [];
+try {
+var selkindes = {
+  ls_id : req.params.ls_id,
+}
   var selectParms = {
     ls_id : req.params.ls_id,
     year : year,
     month : month,
     day : day
   };
-  let data = [];
-  try {
+  var selectkinds = req.mybatisMapper.getStatement(
+    "livestock",
+    "selkinds",
+    selkindes,
+    { language: "sql", indent : "  "}
+  );
+  k = await req.sequelize.query(selectkinds, {
+    type: req.sequelize.QueryTypes.SELECT
+  });
   var selectQuery = req.mybatisMapper.getStatement(
     "livestock",
     "selectlivestock",
@@ -68,15 +80,13 @@ else{
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-  //  console.log(data[0].kinds);
+
   if (data.length == 0) {
-    res.set('livestock-kinds',"null");
+    res.set('livestock-kinds',k[0].kinds);
     res.json(data);
     return;
   }
-  var k = data[0].kinds;
-
-  res.set('livestock-kinds',k);
+  res.set('livestock-kinds',k[0].kinds);
   res.json(data);
 });
 
@@ -129,7 +139,6 @@ app.get("/barn/:b_id", async function(req, res) {
     res.status(403).send({ msg: "db select에 실패하였습니다.", error: error });
     return;
   }
-  console.log(data);
   if (data.length == 0) {
     res.json(data);
     return;
