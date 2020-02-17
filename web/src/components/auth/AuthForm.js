@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 import { makeStyles, Typography } from '@material-ui/core';
-import {blue, green} from '@material-ui/core/colors'
-import { AccountCircle, VpnKey, Email, Explore, EmojiPeople, EmojiPeopleTwoTone,} from "@material-ui/icons"
-import Icon from '@material-ui/core/Icon'
+import {blue} from '@material-ui/core/colors'
+import { AccountCircle, VpnKey, Email, Explore, EmojiPeople} from "@material-ui/icons"
+
 // 스타일링 된 input
 const StyledInput = styled.input`
     background-color: ${palette.gray[1]};
@@ -157,8 +157,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             name="email"
                             placeholder="이메일"
                             type="email"
-                            // onChange={onChange}
-                            onChagne= {onChange}
+                            onChange= {onChange}
                             value={form.email}
                           />
                           </div>

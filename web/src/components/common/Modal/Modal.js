@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid, Typography, } from '@material-ui/core';
 import './Modal.scss';
-import { Directions, Phone, ContactMaild, ContactMail } from '@material-ui/icons';
+import {  ContactMail } from '@material-ui/icons';
 
 const Modal = ({ isOpen, close }) => {
   return (
@@ -31,8 +31,7 @@ const Modal = ({ isOpen, close }) => {
               />    
               </div> 
               <h3 align='center' style={{color:'black'}} >오병관</h3>
-              <Typography> 좌우명 </Typography>
-              <Typography> 담당? </Typography>
+              <Typography> 담당 : embedded </Typography>
               <Typography>  <ContactMail /> : qverck@gmail.com</Typography>
             </Grid>  
             <Grid
@@ -55,8 +54,7 @@ const Modal = ({ isOpen, close }) => {
               />    
             </div>  
             <h3 align='center' style={{color:'black'}}>박민기</h3>
-              <Typography> 좌우명 </Typography>
-              <Typography> 담당? </Typography>
+              <Typography> 담당 : Front-end(React) </Typography>
               <Typography>  <ContactMail /> : minkishome@gmail.com</Typography>
             </Grid>
            
@@ -79,8 +77,7 @@ const Modal = ({ isOpen, close }) => {
               />
               </div> 
               <h3 align='center' style={{color:'black'}}>명환</h3>
-              <Typography> 좌우명 </Typography>
-              <Typography> 담당? </Typography>
+              <Typography> 담당 : back-end(Nodejs) </Typography>
               <Typography>  <ContactMail /> : v8392070@gmail.com</Typography>
             </Grid>
             <Grid
@@ -102,8 +99,7 @@ const Modal = ({ isOpen, close }) => {
               />    
               </div> 
               <h3 align='center' style={{color:'black'}}>재웅</h3>
-              <Typography> 좌우명 </Typography>
-              <Typography> 담당? </Typography>
+              <Typography> 담당 : Front-end(React)  </Typography>
               <Typography>  <ContactMail /> : koolerjaebee@gmail.com</Typography>
             </Grid>
           </div>

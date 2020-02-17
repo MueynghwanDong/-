@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modal.scss';
-import {Grid, Container} from '@material-ui/core';
+import {Container} from '@material-ui/core';
 
 
 

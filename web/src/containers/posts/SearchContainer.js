@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Search from '../../components/posts/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
-import { listPosts, changeField, initialize } from '../../modules/posts';
+import { listPosts, changeField  } from '../../modules/posts';
 import { withRouter } from 'react-router-dom';
 
 const SearchContainer = ({ history }) => {

@@ -133,7 +133,7 @@ const Header = ({user, onLogin, onLogout}) => {
           <Link to='/mypage'> 
             <img src='/images/mark_image.jpg' alt='Nope' width='60' hegiht='60' />
           </Link>
-                <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle} component={Link} to='/mypage'>
+                <Typography variant="h6" noWrap className={classes.toolbarTitle} component={Link} to='/mypage'>
                     소소하다                   
                 </Typography>
                     {/* <nav>

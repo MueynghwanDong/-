@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { listLivestocks, initialize } from '../../modules/livestocks';
+import { listLivestocks } from '../../modules/livestocks';
 import BarnItem from '../../components/my/BarnItem';
 
 const BarnItemContainer = ({ barn }) => {

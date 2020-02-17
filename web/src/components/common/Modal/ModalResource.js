@@ -22,7 +22,8 @@ const ModalResource = ({ isOpen, close }) => {
                 display:'block',
                 position:'absolute',
                 marginLeft:'40%',
-                marginTop:'%'
+                marginTop:'%',
+                paddingTop:'30px'
                 // margin: 'auto'
               }}
             />

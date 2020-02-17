@@ -40,20 +40,7 @@ const classes = makeStyles(theme=> ({
       },
 }))
 
-const footers = [
-    {
-      title: 'Team',
-      description: ['Team', 'History', 'Contact us', 'Locations'],
-    },
-    {
-      title: 'Resources',
-      description: ['MySQL', 'React-Redux', 'Embedded', 'RedBull'],
-    },
-    {
-      title: 'Legal',
-      description: ['Privacy policy', 'Terms of use'],
-    },
-  ];
+
  
     class Footer extends Component {
       constructor(props){

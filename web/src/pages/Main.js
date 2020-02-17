@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-
+import React  from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, CssBaseline,  Toolbar, Typography,  Container, makeStyles,} from '@material-ui/core'
 import { red, } from '@material-ui/core/colors'
@@ -10,7 +9,6 @@ import MainCard from '../components/common/Card/main_card'
 import Card_rightimage from '../components/common/Card/card_rightimage';
 import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from 'react-helmet-async';
-
 
 
 const BackgroundVideo=()=>{
@@ -148,6 +146,8 @@ const Main = () => {
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle} component={Link} to='/mypage'>
             소소하다
           </Typography>
+          <div id='carousel'/>
+
         
           {/* <Button  color="primary" variant="outlined" className={classes.link}> */}
           <Link variant="button" to='/login'> 시작하기 </Link>
@@ -157,14 +157,14 @@ const Main = () => {
       </AppBar>
       {/* Hero unit */}
       <BackgroundVideo/>
-      <Container maxWidth="sm" component="main" className={classes.heroContent} paddingBottom="20px">
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom paddingBottom="20px !important">
+      <Container maxWidth="sm" component="main" className={classes.heroContent}>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary">
          소소하다 
         </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" component="p" paddingbottom="20px">
+        <Typography variant="h5" align="center" color="textSecondary" component="p">
           더 편하고 건강하게 축사를 관리하세요
         </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" component="p" paddingbottom="20px">
+        <Typography variant="h5" align="center" color="textSecondary" component="p">
           더 이상 시간에 구애받지 마세요
         </Typography>
       </Container>

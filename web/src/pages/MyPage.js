@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import MyContainer from '../containers/my/MyContainer';
 import Footer from '../components/common/Footer';

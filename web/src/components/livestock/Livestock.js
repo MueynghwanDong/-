@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
-import palette from '../../lib/styles/palette';
 
 import LivestockChart from '../common/Chart/LivestockChart';
 import { Link } from 'react-router-dom';
