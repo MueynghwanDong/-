@@ -186,13 +186,6 @@ const Header = ({user, onLogin, onLogout}) => {
           <ListItemText primary='게시판' />
         </ListItem>
       </Link>
-      <Link to='/mypage'>
-        <ListItem button key='scheduler'>
-          {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
-          <ListItemIcon>{IconList[2]}</ListItemIcon>
-          <ListItemText primary='일정 관리' />
-        </ListItem>
-      </Link>
       <Link to='/faq'>
         <ListItem button key='faq'>
           {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}

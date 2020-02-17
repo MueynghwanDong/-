@@ -69,13 +69,11 @@ const LivestockChart = ({ livestockData, ls_date, onChangeDate }) => {
       <Chart
         data={livestockData}
       >
-        <ValueScale name="body_temperature" />
-        <ValueScale name="heart_rate" />
+        <ValueScale name="body_temperature" modifyDomain={()=>[30, 45]} />
         <ValueScale name="step_count" />
 
         <ArgumentAxis />
         <ValueAxis scaleName="body_temperature" position="right" showGrid={false} showLine showTicks />
-        <ValueAxis scaleName="heart_rate" position="right" showGrid={false} showLine showTicks />
         <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
 
         <SplineSeries
@@ -84,14 +82,6 @@ const LivestockChart = ({ livestockData, ls_date, onChangeDate }) => {
           argumentField="t"
           scaleName="body_temperature"
           color="pink"
-        />
-
-        <SplineSeries
-          name="심박수"
-          valueField="heart_rate"
-          argumentField="t"
-          scaleName="heart_rate"
-          color="lightgreen"
         />
 
         <SplineSeries
@@ -106,15 +96,15 @@ const LivestockChart = ({ livestockData, ls_date, onChangeDate }) => {
         <ZoomAndPan />
       </Chart>
       <Grid container> {/* grid 비율 바꿔야됨 */}
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6}>
         <Chart
           data={livestockData}
           height={300}
         >
       
-          <ValueScale name="body_temperature" />
+          <ValueScale name="body_temperature" modifyDomain={()=>[30, 45]} />
 
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
           <ValueAxis scaleName="body_temperature" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
@@ -130,36 +120,14 @@ const LivestockChart = ({ livestockData, ls_date, onChangeDate }) => {
           <ZoomAndPan />
         </Chart>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-        <Chart
-          data={livestockData}
-          height={300}
-        >
-          <ValueScale name="heart_rate" />
-
-          <ArgumentAxis />
-          <ValueAxis scaleName="heart_rate" position="right" showGrid={false} showLine showTicks />
-
-          <SplineSeries
-            name="심박수"
-            valueField="heart_rate"
-            argumentField="t"
-            scaleName="heart_rate"
-            color="lightgreen"
-          />
-          <Title text="심박수" />
-          <Animation />
-          <ZoomAndPan />
-        </Chart>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6}>
         <Chart
           data={livestockData}
           height={300}
         >
           <ValueScale name="step_count" />
 
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
           <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries

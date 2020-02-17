@@ -67,16 +67,14 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
       <Chart
         data={barnData}
       >
-        <ValueScale name="temperature" />
-        <ValueScale name="humidity" />
-        <ValueScale name="ch4" />
-        <ValueScale name="co2" />
+        <ValueScale name="temperature" modifyDomain={()=>[-30, 60]} />
+        <ValueScale name="humidity" modifyDomain={()=>[0, 100]} />
+        <ValueScale name="ch4" modifyDomain={()=>[0, 5]} />
 
         <ArgumentAxis />
         <ValueAxis scaleName="temperature" position="right" showGrid={false} showLine showTicks />
         <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
         <ValueAxis scaleName="ch4" position="right" showGrid={false} showLine showTicks />
-        <ValueAxis scaleName="co2" position="right" showGrid={false} showLine showTicks />
 
         <SplineSeries
           name="온도"
@@ -102,24 +100,18 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
           color="lime"
         />
 
-        <SplineSeries
-          name="CO2"
-          valueField="co2"
-          argumentField="t"
-          scaleName="co2"
-          color="grey"
-        />
         <Animation />
         <Legend />
       </Chart>
       <Grid container>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={4}>
         <Chart
           data={barnData}
+          height={300}
         >
-          <ValueScale name="temperature" />
+          <ValueScale name="temperature" modifyDomain={()=>[-30, 60]} />
 
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
           <ValueAxis scaleName="temperature" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
@@ -134,13 +126,14 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
           <ZoomAndPan />
         </Chart>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={4}>
         <Chart
           data={barnData}
+          height={300}
         >
-          <ValueScale name="humidity" />
+          <ValueScale name="humidity" modifyDomain={()=>[0, 100]} />
 
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
           <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
@@ -155,13 +148,14 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
           <ZoomAndPan />
         </Chart>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={4}>
         <Chart
           data={barnData}
+          height={300}
         >
-          <ValueScale name="ch4" />
+          <ValueScale name="ch4" modifyDomain={()=>[0, 5]} />
 
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
           <ValueAxis scaleName="ch4" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
@@ -172,27 +166,6 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
             color="lime"
           />
           <Title text="CH4" />
-          <Animation />
-          <ZoomAndPan />
-        </Chart>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-        <Chart
-          data={barnData}
-        >
-          <ValueScale name="co2" />
-
-          <ArgumentAxis />
-          <ValueAxis scaleName="co2" position="right" showGrid={false} showLine showTicks />
-
-          <SplineSeries
-            name="CO2"
-            valueField="co2"
-            argumentField="t"
-            scaleName="co2"
-            color="grey"
-          />
-          <Title text="CO2" />
           <Animation />
           <ZoomAndPan />
         </Chart>
