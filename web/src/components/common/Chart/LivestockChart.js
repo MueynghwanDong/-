@@ -151,7 +151,7 @@ export default class Demo extends React.PureComponent {
           }
         </Chart>
         <Grid container>  {/* grid 비율 바꿔야됨 */}
-          <Grid item xs={12} sm={6} md={4} >
+          <Grid item xs={12} sm={6} md={6} >
           <Chart
             data={chartData}
             height={300}
@@ -175,7 +175,7 @@ export default class Demo extends React.PureComponent {
             }
           </Chart>
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
+          {/* <Grid item xs={12} sm={6} md={4}>
           <Chart
             data={chartData}
             height={300}
@@ -195,8 +195,8 @@ export default class Demo extends React.PureComponent {
               <Legend />
             }
           </Chart>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
+          </Grid> */}
+          <Grid item xs={12} sm={6} md={6}>
           <Chart
             data={chartData}
             height={300}

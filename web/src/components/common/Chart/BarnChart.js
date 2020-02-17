@@ -9,7 +9,7 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Animation } from '@devexpress/dx-react-chart';
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
+
 
 const data = {
   '20-02-11-18:00': [
