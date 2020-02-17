@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       flexDirection: 'column',
       alignItems:'center',
-
+      
     },
   },
   details: {
@@ -55,7 +55,7 @@ const Cardrightimage = () => {
   return (
     <Container maxWidth = 'md'  display="flex" flexdirection="column" alignitems='center'>
         <Grid container align = 'center'  spacing = {5}>
-          <Grid item>
+          <Grid item style={{width:'inherit'}}>
               <Card className={classes.root} md ={6} xs ={6} >
               <div className={classes.details}>
                   <CardContent className={classes.content}>
@@ -75,7 +75,7 @@ const Cardrightimage = () => {
               />
               </Card>
           </Grid>
-            <Grid item > 
+            <Grid item style={{width:'inherit'}}> 
               <Card className={classes.root}>
               <div className={classes.details}>
                   <CardContent className={classes.content}>
