@@ -160,12 +160,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             // onChange={onChange}
                             onChagne= {onChange}
                             value={form.email}
-<<<<<<< HEAD
-                            />
-
-=======
                           />
->>>>>>> 591be138fd94cc4cb9eadf059e42152f93b79570
                           </div>
                         )}
                         
