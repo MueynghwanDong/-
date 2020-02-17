@@ -4,7 +4,11 @@
 <mapper namespace="BARN">
 	<select id="selectbarn">
 		SELECT
-		*, substring(time,12,5) as t
+<<<<<<< HEAD
+		*, concat(substring(time,12,2),substring(time,15,2)) as t
+=======
+		*, concat(substring(time,12,2), substring(time,15,2)) as t
+>>>>>>> dee2c0a0992f55882de34ca2863569e7c2aac2e2
 		FROM
 		ptj_sub1.barns
 		WHERE b_id = #{b_id} and year(time) =#{year} 
