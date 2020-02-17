@@ -10,7 +10,7 @@ const PostListPage = () => {
   return (
     <>
       <Helmet>
-        <title>게시판 - (우리회사)</title>
+        <title>게시판 - 소소하다</title>
       </Helmet>
       <HeaderContainer />
       <PostListContainer />

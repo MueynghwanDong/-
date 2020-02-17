@@ -6,10 +6,12 @@ import {
   ValueAxis,
   SplineSeries,
   Legend,
+  ZoomAndPan,
+  Title,
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Animation } from '@devexpress/dx-react-chart';
 import Grid from '@material-ui/core/Grid';
-
+import DatePicker from 'react-datepicker';
 
 const data = {
   '20-02-11-18:00': [
@@ -58,193 +60,120 @@ const data = {
 
 const option = ['20-02-11-18:00', '20-02-11-17:00', '20-02-11-16:00'];
 
-export default class Demo extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const BarnChart = ({ barnData, b_date, onChangeDate }) => {
 
-    this.state = {
-      data: data[option[0]],
-      hideLegend: false,
-    };
-    this.changeData = this.changeData.bind(this);
-    this.id = undefined;
-    this.index = 1;
-  }
+  return (
+    <Paper>
+      <Chart
+        data={barnData}
+      >
+        <ValueScale name="temperature" modifyDomain={()=>[-30, 60]} />
+        <ValueScale name="humidity" modifyDomain={()=>[0, 100]} />
+        <ValueScale name="ch4" modifyDomain={()=>[0, 5]} />
 
-  componentDidMount() {
-    // const selectElement = document.getElementById('select');
-    // this.id = setInterval(() => {
-    //   selectElement.selectedIndex = this.index;
-    //   this.setState({ data: data[option[this.index]] });
-    //   if (this.index === 2) {
-    //     this.index = 0;
-    //   } else {
-    //     this.index += 1;
-    //   }
-    // }, 4000);
-    window.addEventListener("resize", this.resize.bind(this));
-    this.resize();
-  }
+        <ArgumentAxis />
+        <ValueAxis scaleName="temperature" position="right" showGrid={false} showLine showTicks />
+        <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
+        <ValueAxis scaleName="ch4" position="right" showGrid={false} showLine showTicks />
 
-  componentWillUnmount() {
-    clearTimeout(this.id);
-  }
+        <SplineSeries
+          name="온도"
+          valueField="temperature"
+          argumentField="t"
+          scaleName="temperature"
+          colot="pink"
+        />
 
-  changeData(e) {
-    this.setState({ data: data[e.target.value] });
-  }
+        <SplineSeries
+          name="습도"
+          valueField="humidity"
+          argumentField="t"
+          scaleName="humidity"
+          color="lightblue"
+        />
 
-  resize() {
-    let currentHideLegend = (window.innerWidth <= 760);
-    if (currentHideLegend !== this.state.hideLegend) {
-        this.setState({hideLegend: currentHideLegend});
-    }
-  }
+        <SplineSeries
+          name="CH4"
+          valueField="ch4"
+          argumentField="t"
+          scaleName="ch4"
+          color="lime"
+        />
 
-  render() {
-    const { data: chartData, hideLegend } = this.state;
-    return (
-      <Paper>
-        {/* <Chart
-          data={chartData}
+        <Animation />
+        <Legend />
+      </Chart>
+      <Grid container>
+        <Grid item xs={12} sm={6} md={4}>
+        <Chart
+          data={barnData}
+          height={300}
         >
-          <ValueScale name="temperature" />
-          <ValueScale name="humidity" />
-          <ValueScale name="ch4" />
-          <ValueScale name="co2" />
+          <ValueScale name="temperature" modifyDomain={()=>[-30, 60]} />
 
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
           <ValueAxis scaleName="temperature" position="right" showGrid={false} showLine showTicks />
-          <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
-          <ValueAxis scaleName="ch4" position="right" showGrid={false} showLine showTicks />
-          <ValueAxis scaleName="co2" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
             name="온도"
             valueField="temperature"
-            argumentField="time"
+            argumentField="t"
             scaleName="temperature"
+            colot="pink"
           />
+          <Title text="온도" />
+          <Animation />
+          <ZoomAndPan />
+        </Chart>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+        <Chart
+          data={barnData}
+          height={300}
+        >
+          <ValueScale name="humidity" modifyDomain={()=>[0, 100]} />
+
+          <ArgumentAxis showLabels={false} />
+          <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
             name="습도"
             valueField="humidity"
-            argumentField="time"
+            argumentField="t"
             scaleName="humidity"
+            color="lightblue"
           />
+          <Title text="습도" />
+          <Animation />
+          <ZoomAndPan />
+        </Chart>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+        <Chart
+          data={barnData}
+          height={300}
+        >
+          <ValueScale name="ch4" modifyDomain={()=>[0, 5]} />
+
+          <ArgumentAxis showLabels={false} />
+          <ValueAxis scaleName="ch4" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
             name="CH4"
             valueField="ch4"
-            argumentField="time"
+            argumentField="t"
             scaleName="ch4"
+            color="lime"
           />
-
-          <SplineSeries
-            name="CO2"
-            valueField="co2"
-            argumentField="time"
-            scaleName="co2"
-          />
+          <Title text="CH4" />
           <Animation />
-          {  !hideLegend &&
-            <Legend />
-          }
-        </Chart> */}
-        <Grid container> {/* grid 비율 바꿔야됨 */}
-          <Grid item xs={12} sm={6}>
-          <Chart
-            data={chartData}
-          >
-            <ValueScale name="temperature" />
-
-            <ArgumentAxis />
-            <ValueAxis scaleName="temperature" position="right" showGrid={false} showLine showTicks />
-
-            <SplineSeries
-              name="온도"
-              valueField="temperature"
-              argumentField="time"
-              scaleName="temperature"
-            />
-            <Animation />
-            {  !hideLegend &&
-              <Legend />
-            }
-          </Chart>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-          <Chart
-            data={chartData}
-          >
-            <ValueScale name="humidity" />
-
-            <ArgumentAxis />
-            <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
-
-            <SplineSeries
-              name="습도"
-              valueField="humidity"
-              argumentField="time"
-              scaleName="humidity"
-            />
-            <Animation />
-            {  !hideLegend &&
-              <Legend />
-            }
-          </Chart>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-          <Chart
-            data={chartData}
-          >
-            <ValueScale name="ch4" />
-
-            <ArgumentAxis />
-            <ValueAxis scaleName="ch4" position="right" showGrid={false} showLine showTicks />
-
-            <SplineSeries
-              name="CH4"
-              valueField="ch4"
-              argumentField="time"
-              scaleName="ch4"
-            />
-            <Animation />
-            {  !hideLegend &&
-              <Legend />
-            }
-          </Chart>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-          <Chart
-            data={chartData}
-          >
-            <ValueScale name="co2" />
-
-            <ArgumentAxis />
-            <ValueAxis scaleName="co2" position="right" showGrid={false} showLine showTicks />
-
-            <SplineSeries
-              name="CO2"
-              valueField="co2"
-              argumentField="time"
-              scaleName="co2"
-            />
-            <Animation />
-            {  !hideLegend &&
-              <Legend />
-            }
-          </Chart>
-          </Grid>
+          <ZoomAndPan />
+        </Chart>
         </Grid>
-        <select id="select" style={{ width: 'auto', margin: '10px', justifyContent: 'center' }} onChange={this.changeData}>
-          <option>{ option[0] }</option>
-          <option>{ option[1] }</option>
-          <option>{ option[2] }</option>
-        </select>
-      </Paper>
-    );
-  }
+      </Grid>
+      <DatePicker selected={b_date} onChange={onChangeDate} />
+    </Paper>
+  );
 }
 
-// check에 따라 렌더링하기
+export default BarnChart;

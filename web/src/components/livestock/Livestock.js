@@ -15,17 +15,19 @@ const LivestockBlock = styled(Responsive)`
   }
 `;
 
-const My = () => {
-  // 에러 발생 시
-
+const Livestock = ({ livestockData, ls_date, onChangeDate, livestockKinds }) => {
   return (
     <LivestockBlock>
       <h1>내 가축</h1>
       <Link to="/mypage">홈</Link>
-      <h4>가축 종류 적혀는 곳 ex)소</h4>
-      <LivestockChart myProps={'myProps'} />
+      <h4>{livestockKinds}</h4>
+      <LivestockChart
+        livestockData={livestockData}
+        ls_date={ls_date}
+        onChangeDate={onChangeDate}
+      />
     </LivestockBlock>
   );
 };
 
-export default My;
+export default Livestock;

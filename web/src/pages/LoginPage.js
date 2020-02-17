@@ -7,7 +7,7 @@ const LoginPage = () =>{
     return (
         <>
         <Helmet>
-          <title>로그인 - (우리회사)</title>
+          <title>로그인 - 소소하다</title>
         </Helmet>
         <AuthTemplate>
             <LoginForm />

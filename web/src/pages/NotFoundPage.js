@@ -18,7 +18,7 @@ const NotFoundPage = () =>{
     return (
       <>
       <Helmet>
-        <title>404 Not Found - (우리회사)</title>
+        <title>404 Not Found - 소소하다</title>
       </Helmet>
       <Header />
       <NotFoundBlock>

@@ -6,11 +6,12 @@ import {
   ValueAxis,
   SplineSeries,
   Legend,
+  ZoomAndPan,
+  Title,
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Animation } from '@devexpress/dx-react-chart';
 import Grid from '@material-ui/core/Grid';
-// import { makeStyles } from '@material-ui/core'
-
+import DatePicker from 'react-datepicker';
 
 
 
@@ -61,178 +62,90 @@ const data = {
 
 const option = ['20-02-11-18:00', '20-02-11-17:00', '20-02-11-16:00'];
 
-export default class Demo extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const LivestockChart = ({ livestockData, ls_date, onChangeDate }) => {
 
-    this.state = {
-      data: data[option[0]],
-      hideLegend: false,
-      
-    };
-    this.changeData = this.changeData.bind(this);
-    this.id = undefined;
-    this.index = 1;
-  }
+  return (
+    <Paper>
+      <Chart
+        data={livestockData}
+      >
+        <ValueScale name="body_temperature" modifyDomain={()=>[30, 45]} />
+        <ValueScale name="step_count" />
 
-  componentDidMount() {
-    // const selectElement = document.getElementById('select');
-    // this.id = setInterval(() => {
-    //   selectElement.selectedIndex = this.index;
-    //   this.setState({ data: data[option[this.index]] });
-    //   if (this.index === 2) {
-    //     this.index = 0;
-    //   } else {
-    //     this.index += 1;
-    //   }
-    // }, 4000);
-    window.addEventListener("resize", this.resize.bind(this));
-    this.resize();
-  }
+        <ArgumentAxis />
+        <ValueAxis scaleName="body_temperature" position="right" showGrid={false} showLine showTicks />
+        <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
 
-  componentWillUnmount() {
-    clearTimeout(this.id);
-  }
+        <SplineSeries
+          name="체온"
+          valueField="body_temperature"
+          argumentField="t"
+          scaleName="body_temperature"
+          color="pink"
+        />
 
-  changeData(e) {
-    this.setState({ data: data[e.target.value] });
-  }
-
-  resize() {
-    let currentHideLegend = (window.innerWidth <= 760);
-    if (currentHideLegend !== this.state.hideLegend) {
-        this.setState({hideLegend: currentHideLegend});
-    }
-  }
-
-  render() {
-    const { data: chartData, hideLegend } = this.state;
-    return (
-      <Paper>
+        <SplineSeries
+          name="활동량"
+          valueField="step_count"
+          argumentField="t"
+          scaleName="step_count"
+          color="lightblue"
+        />
+        <Animation />
+        <Legend />
+        <ZoomAndPan />
+      </Chart>
+      <Grid container> {/* grid 비율 바꿔야됨 */}
+        <Grid item xs={12} sm={6}>
         <Chart
-
-          data={chartData}
-          
+          data={livestockData}
+          height={300}
         >
       
-          <ValueScale name="body_temperature" />
-          <ValueScale name="heart_rate" />
-          <ValueScale name="step_count" />
+          <ValueScale name="body_temperature" modifyDomain={()=>[30, 45]} />
 
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
           <ValueAxis scaleName="body_temperature" position="right" showGrid={false} showLine showTicks />
-          <ValueAxis scaleName="heart_rate" position="right" showGrid={false} showLine showTicks />
-          <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
             
             name="체온"
             valueField="body_temperature"
-            argumentField="time"
+            argumentField="t"
             scaleName="body_temperature"
+            color="pink"
           />
+          <Title text="체온" />
+          <Animation />
+          <ZoomAndPan />
+        </Chart>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+        <Chart
+          data={livestockData}
+          height={300}
+        >
+          <ValueScale name="step_count" />
 
-          <SplineSeries
-            name="심박수"
-            valueField="heart_rate"
-            argumentField="time"
-            scaleName="heart_rate"
-          />
+          <ArgumentAxis showLabels={false} />
+          <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
             name="활동량"
             valueField="step_count"
-            argumentField="time"
+            argumentField="t"
             scaleName="step_count"
+            color="lightblue"
           />
+          <Title text="활동량" />
           <Animation />
-          {  !hideLegend &&
-            <Legend />
-          }
+          <ZoomAndPan />
         </Chart>
-        <Grid container>  {/* grid 비율 바꿔야됨 */}
-          <Grid item xs={12} sm={6} md={6} >
-          <Chart
-            data={chartData}
-            height={300}
-            
-          >
-            <ValueScale name="body_temperature" />
-
-            <ArgumentAxis />
-            <ValueAxis scaleName="body_temperature" position="right" showGrid={false} showLine showTicks />
-
-            <SplineSeries
-              
-              name="체온"
-              valueField="body_temperature"
-              argumentField="time"
-              scaleName="body_temperature"
-            />
-            <Animation />
-            {  !hideLegend &&
-              <Legend />
-            }
-          </Chart>
-          </Grid>
-          {/* <Grid item xs={12} sm={6} md={4}>
-          <Chart
-            data={chartData}
-            height={300}
-          >
-            <ValueScale name="heart_rate" />
-
-            <ArgumentAxis />
-            <ValueAxis scaleName="heart_rate" position="right" showGrid={false} showLine showTicks />
-            <SplineSeries    
-              name="심박수"
-              valueField="heart_rate"
-              argumentField="time"
-              scaleName="heart_rate"
-            />
-            <Animation />
-            {  !hideLegend &&
-              <Legend />
-            }
-          </Chart>
-          </Grid> */}
-          <Grid item xs={12} sm={6} md={6}>
-          <Chart
-            data={chartData}
-            height={300}
-          >
-            <ValueScale name="step_count" />
-
-            <ArgumentAxis />
-            <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
-            
-            <SplineSeries
-              width={50}
-              name="활동량"
-              valueField="step_count"
-              argumentField="time"
-              scaleName="step_count"
-            />
-           
-            <Animation />
-            {  !hideLegend &&
-              <Legend 
-                style={{
-                  writingMode:'vertical-rl'
-                }}
-              />
-            }
-          </Chart>
-          </Grid>
         </Grid>
-        <select id="select" style={{ width: 'auto', margin: '10px', justifyContent: 'center' }} onChange={this.changeData}>
-          <option>{ option[0] }</option>
-          <option>{ option[1] }</option>
-          <option>{ option[2] }</option>
-        </select>
-      </Paper>
-    );
-  }
+      </Grid>
+      <DatePicker selected={ls_date} onChange={onChangeDate} />
+    </Paper>
+  );
 }
 
-// check에 따라 렌더링하기
+export default LivestockChart;

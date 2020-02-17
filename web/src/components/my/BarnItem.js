@@ -11,13 +11,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -47,9 +42,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const BarnItem = () => {
+const BarnItem = ({ b_id, loading, error, livestocks }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  // 에러 발생 시
+  if (error) {
+    console.log(error)
+    return <Card className={classes.card}><CardHeader title="에러가 발생했습니다"/></Card>
+  }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -59,11 +59,11 @@ const BarnItem = () => {
        <Link to="/mypage/barn/1">
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-           
-              축
-            
-          </Avatar>
+          <Link to={`/mypage/barn/${b_id}`}>
+            <Avatar aria-label="recipe" className={classes.avatar}>
+                축
+            </Avatar>
+          </Link>
         }
 
         title="축사 이름"
@@ -71,7 +71,7 @@ const BarnItem = () => {
       />
       <CardMedia
         className={classes.media}
-        image={require('../../../pages/card_image/소간지.jpg')}
+        image={require('../../pages/card_image/소간지.jpg')}
         title="축사 이름"
       />
       </Link>
@@ -93,65 +93,20 @@ const BarnItem = () => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Link to="/mypage/livestock/1">
-            <Typography paragraph>
-              가축1
-            </Typography>
-          </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography paragraph>
-            가축2
-          </Typography>
-          </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography paragraph>
-            가축3
-          </Typography>
-          </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography paragraph>
-            가축4
-          </Typography>
-          </Link>
-          <Link to="/mypage/livestock/1">
-          <Typography>
-            가축5
-          </Typography>
-          </Link>
-        </CardContent>
+        {!loading && livestocks &&
+          <CardContent>
+            {livestocks.map(livestock => (
+            <Link to={`/mypage/livestock/${livestock['ls_id']}`}>
+              <Typography paragraph>
+                {`가축 ${livestocks.indexOf(livestock) + 1}`}
+              </Typography>
+            </Link>
+            ))}
+          </CardContent>
+        }
       </Collapse>
     </Card>
   )
 }
 
-const BarnCards = () => {
-  const classes = useStyles();
-
-  return (
-    <Container maxWidth="md" component="main" className={classes.root}>
-      <Grid container spacing={10} alignItems="flex-start">
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-        <Grid item  xs={12} sm={6} md={4}>
-          <BarnItem />
-        </Grid>
-      </Grid>
-    </Container>
-  );
-}
-
-export default BarnCards;
+export default BarnItem;

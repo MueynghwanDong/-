@@ -133,8 +133,13 @@ const Header = ({user, onLogin, onLogout}) => {
           <Link to='/mypage'> 
             <img src='/images/mark_image.jpg' alt='Nope' width='60' hegiht='60' />
           </Link>
+<<<<<<< HEAD
                 <Typography variant="h6"  noWrap className={classes.toolbarTitle} component={Link} to='/mypage' style={{color:'green'}}>
                     LMS                  
+=======
+                <Typography variant="h6" color="#585859" noWrap className={classes.toolbarTitle} component={Link} to='/mypage'>
+                    소소하다                   
+>>>>>>> 591be138fd94cc4cb9eadf059e42152f93b79570
                 </Typography>
                     {/* <nav>
                         <Link variant="button" color="textPrimary" href="#" className={classes.link}>
@@ -184,13 +189,6 @@ const Header = ({user, onLogin, onLogout}) => {
           {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
           <ListItemIcon>{IconList[1]}</ListItemIcon>
           <ListItemText primary='게시판' />
-        </ListItem>
-      </Link>
-      <Link to='/mypage'>
-        <ListItem button key='scheduler'>
-          {/* <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon> */}
-          <ListItemIcon>{IconList[2]}</ListItemIcon>
-          <ListItemText primary='일정 관리' />
         </ListItem>
       </Link>
       <Link to='/faq'>
