@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const Card_rightimage = () => {
+const Cardrightimage = () => {
   
     
     const classes = useStyles();
@@ -99,4 +99,4 @@ const Card_rightimage = () => {
   );
 }
 
-export default Card_rightimage;
+export default Cardrightimage;

@@ -6,7 +6,7 @@ import { red, } from '@material-ui/core/colors'
 import class_video from './BackgroundVideo.module.css';
 import Footer from '../components/common/Footer';
 import MainCard from '../components/common/Card/main_card'
-import Card_rightimage from '../components/common/Card/card_rightimage';
+import Cardrightimage from '../components/common/Card/Cardrightimage';
 import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from 'react-helmet-async';
 
@@ -172,7 +172,7 @@ const Main = () => {
 
 
       <Container maxWidth="md" component="main" className={classes.heroContent} >
-        <Card_rightimage />
+        <Cardrightimage />
       </Container>
      
       {/* End hero unit */}

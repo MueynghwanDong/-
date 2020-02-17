@@ -2,8 +2,7 @@ import React from 'react';
 // import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 // import { Link } from 'react-router-dom';
-import { Grid, makeStyles, Typography, IconButton  } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Grid, makeStyles, Typography,   } from '@material-ui/core';
 import Header from '../common/Header'
 // import Footer from '../common/Footer';
 import { grey }from '@material-ui/core/colors/'
