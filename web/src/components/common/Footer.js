@@ -52,6 +52,7 @@ const classes = makeStyles(theme=> ({
         }
       }
       
+      
       openModal = () => {
         this.setState({ isModalOpen: true });
       }
@@ -77,7 +78,7 @@ const classes = makeStyles(theme=> ({
     render ()
     {
     
-    
+    const preventDefault = event => event.preventDefault();
     return (
         <React.Fragment>
         <Container maxWidth="md" component="footer" className={classes.footer}>
@@ -85,17 +86,23 @@ const classes = makeStyles(theme=> ({
             {/* {footers.map(footer => ( */}
                 <Grid item xs={3} sm={3} >
                   <Typography variant="h6" color="textPrimary" gutterBottom onClick={this.openModals}>              
-                      Team
+                  <Link href="#" onClick={preventDefault} color="inherit">
+                    {'Team'}
+                  </Link>
                   </Typography>
                 </Grid>
                 <Grid item xs={3} sm={3}>
                   <Typography variant="h6" color="textPrimary" gutterBottom onClick={this.openModal}>
-                      Resources
+                  <Link href="#" onClick={preventDefault} color="inherit">
+                    {'Resource'}
+                  </Link>
                   </Typography>
                 </Grid>
                 <Grid item xs={3} sm={3}>
                   <Typography variant="h6" color="textPrimary" gutterBottom onClick={this.openModalterms}>
-                      Terms of Use
+                  <Link href="#" onClick={preventDefault} color="inherit">
+                    {'Terms of Use'}
+                  </Link>
                   </Typography>
                 </Grid>
           {/* ))} */}
