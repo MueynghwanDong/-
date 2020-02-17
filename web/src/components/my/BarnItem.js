@@ -55,16 +55,14 @@ const BarnItem = ({ b_id, loading, error, livestocks }) => {
   };
   return (
     <Card className={classes.card}>
-       <Link to="/mypage/barn/1">
       <CardHeader
         avatar={
           <Link to={`/mypage/barn/${b_id}`}>
             <Avatar aria-label="recipe" className={classes.avatar}>
-                축
+              축
             </Avatar>
           </Link>
         }
-
         title="축사 이름"
         subheader="축사 등록 날짜"
       />
@@ -73,7 +71,6 @@ const BarnItem = ({ b_id, loading, error, livestocks }) => {
         image={require('../../pages/card_image/소간지.jpg')}
         title="축사 이름"
       />
-      </Link>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           축사 설명
@@ -94,8 +91,8 @@ const BarnItem = ({ b_id, loading, error, livestocks }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {!loading && livestocks &&
           <CardContent>
-            {livestocks.map(livestock => (
-            <Link to={`/mypage/livestock/${livestock['ls_id']}`}>
+            {livestocks.map((livestock, index) => (
+            <Link to={`/mypage/livestock/${livestock['ls_id']}`} key={index} >
               <Typography paragraph>
                 {`가축 ${livestocks.indexOf(livestock) + 1}`}
               </Typography>

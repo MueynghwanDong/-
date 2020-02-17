@@ -57,7 +57,7 @@ const LivestockChart = ({ livestockData, ls_date, onChangeDate }) => {
       
           <ValueScale name="body_temperature" modifyDomain={()=>[20, 45]} />
 
-          <ArgumentAxis showLabels={false} />
+          <ArgumentAxis />
           <ValueAxis scaleName="body_temperature" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
@@ -80,7 +80,7 @@ const LivestockChart = ({ livestockData, ls_date, onChangeDate }) => {
         >
           <ValueScale name="step_count" />
 
-          <ArgumentAxis showLabels={false} />
+          <ArgumentAxis />
           <ValueAxis scaleName="step_count" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries

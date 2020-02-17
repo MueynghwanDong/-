@@ -58,9 +58,9 @@ const My = ({ barns, loading, error }) => {
         {!loading && barns &&
           <Grid container spacing={10} alignItems="flex-start">
             {
-              barns.map(barn => (
-                <Grid item  xs={12} sm={6} md={4}>
-                  <BarnItemContainer barn={barn} />
+              barns.map((barn, index) => (
+                <Grid item  xs={12} sm={6} md={4} key={index} >
+                  <BarnItemContainer barn={barn} key={index} />
                 </Grid>
               ))
             }

@@ -64,7 +64,7 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
         >
           <ValueScale name="temperature" modifyDomain={()=>[-30, 60]} />
 
-          <ArgumentAxis showLabels={false} />
+          <ArgumentAxis />
           <ValueAxis scaleName="temperature" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
@@ -86,7 +86,7 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
         >
           <ValueScale name="humidity" modifyDomain={()=>[0, 100]} />
 
-          <ArgumentAxis showLabels={false} />
+          <ArgumentAxis />
           <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries
@@ -108,7 +108,7 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
         >
           <ValueScale name="ch4" modifyDomain={()=>[0, 5]} />
 
-          <ArgumentAxis showLabels={false} />
+          <ArgumentAxis />
           <ValueAxis scaleName="ch4" position="right" showGrid={false} showLine showTicks />
 
           <SplineSeries

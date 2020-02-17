@@ -171,7 +171,8 @@ const AuthTemplate = ({ children }) => {
             >
                 <Grid
                     className={classes.quoteContainer}    
-                    item lg={6}
+                    item
+                    lg={6}
                 >
                     <Grid className={classes.quote}>
                       <div className={classes.quoteInner}>
