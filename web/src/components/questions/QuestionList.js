@@ -69,8 +69,8 @@ const QuestionList = ({ questions, loading, error }) => {
       {/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
       {!loading && questions && (
         <div>
-          {questions.map(question => (
-            <QuestionItem question={question} />
+          {questions.map((question, index) => (
+            <QuestionItem question={question} key={index} />
           ))}
         </div>
       )}
