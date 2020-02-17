@@ -55,13 +55,14 @@ const BarnItem = ({ b_id, loading, error, livestocks }) => {
   };
   return (
     <Card className={classes.card}>
+      <Link to={`/mypage/barn/${b_id}`}>
       <CardHeader
         avatar={
-          <Link to={`/mypage/barn/${b_id}`}>
+          
             <Avatar aria-label="recipe" className={classes.avatar}>
               축
             </Avatar>
-          </Link>
+       
         }
         title="축사 이름"
         subheader="축사 등록 날짜"
@@ -71,11 +72,13 @@ const BarnItem = ({ b_id, loading, error, livestocks }) => {
         image={require('../../pages/card_image/소간지.jpg')}
         title="축사 이름"
       />
+      </Link>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           축사 설명
         </Typography>
       </CardContent>
+      
       <CardActions disableSpacing>
         <IconButton
           className={clsx(classes.expand, {
