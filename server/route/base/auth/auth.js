@@ -197,7 +197,6 @@ router.post('/check', async (req,res,next) =>{
     const token = req.cookies.access_token;
     res.cookie('access_token');
     res.status = 204;
-    req.logout();
     req.session.destroy();
     return res.redirect('/');
   });

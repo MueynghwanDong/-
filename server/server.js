@@ -5,10 +5,8 @@ const express = require("express");
 const session = require('express-session');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
-const passport = require('passport');
 
 const {sequelize} = require('./models');
-const passportConfig = require('./passport');
 
 const bodyParser = require("body-parser");
 const app = express();
@@ -20,7 +18,6 @@ sequelize.sync().then(()=> {
   console.log("실패");
   console.log(err);
 });
-passportConfig(passport);
 const cors = require("cors");
 
 var corsOptions = {
@@ -43,8 +40,6 @@ app.use(session({
   },
 }));
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(require(`${__dirname}/middleware/init`));
 app.use(require(`${__dirname}/middleware/db`));
