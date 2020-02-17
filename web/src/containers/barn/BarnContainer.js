@@ -49,7 +49,7 @@ const BarnContainer = ({ match, location }) => {
   useEffect(() => {
     const { b_id } = match.params;
     dispatch(listBarnData({ b_id, b_date }));
-  }, [dispatch, location.search, b_date]);
+  }, [dispatch, b_date,]);
 
   if (!barnData || loading) return null;
 

@@ -104,7 +104,7 @@ const Reply = ({ replys, loading, error, onEdit, onRemove, isAuthenticated, orig
       {/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
       {!loading && replys && (
         <div>
-          {replys.map(reply => (
+          {replys.map((reply, index) => (
             <ReplyItem
               id={replys.indexOf(reply)}
               reply={reply}
@@ -115,6 +115,7 @@ const Reply = ({ replys, loading, error, onEdit, onRemove, isAuthenticated, orig
               onSubmit={onSubmit}
               replytext={replytext}
               onChangeField={onChangeField}
+              key={index}
             />
           ))}
         </div>

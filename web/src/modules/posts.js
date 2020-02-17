@@ -34,7 +34,7 @@ const initialState = {
   lastPage: 1,
   page: 1,
   searchType: 'all',
-  searchKeyword: null,
+  searchKeyword: '',
 };
 
 const posts = handleActions(

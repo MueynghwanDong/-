@@ -9,7 +9,7 @@ import {
   ZoomAndPan,
   Title,
 } from '@devexpress/dx-react-chart-material-ui';
-import { ValueScale, Animation } from '@devexpress/dx-react-chart';
+import { ValueScale, Animation, ArgumentScale } from '@devexpress/dx-react-chart';
 import Grid from '@material-ui/core/Grid';
 import DatePicker from 'react-datepicker';
 
@@ -24,6 +24,8 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
         <ValueScale name="humidity" modifyDomain={()=>[0, 100]} />
         <ValueScale name="ch4" modifyDomain={()=>[0, 5]} />
 
+        <ArgumentScale />
+
         <ArgumentAxis />
         <ValueAxis scaleName="temperature" position="right" showGrid={false} showLine showTicks />
         <ValueAxis scaleName="humidity" position="right" showGrid={false} showLine showTicks />
@@ -34,7 +36,7 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
           valueField="temperature"
           argumentField="t"
           scaleName="temperature"
-          colot="pink"
+          color="pink"
         />
 
         <SplineSeries
@@ -54,6 +56,7 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
         />
 
         <Animation />
+        <ZoomAndPan />
         <Legend />
       </Chart>
       <Grid container>
@@ -72,7 +75,7 @@ const BarnChart = ({ barnData, b_date, onChangeDate }) => {
             valueField="temperature"
             argumentField="t"
             scaleName="temperature"
-            colot="pink"
+            color="pink"
           />
           <Title text="온도" />
           <Animation />
