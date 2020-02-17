@@ -19,7 +19,7 @@ const Modal = ({ isOpen, close }) => {
               marginBottom: '30px',
             }}>
             <div style={{width:'100%',}}>
-              <img src='/images/dong.jpg'
+              <img src='/images/teamjang.jpg'
               alt = ''
               style = {{
                 width: '100%',

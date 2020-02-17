@@ -31,7 +31,7 @@ const ReplyListContainer = ({ match }) => {
   useEffect(() => {
     dispatch(listReplys({ bno }));
     setIsDeleted(false);
-  }, [dispatch, reply, isDeleted])
+  }, [bno, dispatch, reply, isDeleted])
 
   const onEdit = id => {
     dispatch(setOriginalReply(replys[id]));

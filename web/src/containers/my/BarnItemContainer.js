@@ -15,7 +15,7 @@ const BarnItemContainer = ({ barn }) => {
 
   useEffect(() => {
     dispatch(listLivestocks(barn));
-  }, [dispatch])
+  }, [barn, dispatch])
 
   return (
     <BarnItem
