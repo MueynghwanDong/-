@@ -4,7 +4,7 @@
 <mapper namespace="livestock">
 	<select id="selectlivestock">
 		SELECT
-		*, substring(time,12,5) as t
+		*, concat(substring(time,12,2),substring(time,15,2)) as t
 		FROM
 		ptj_sub1.livestock
 		WHERE ls_id = #{ls_id} and year(time) =#{year} 

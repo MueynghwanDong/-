@@ -4,7 +4,7 @@ const mybatisMapper = require("mybatis-mapper");
 const envJson = require(`${__dirname}/../env/env.json`);
 var env = process.env.NODE_ENV || 'development';
 var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
-var sequelize = new Sequelize(config.database, config.username, config.password, config);
+var sequelize = new Sequelize(config.database, config.username, config.password,config);
 const sqlPath = path.join(__dirname, "..", ".", `/sql/${envJson.version}/`);
 
 
