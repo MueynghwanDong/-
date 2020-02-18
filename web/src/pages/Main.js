@@ -43,10 +43,13 @@ const BackgroundVideo=()=>{
      
      <p style = {{
           position :'absolute',
-          fontSize: '2vw',
+          fontSize: '2.5vw',
           right:10
        }}>
-         더 현명하고, 똑똑한 방법으로 축사를 운영합니다.
+         <br/>
+         <br/>
+         <br/>
+         소를 위해 하나부터 열까지 다 해드립니다.
        </p>
     
 

@@ -11,16 +11,14 @@ import Termsofuse from './Modal/Termsofuse';
 function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
-        {'Currently v0.0.2 Released under the SSAFY Copyright © '}
+        {'Currently v1.0.0 Released under the SSAFY Copyright © 2020. '}
         <Link color="inherit" href="https://instagram.com/minkishome">
           minkishome
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
+        </Link>
         <br/>
         PHONE 
-        <a href='tel:010-2856-1214'>
-        : 010 - 2856 - 1214
+        <a href='tel:010-1234-5678'>
+        : 010 - 1234 - 5678
         </a>
       </Typography>
         
