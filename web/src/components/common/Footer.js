@@ -99,7 +99,7 @@ const classes = makeStyles(theme=> ({
                 <Grid item xs={3} sm={3}>
                   <Typography variant="h6" color="textPrimary" gutterBottom onClick={this.openModalterms}>
                   <Link href="#" onClick={preventDefault} color="inherit">
-                    {'Terms of Use'}
+                    {'Terms'}
                   </Link>
                   </Typography>
                 </Grid>
