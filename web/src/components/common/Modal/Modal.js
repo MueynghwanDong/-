@@ -32,7 +32,7 @@ const Modal = ({ isOpen, close }) => {
               </div> 
               <h3 align='center' style={{color:'black'}} >오병관</h3>
               <Typography> 담당 : embedded </Typography>
-              <Typography>  <ContactMail /> : qverck@gmail.com</Typography>
+              <Typography >  <ContactMail /> : qverck@gmail.com</Typography>
             </Grid>  
             <Grid
             style={{
