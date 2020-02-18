@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Typography, } from '@material-ui/core';
+import {Grid, Typography} from '@material-ui/core';
 import './Modal.scss';
 import {  ContactMail } from '@material-ui/icons';
 
@@ -12,10 +12,11 @@ const Modal = ({ isOpen, close }) => {
         <div className="Modal-overlay" onClick={close} />
         <div className="Modal">
           <p className="title">These are Team Member</p>
-          <div className="content">
+          <Grid container className="content">
           <Grid
+            item
+            md ={3} xs ={12} sm ={6}
             style={{
-              width:'25%',
               marginBottom: '30px',
             }}>
             <div style={{width:'100%',}}>
@@ -30,13 +31,14 @@ const Modal = ({ isOpen, close }) => {
               }}
               />    
               </div> 
-              <h3 align='center' style={{color:'black'}} >오병관</h3>
+              <h1 align='center' style={{color:'black'}} >오병관</h1>
               <Typography> 담당 : embedded </Typography>
               <Typography >  <ContactMail /> : qverck@gmail.com</Typography>
             </Grid>  
             <Grid
+            item
+            md ={3} xs ={12} sm ={6}
             style={{
-              width:'25%',
               // flexDirection:'column',
               marginBottom: '30px',
               
@@ -53,14 +55,15 @@ const Modal = ({ isOpen, close }) => {
               }}
               />    
             </div>  
-            <h3 align='center' style={{color:'black'}}>박민기</h3>
+            <h1 align='center' style={{color:'black'}}>박민기</h1>
               <Typography> 담당 : Front-end(React) </Typography>
               <Typography>  <ContactMail /> : minkishome@gmail.com</Typography>
             </Grid>
            
             <Grid
+            item
+            md ={3} xs ={12} sm ={6}
             style={{
-              width:'25%',
               // flexDirection:'column',
               marginBottom: '30px',
             }}>
@@ -76,13 +79,14 @@ const Modal = ({ isOpen, close }) => {
               }}
               />
               </div> 
-              <h3 align='center' style={{color:'black'}}>명환</h3>
+              <h1 align='center' style={{color:'black'}}>동명환</h1>
               <Typography> 담당 : back-end(Nodejs) </Typography>
               <Typography>  <ContactMail /> : v8392070@gmail.com</Typography>
             </Grid>
             <Grid
+            item
+            md ={3} xs ={12} sm ={6}
             style={{
-              width:'25%',
               // flexDirection:'column',
               marginBottom: '30px',
             }}>
@@ -98,12 +102,11 @@ const Modal = ({ isOpen, close }) => {
               }}
               />    
               </div> 
-              <h3 align='center' style={{color:'black'}}>재웅</h3>
+              <h1 align='center' style={{color:'black'}}>허재웅</h1>
               <Typography> 담당 : Front-end(React)  </Typography>
               <Typography>  <ContactMail /> : koolerjaebee@gmail.com</Typography>
             </Grid>
-          </div>
-         
+        </Grid>
         </div>
       </React.Fragment>
       :
