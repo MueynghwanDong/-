@@ -31,35 +31,35 @@ const ModalResource = ({ isOpen, close }) => {
           <Container style={{ backgroundColor:'rgba(2, 1, 17, 0.733)', textAlign:'center'}}>
             <Grid style = {{ display: 'inline-block', height: '70%', width:'70%',  paddingTop:'10px', paddingBottom:'30px' }}>
               <Grid container style={{ height:'33%', width:'100%', flexDirection:'row',  }}>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center'}}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center'}}>
                   <img className="image_center" src='/images/logos/js.jpg' alt='logo' />
                 </Grid>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/node_js.jpg' alt='logo' />
                 </Grid>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/Raspbian.png' alt='logo' />
                 </Grid>
               </Grid>
               <Grid container style={{ height:'33%', width:'100%', flexDirection:'row',   }}>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/css_html.png' alt='logo' />
                 </Grid>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/mysql.png' alt='logo' />
                 </Grid>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/react_logo.png' alt='logo' />
                 </Grid>
               </Grid>
               <Grid container style={{ height:'33%', width:'100%', flexDirection:'row' }}>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/arduino_logo.png' alt='logo' />
                 </Grid>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/redbull.png' alt='logo' />
                 </Grid>
-                <Grid lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
+                <Grid item lg={4} md ={4} xs ={4} sm ={4} style={{ height:'33%', width:'33%', textAlign:'center' }}>
                   <img className="image_center" src='/images/logos/wemake.png' alt='logo' />
                 </Grid>
               </Grid>
