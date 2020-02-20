@@ -29,18 +29,24 @@ or using
 ### Install
 ```bash
 $ git clone https://lab.ssafy.com/webmobile3-sub3/s02p13a406.git
-$ yarn install
+$ yarn
 ```
 ```bash
 $ git clone https://lab.ssafy.com/webmobile3-sub3/s02p13a406.git
 $ npm install
 ```
 ###  Usage
+move to web 
 ```bash
 $ yarn start
 ```
+move to server  
 ```bash
-$ npm start
+$ node server.js  
+```
+move to embedded_server  
+```bash
+$ node app_sensor.js
 ```
 
 ##  Team
