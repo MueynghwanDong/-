@@ -1,6 +1,7 @@
 # 소소하다
- <span style="color:red">소</span>를 <span style="color:red">소</span>답게 <span style="color:red">하</span>나부터 열까지 <span style="color:red">다</span> 해드립니다.
-![version](https://img.shields.io/badge/version-0.0.1-orange)	![javascript](https://img.shields.io/badge/javascript-es6-yellowgreen?logo=javascript)	![Css](https://img.shields.io/badge/css-css3-red?logo=css3)	![html](https://img.shields.io/badge/html-html5-red?logo=html5)	![React](https://img.shields.io/badge/React-16.12.0-61DAFB?logo=React)	![MySQL](https://img.shields.io/badge/MySQL-8.0.19-4479A1?logo=MySQL)	![Arduino](https://img.shields.io/badge/arduino-1.8.10-00979D?logo=Arduino)	![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-RaspberryPi4-C51A4A?logo=Raspberry%20Pi)	![MQTT](https://img.shields.io/badge/MQTT-3.1.1-blueviolet)	![Mosquitto](https://img.shields.io/badge/Mosquitto-1.6.8-orange)
+**소**를 **소**답게 **하**나부터 열까지 **다** 해드립니다.
+
+![version](https://img.shields.io/badge/version-0.0.1-orange)	![javascript](https://img.shields.io/badge/javascript-es6-yellowgreen?logo=javascript)	![Css](https://img.shields.io/badge/css-css3-red?logo=css3)	![html](https://img.shields.io/badge/html-html5-red?logo=html5)	![React](https://img.shields.io/badge/React-16.12.0-61DAFB?logo=React)	![Material-UI](https://img.shields.io/badge/Material--UI-4.9.3-0081CB?logo=Material-ui)	![MySQL](https://img.shields.io/badge/MySQL-8.0.19-4479A1?logo=MySQL)	![Nodejs](https://img.shields.io/badge/Node.js-13.6.0-339933?logo=Node.js)	![Expressjs](https://img.shields.io/badge/Expressjs-4.17.1-black)	![Arduino](https://img.shields.io/badge/arduino-1.8.10-00979D?logo=Arduino)	![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-RaspberryPi4-C51A4A?logo=Raspberry%20Pi)	![MQTT](https://img.shields.io/badge/MQTT-3.1.1-blueviolet)	![Mosquitto](https://img.shields.io/badge/Mosquitto-1.6.8-orange)
 ---
 
 * 체온과 운동량을 실시간으로 보여주어 소의 상태를 간편하게 확인할 수 있습니다.
