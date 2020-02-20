@@ -6,7 +6,7 @@ import AuthForm from '../../components/auth/AuthForm';
 import { check } from '../../modules/user';
 
 const LoginForm = ({ history }) => {
-  const [error, setError ] = useState(null)
+  const [error, setError] = useState(null)
   const dispatch = useDispatch();
   const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
     form: auth.login,
@@ -31,26 +31,35 @@ const LoginForm = ({ history }) => {
   const onSubmit = e => {
     e.preventDefault();
     const { m_id, pw } = form;
+    if ([m_id, pw].includes('')) {
+      setError('빈 칸을 모두 입력하세요')
+      return;
+    }
     dispatch(login({ m_id, pw }));
   };
   
   // 컴포넌트가 처음 렌더링될 때 form을 초기화함
   useEffect(() => {
     dispatch(initializeForm('login'));
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
+      if (authError.response.status === 403) {
+        setError('존재하지 않는 아이디입니다.');
+        return;
+      }
+      if (authError.response.status === 409) {
+        setError('비밀번호를 확인해주세요.');
+        return;
+      }
       setError('로그인 실패');
       return;
     }
     if (auth) {
-      console.log('로그인 성공');
       dispatch(check());
     }
-  }, [auth, authError, dispatch]);
+  }, [auth, authError, dispatch, error]);
 
   useEffect(() => {
     if (user) {

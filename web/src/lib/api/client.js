@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: "http://52.78.51.114:3001/",
-  withCredentials: true,
+  // baseURL: "http://52.78.51.114:3001/",
+  // withCredentials: true,
 });
 /*
   글로벌 설정 예시

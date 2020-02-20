@@ -57,5 +57,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "./"
+  "homepage": "./",
+  "proxy": "http://70.12.247.91:3001"
 }

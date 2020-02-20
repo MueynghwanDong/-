@@ -33,20 +33,21 @@ const RegisterForm = ({ history }) => {
     const { m_id, pw, pwConfirm, name, email, location } = form;
     if ([m_id, pw, pwConfirm, name, email, location].includes('')) {
       setError('빈 칸을 모두 입력하세요')
+      return;
     }
-    // if (pw !== pwConfirm) {
-    //   setError('비밀번호가 일치하지 않습니다.')
-    //   changeField({ form: 'register', key: 'pw', value: '' });
-    //   changeField({ form: 'register', key: 'pwConfirm', value: ''});
-    //   return;
-    // }
+    if (pw !== pwConfirm) {
+      setError('비밀번호가 일치하지 않습니다.')
+      changeField({ form: 'register', key: 'pw', value: '' });
+      changeField({ form: 'register', key: 'pwConfirm', value: ''});
+      return;
+    };
     dispatch(register({ m_id, pw, name, email, location }));
   };
   
   // 컴포넌트가 처음 렌더링될 때 form을 초기화함
   useEffect(() => {
     dispatch(initializeForm('register'));
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   // 회원가입 성공/실패 처리
   useEffect(() => {
@@ -59,17 +60,14 @@ const RegisterForm = ({ history }) => {
       return;
     }
     if (auth) {
-      console.log('회원가입 성공');
-      console.log(auth);
       dispatch(check())
     }
-  }, [auth, authError, dispatch])
+  }, [auth, authError, dispatch, error])
   
   // user 값이 잘 성정되었는지 확인
   useEffect(() => {
     if (user) {
       console.log('check API 성공');
-      console.log(user);
     }
   }, [user]);
 
